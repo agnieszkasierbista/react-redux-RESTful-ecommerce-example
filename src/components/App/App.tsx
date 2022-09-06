@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
 import ProductListingPage from "../ProductListingPage/ProductListingPage.container";
 import ProductDescriptionPage from "../ProductDescriptionPage/ProductDescriptionPage.container";
 import Cart from "../Cart/Cart.container";
 import {Link, Route, Routes} from 'react-router-dom';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher.container';
 import MiniCart from '../MiniCart/MiniCart.container';
+import NavBar from "../NavBar/NavBar";
 
 
 class App extends React.Component {
@@ -13,13 +13,13 @@ class App extends React.Component {
         return (
             <div>
 
-                <nav>
+                <NavBar>
                     <Link to="/women">Women</Link>
                     <Link to="/men">Men</Link>
                     <Link to="/kids">Kids</Link>
                     <MiniCart/>
                     <CurrencySwitcher/>
-                </nav>
+                </NavBar>
 
                 <Routes>
                     <Route path="/" element={<ProductListingPage/>}>

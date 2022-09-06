@@ -1,12 +1,12 @@
-import {PureComponent} from "react";
+import {PropsWithChildren, PureComponent} from "react";
 import {NavBarProps} from "./NavBar.types";
 import {StyledNavBar} from "./NavBar.styled";
 
-export class NavBar extends PureComponent<NavBarProps> {
+export class NavBar extends PureComponent<PropsWithChildren<NavBarProps>> {
     render() {
         return (
             <StyledNavBar>
-                NavBar
+                {this.props.children}
             </StyledNavBar>
         );
     }
