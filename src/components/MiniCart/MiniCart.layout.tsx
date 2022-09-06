@@ -1,15 +1,15 @@
-import {PureComponent} from "react";
+import {PropsWithChildren, PureComponent} from "react";
 import {StyledMiniCart} from "./MiniCart.styled";
 import {MiniCartProps} from "./MiniCart.types";
 
-export class MiniCartLayout extends PureComponent<MiniCartProps> {
+export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
     render() {
         return (
             <StyledMiniCart>
-                MiniCART
+                MiniCART {this.props.abc && <div>adf</div>}
             </StyledMiniCart>
         );
     }
 }
 
-export default MiniCartLayout;
+export default MiniCart;

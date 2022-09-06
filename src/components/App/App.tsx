@@ -2,24 +2,27 @@ import React from 'react';
 import ProductListingPage from "../ProductListingPage/ProductListingPage";
 import ProductDescriptionPage from "../ProductDescriptionPage/ProductDescriptionPage";
 import Cart from "../Cart/Cart";
-import {Link, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
 import MiniCart from '../MiniCart/MiniCart';
-import NavBarLayout from "../NavBar/NavBar.layout";
+import NavBar from "../NavBar/NavBar.layout";
+import MiniCartIcon from '../MiniCartIcon/MiniCartIcon';
+import CategoryTabs from '../CategoryTabs/CategoryTabs';
 
 
 class App extends React.Component {
     render() {
         return (
-            <div>
+            <>
 
-                <NavBarLayout>
-                    <Link to="/women">Women</Link>
-                    <Link to="/men">Men</Link>
-                    <Link to="/kids">Kids</Link>
-                    <MiniCart/>
-                    <CurrencySwitcher/>
-                </NavBarLayout>
+                <NavBar>
+                    <CategoryTabs>
+
+                    </CategoryTabs>
+
+                    <MiniCartIcon/>
+                    <CurrencySwitcher />
+                </NavBar>
 
                 <Routes>
                     <Route path="/" element={<ProductListingPage/>}>
@@ -31,10 +34,12 @@ class App extends React.Component {
                     <Route path="/cart*" element={<Cart/>}>
                     </Route>
 
+                    <Route path="/mini-cart*" element={<MiniCart/>}>
+                    </Route>
+
                 </Routes>
 
-
-            </div>
+            </>
         );
     }
 }

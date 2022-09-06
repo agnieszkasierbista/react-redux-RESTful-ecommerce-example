@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 
-export const StyledProductListingPage = styled.div`
+export const StyledProductListingPage = styled.section`
 
 `;

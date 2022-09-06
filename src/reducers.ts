@@ -1,9 +1,18 @@
 import {AnyAction, combineReducers, Reducer} from "@reduxjs/toolkit";
+import {TOGGLE_CURRENCY_DROPDOWN_VISIBILITY} from "./actions";
 
-export const reducer: Reducer = (state, action: AnyAction) => {
-    return {}
+export const currencySwitcherReducer: Reducer = (state = {isExtended: false}, action: AnyAction) => {
+    switch (action.type) {
+        case TOGGLE_CURRENCY_DROPDOWN_VISIBILITY:
+            return {
+                ...state,
+                isExtended: !state.isExtended
+            }
+        default:
+            return state
+    }
 }
 
-const rootReducer = combineReducers({reducer});
+const rootReducer = combineReducers({currencySwitcher: currencySwitcherReducer});
 
 export default rootReducer;

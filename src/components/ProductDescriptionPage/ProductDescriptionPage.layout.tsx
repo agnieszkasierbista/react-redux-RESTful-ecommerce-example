@@ -1,8 +1,8 @@
-import {PureComponent} from "react";
+import {PropsWithChildren, PureComponent} from "react";
 import {ProductDescriptionPageProps} from "./ProductDescriptionPage.types";
 import {StyledProductDescriptionPage} from "./ProductDescriptionPage.styled";
 
-export class ProductDescriptionPageLayout extends PureComponent<ProductDescriptionPageProps> {
+export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
     render() {
         return (
             <StyledProductDescriptionPage>
@@ -12,4 +12,4 @@ export class ProductDescriptionPageLayout extends PureComponent<ProductDescripti
     }
 }
 
-export default ProductDescriptionPageLayout;
+export default ProductDescriptionPage;
