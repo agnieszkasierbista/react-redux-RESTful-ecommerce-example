@@ -2,7 +2,7 @@ import {PureComponent} from "react";
 import {StyledCurrencySwitcher} from "./CurrencySwitcher.styled";
 import {CurrencySwitcherProps} from "./CurrencySwitcher.types";
 
-export class CurrencySwitcher extends PureComponent<CurrencySwitcherProps> {
+export class CurrencySwitcherLayout extends PureComponent<CurrencySwitcherProps> {
     render() {
         return (
             <StyledCurrencySwitcher>
@@ -12,4 +12,4 @@ export class CurrencySwitcher extends PureComponent<CurrencySwitcherProps> {
     }
 }
 
-export default CurrencySwitcher;
+export default CurrencySwitcherLayout;

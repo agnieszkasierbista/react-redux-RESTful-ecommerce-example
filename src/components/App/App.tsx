@@ -1,11 +1,11 @@
 import React from 'react';
-import ProductListingPage from "../ProductListingPage/ProductListingPage.container";
-import ProductDescriptionPage from "../ProductDescriptionPage/ProductDescriptionPage.container";
-import Cart from "../Cart/Cart.container";
+import ProductListingPage from "../ProductListingPage/ProductListingPage";
+import ProductDescriptionPage from "../ProductDescriptionPage/ProductDescriptionPage";
+import Cart from "../Cart/Cart";
 import {Link, Route, Routes} from 'react-router-dom';
-import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher.container';
-import MiniCart from '../MiniCart/MiniCart.container';
-import NavBar from "../NavBar/NavBar";
+import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
+import MiniCart from '../MiniCart/MiniCart';
+import NavBarLayout from "../NavBar/NavBar.layout";
 
 
 class App extends React.Component {
@@ -13,13 +13,13 @@ class App extends React.Component {
         return (
             <div>
 
-                <NavBar>
+                <NavBarLayout>
                     <Link to="/women">Women</Link>
                     <Link to="/men">Men</Link>
                     <Link to="/kids">Kids</Link>
                     <MiniCart/>
                     <CurrencySwitcher/>
-                </NavBar>
+                </NavBarLayout>
 
                 <Routes>
                     <Route path="/" element={<ProductListingPage/>}>

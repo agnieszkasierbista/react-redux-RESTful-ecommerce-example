@@ -2,7 +2,7 @@ import {PropsWithChildren, PureComponent} from "react";
 import {NavBarProps} from "./NavBar.types";
 import {StyledNavBar} from "./NavBar.styled";
 
-export class NavBar extends PureComponent<PropsWithChildren<NavBarProps>> {
+export class NavBarLayout extends PureComponent<PropsWithChildren<NavBarProps>> {
     render() {
         return (
             <StyledNavBar>
@@ -12,4 +12,4 @@ export class NavBar extends PureComponent<PropsWithChildren<NavBarProps>> {
     }
 }
 
-export default NavBar;
+export default NavBarLayout;
