@@ -4,7 +4,7 @@ import {createEpicMiddleware} from "redux-observable";
 import {State} from "./components/App/App.types";
 import {rootEpic} from "./epics";
 
-const preloadedState: State = {currencySwitcher: {isExtended: false}};
+const preloadedState: State = {currencySwitcher: {isExtended: false}, categoryTabs: {categories: []}};
 
 const epicMiddleware = createEpicMiddleware();
 const store = configureStore({

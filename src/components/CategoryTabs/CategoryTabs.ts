@@ -4,7 +4,9 @@ import {State} from "../App/App.types";
 import CategoryTabs from "./CategoryTabs.layout";
 
 function mapStateToProps(state: State) {
-    return {}
+    return {
+        categories: state.categoryTabs.categories
+    }
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {

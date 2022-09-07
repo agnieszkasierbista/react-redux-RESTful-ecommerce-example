@@ -2,6 +2,7 @@ import {combineEpics, Epic, ofType} from "redux-observable";
 import {EMPTY, of, switchMap, from} from "rxjs";
 import * as gql from 'gql-query-builder';
 import { request } from 'graphql-request';
+import {INIT, INIT_SUCCESS} from "./actions";
 
 const {query} = gql.query({
     operation: 'categories',
@@ -18,16 +19,18 @@ export const epic: Epic = action$ => action$.pipe(
     })
 );
 
-export const abc: Epic = action$ => action$.pipe(
-    ofType('TOGGLE_CURRENCY_DROPDOWN_VISIBILITY'),
+export const onInit: Epic = action$ => action$.pipe(
+    ofType(INIT),
     switchMap(() => {
-        return from(request('http://localhost:4000', query))
+        return from(
+            Promise.all([request('http://localhost:4000', query)])
+        )
     }),
-    switchMap((abc) => {
-        console.log("abc", abc)
-        return of({type: "XYZ", payload: abc})
+    switchMap((initialData) => {
+        console.log("abc", initialData)
+        return of({type: INIT_SUCCESS, payload: {categories: initialData[0].categories}})
     })
 );
 
 
-export const rootEpic = combineEpics(epic, abc);
+export const rootEpic = combineEpics(epic, onInit);

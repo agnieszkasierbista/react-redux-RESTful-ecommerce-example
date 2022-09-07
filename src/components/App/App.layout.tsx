@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropsWithChildren, PureComponent} from 'react';
 import ProductListingPage from "../ProductListingPage/ProductListingPage";
 import ProductDescriptionPage from "../ProductDescriptionPage/ProductDescriptionPage";
 import Cart from "../Cart/Cart";
@@ -8,9 +8,14 @@ import MiniCart from '../MiniCart/MiniCart';
 import NavBar from "../NavBar/NavBar.layout";
 import MiniCartIcon from '../MiniCartIcon/MiniCartIcon';
 import CategoryTabs from '../CategoryTabs/CategoryTabs';
+import {AppProps} from './App.types';
 
 
-class App extends React.Component {
+class App extends PureComponent<PropsWithChildren<AppProps>> {
+    componentWillMount() {
+        this.props.dispatchInit();
+    }
+
     render() {
         return (
             <>
@@ -21,11 +26,11 @@ class App extends React.Component {
                     </CategoryTabs>
 
                     <MiniCartIcon/>
-                    <CurrencySwitcher />
+                    <CurrencySwitcher/>
                 </NavBar>
 
                 <Routes>
-                    <Route path="/" element={<ProductListingPage/>}>
+                    <Route path="/*" element={<ProductListingPage/>}>
                     </Route>
 
                     <Route path="/details" element={<ProductDescriptionPage/>}>
