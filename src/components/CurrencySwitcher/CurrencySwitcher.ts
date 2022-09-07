@@ -2,17 +2,21 @@ import {Dispatch} from "redux"
 import {connect} from "react-redux";
 import {State} from "../App/App.types";
 import CurrencySwitcher from "./CurrencySwitcher.layout";
-import {toggleIsExtended} from "../../actions";
+import {setCurrentCurrency, toggleIsExtended} from "../../actions";
+import {Currency, CurrencySwitcherDispatchProps, CurrencySwitcherStateProps} from "./CurrencySwitcher.types";
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: State): CurrencySwitcherStateProps {
     return {
         isExtended: state.currencySwitcher.isExtended,
+        currencies: state.currencySwitcher.currencies,
+        currentCurrency: state.currencySwitcher.currentCurrency
     }
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
+function mapDispatchToProps(dispatch: Dispatch): CurrencySwitcherDispatchProps {
     return {
         dispatchToggleIsExtended: () => dispatch(toggleIsExtended()),
+        dispatchSetCurrentCurrency: (currency: Currency) => dispatch(setCurrentCurrency(currency))
     }
 }
 

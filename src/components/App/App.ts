@@ -1,14 +1,14 @@
 import {Dispatch} from "redux"
 import {connect} from "react-redux";
-import {State} from "../App/App.types";
+import {AppDispatchProps, AppStateProps, State} from "../App/App.types";
 import { init } from "../../actions";
 import App from "./App.layout";
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: State): AppStateProps {
     return {}
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
+function mapDispatchToProps(dispatch: Dispatch): AppDispatchProps {
     return {
         dispatchInit: () => dispatch(init())
     }

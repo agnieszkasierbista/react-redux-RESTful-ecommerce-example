@@ -1,9 +1,25 @@
+import {CategoryTabsProps} from "../CategoryTabs/CategoryTabs.types";
+import {CurrencySwitcherStateProps} from "../CurrencySwitcher/CurrencySwitcher.types";
+
 export interface State {
-    currencySwitcher: any;
-    categoryTabs: any
-    
+    currencySwitcher: CurrencySwitcherStateProps,
+    categoryTabs: CategoryTabsProps,
+
 }
 
-export interface AppProps {
+export interface AppProps extends AppOwnProps,
+    AppStateProps,
+    AppDispatchProps {
+}
+
+export interface AppOwnProps {
+
+}
+
+export interface AppStateProps {
+
+}
+
+export interface AppDispatchProps {
     dispatchInit: () => void,
 }

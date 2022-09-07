@@ -5,6 +5,8 @@ export const StyledCurrencySwitcher = styled.div`
   position: relative;
   display: inline-block;
   background: lightcoral;
+  width: 100px;
+
 `;
 
 export const StyledCurrencyDropdownContainer = styled.div`

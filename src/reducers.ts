@@ -1,5 +1,5 @@
 import {AnyAction, combineReducers, Reducer} from "@reduxjs/toolkit";
-import {INIT_SUCCESS, TOGGLE_CURRENCY_DROPDOWN_VISIBILITY} from "./actions";
+import {INIT_SUCCESS, SET_CURRENT_CURRENCY, TOGGLE_CURRENCY_DROPDOWN_VISIBILITY} from "./actions";
 
 export const currencySwitcherReducer: Reducer = (state = {isExtended: false}, action: AnyAction) => {
     switch (action.type) {
@@ -8,11 +8,16 @@ export const currencySwitcherReducer: Reducer = (state = {isExtended: false}, ac
                 ...state,
                 isExtended: !state.isExtended
             }
-        // case INIT_SUCCESS:
-        //     return {
-        //         ...state,
-        //         currencies: action.payload.currencies
-        //     }
+        case INIT_SUCCESS:
+            return {
+                ...state,
+                currencies: action.payload.currencies
+            }
+        case SET_CURRENT_CURRENCY:
+            return {
+                ...state,
+                currentCurrency: action.payload
+            }
         default:
             return state
     }

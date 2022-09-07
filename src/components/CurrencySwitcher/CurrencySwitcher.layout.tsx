@@ -8,22 +8,30 @@ import {
 import {CurrencySwitcherProps} from "./CurrencySwitcher.types";
 
 
-const currencies = [{symbol: "$", name: "USD"}, {symbol: "E", name: "EUR"}, {symbol: "Y", name: "JPY"}];
-
 export class CurrencySwitcher extends PureComponent<PropsWithChildren<CurrencySwitcherProps>> {
     render() {
 
         console.log(this.props.isExtended)
         return (
             <StyledCurrencySwitcher onClick={() => this.props.dispatchToggleIsExtended()}>
-                Dropdown title:
+                {`${this.props.currentCurrency.symbol}`}
                 <StyledCurrencyDropdownContainer>
                     {
                         this.props.isExtended
                         &&
                         <StyledCurrencyDropdownList>
-                            {currencies.map((currency) => <StyledCurrencyDropdownItem
-                                key={`${currency.name}.${currency.name}`}>{currency.name}</StyledCurrencyDropdownItem>)}
+                            {this.props.currencies.map((currency) => {
+                                return (
+                                    <StyledCurrencyDropdownItem
+                                        key={`${currency.symbol}.${currency.label}`}
+                                    onClick={()=> this.props.dispatchSetCurrentCurrency(currency)}
+                                    >
+
+                                        {`${currency.symbol} ${currency.label}`}
+
+                                    </StyledCurrencyDropdownItem>
+                                )
+                            })}
                         </StyledCurrencyDropdownList>
                     }
                 </StyledCurrencyDropdownContainer>
