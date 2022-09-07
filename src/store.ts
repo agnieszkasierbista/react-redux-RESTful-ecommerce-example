@@ -5,8 +5,10 @@ import {State} from "./components/App/App.types";
 import {rootEpic} from "./epics";
 
 const preloadedState: State = {
-    currencySwitcher: {isExtended: false, currencies:[], currentCurrency: {"symbol": "$", "label": "USD"}},
-    categoryTabs: {categories: []}};
+    currencySwitcher: {isExtended: false, currencies: [], currentCurrency: {"symbol": "", "label": ""}},
+    categoryTabs: {categories: []},
+    productListingPage: {products: []}
+};
 
 const epicMiddleware = createEpicMiddleware();
 const store = configureStore({

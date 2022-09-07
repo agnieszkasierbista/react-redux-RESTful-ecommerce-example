@@ -11,7 +11,8 @@ export const currencySwitcherReducer: Reducer = (state = {isExtended: false}, ac
         case INIT_SUCCESS:
             return {
                 ...state,
-                currencies: action.payload.currencies
+                currencies: action.payload.currencies,
+                currentCurrency: action.payload.currencies[0],
             }
         case SET_CURRENT_CURRENCY:
             return {
@@ -35,10 +36,23 @@ export const categoryTabsReducer: Reducer = (state = {}, action: AnyAction) => {
     }
 }
 
+export const productListingPageReducer: Reducer = (state = {}, action: AnyAction) => {
+    switch (action.type) {
+        case INIT_SUCCESS:
+            return {
+                ...state,
+                products: action.payload.products
+            }
+        default:
+            return state
+    }
+}
+
 
 const rootReducer = combineReducers({
     currencySwitcher: currencySwitcherReducer,
-    categoryTabs: categoryTabsReducer
+    categoryTabs: categoryTabsReducer,
+    productListingPage: productListingPageReducer
 });
 
 export default rootReducer;

@@ -5,7 +5,9 @@ import ProductListingPage from "./ProductListingPage.layout";
 import {ProductListingPageDispatchProps, ProductListingPageStateProps} from "./ProductListingPage.types";
 
 function mapStateToProps(state: State): ProductListingPageStateProps {
-    return {}
+    return {
+        products: state.productListingPage.products
+    }
 }
 
 function mapDispatchToProps(dispatch: Dispatch): ProductListingPageDispatchProps  {

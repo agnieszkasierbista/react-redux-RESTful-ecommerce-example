@@ -20,6 +20,5 @@ export interface CurrencySwitcherDispatchProps {
 }
 
 export type Currency = {
-    symbol: string,
-    label: string
+    [key:string]: string
 }

@@ -1,9 +1,11 @@
 import {CategoryTabsProps} from "../CategoryTabs/CategoryTabs.types";
 import {CurrencySwitcherStateProps} from "../CurrencySwitcher/CurrencySwitcher.types";
+import {ProductListingPageProps} from "../ProductListingPage/ProductListingPage.types";
 
 export interface State {
     currencySwitcher: CurrencySwitcherStateProps,
     categoryTabs: CategoryTabsProps,
+    productListingPage: ProductListingPageProps
 
 }
 

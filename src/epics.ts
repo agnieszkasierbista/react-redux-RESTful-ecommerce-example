@@ -1,5 +1,5 @@
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {EMPTY, of, switchMap, from} from "rxjs";
+import {EMPTY, from, of, switchMap} from "rxjs";
 import * as gql from 'gql-query-builder';
 import {request} from 'graphql-request';
 import {INIT, INIT_SUCCESS} from "./actions";
@@ -7,17 +7,19 @@ import {INIT, INIT_SUCCESS} from "./actions";
 const {query} = gql.query([
     {
         operation: 'categories',
-        fields: ['name']
+        fields: ['name',
+            {
+                products: [
+                    'id',
+                    'name'
+                ]
+            }]
     },
     {
         operation: 'currencies',
         fields: ['symbol', 'label']
     }
 ]);
-
-// console.log(query)
-
-// request('http://localhost:4000', query).then((data) => console.log(data))
 
 export const epic: Epic = action$ => action$.pipe(
     switchMap(() => {
@@ -33,12 +35,13 @@ export const onInit: Epic = action$ => action$.pipe(
         )
     }),
     switchMap((initialData) => {
-        console.log("abc", initialData)
+        console.log(initialData)
         return of({
             type: INIT_SUCCESS,
             payload: {
                 categories: initialData[0].categories,
-                currencies: initialData[0].currencies
+                currencies: initialData[0].currencies,
+                products: initialData[0].categories[0].products
             }
         })
     })
