@@ -29,15 +29,21 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
 
                 <Routes>
 
-                    {}
-                    <Route path="/" element={<ProductListingPage shouldInclude={() => true} />}>
+                    <Route path="/" element={<ProductListingPage shouldInclude={() => true}/>}>
                     </Route>
 
-                    <Route path="/categories/clothes" element={<ProductListingPage shouldInclude={(product) => product.category === 'clothes'} />}>
-                    </Route>
-
-                    <Route path="/categories/tech" element={<ProductListingPage shouldInclude={(product) => product.category === 'tech'} />}>
-                    </Route>
+                    {['clothes', 'tech'].map((categoryName) => {
+                        return (
+                            <Route path={`categories/${categoryName}`}
+                                   key={categoryName}
+                                   element={
+                                       <ProductListingPage
+                                           shouldInclude={(product) => product.category === categoryName}
+                                       />
+                                   }>
+                            </Route>
+                        )
+                    })}
 
                     <Route path="/details" element={<ProductDescriptionPage/>}>
                     </Route>
