@@ -11,7 +11,6 @@ import {CurrencySwitcherProps} from "./CurrencySwitcher.types";
 export class CurrencySwitcher extends PureComponent<PropsWithChildren<CurrencySwitcherProps>> {
     render() {
 
-        console.log(this.props.isExtended)
         return (
             <StyledCurrencySwitcher onClick={() => this.props.dispatchToggleIsExtended()}>
                 {`${this.props.currentCurrency.symbol}`}
@@ -24,7 +23,7 @@ export class CurrencySwitcher extends PureComponent<PropsWithChildren<CurrencySw
                                 return (
                                     <StyledCurrencyDropdownItem
                                         key={`${currency.symbol}.${currency.label}`}
-                                    onClick={()=> this.props.dispatchSetCurrentCurrency(currency)}
+                                        onClick={() => this.props.dispatchSetCurrentCurrency(currency)}
                                     >
 
                                         {`${currency.symbol} ${currency.label}`}

@@ -8,10 +8,13 @@ export interface CategoryTabsOwnProps {
 }
 
 export interface CategoryTabsStateProps {
-   categories: any,
+   categories: Category[],
 }
 
 export interface CategoryTabsDispatchProps {
 
 }
 
+export type Category = {
+   [key:string]: string
+}

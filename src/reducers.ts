@@ -1,7 +1,7 @@
 import {AnyAction, combineReducers, Reducer} from "@reduxjs/toolkit";
 import {INIT_SUCCESS, SET_CURRENT_CURRENCY, TOGGLE_CURRENCY_DROPDOWN_VISIBILITY} from "./actions";
 
-export const currencySwitcherReducer: Reducer = (state = {isExtended: false}, action: AnyAction) => {
+export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
     switch (action.type) {
         case TOGGLE_CURRENCY_DROPDOWN_VISIBILITY:
             return {
@@ -20,7 +20,7 @@ export const currencySwitcherReducer: Reducer = (state = {isExtended: false}, ac
                 currentCurrency: action.payload
             }
         default:
-            return state
+            return {...state}
     }
 }
 
@@ -32,7 +32,7 @@ export const categoryTabsReducer: Reducer = (state = {}, action: AnyAction) => {
                 categories: action.payload.categories
             }
         default:
-            return state
+            return {...state}
     }
 }
 
@@ -44,7 +44,7 @@ export const productListingPageReducer: Reducer = (state = {}, action: AnyAction
                 products: action.payload.products
             }
         default:
-            return state
+            return {...state}
     }
 }
 

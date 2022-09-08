@@ -3,6 +3,7 @@ import {EMPTY, from, of, switchMap} from "rxjs";
 import * as gql from 'gql-query-builder';
 import {request} from 'graphql-request';
 import {INIT, INIT_SUCCESS} from "./actions";
+import {Category} from "./components/CategoryTabs/CategoryTabs.types";
 
 const {query} = gql.query([
     {
@@ -11,7 +12,14 @@ const {query} = gql.query([
             {
                 products: [
                     'id',
-                    'name'
+                    'name',
+                    {prices: [
+                            {currency: [
+                                'symbol',
+                                    'label'
+                                ]},
+                            'amount'
+                        ]}
                 ]
             }]
     },
@@ -21,11 +29,6 @@ const {query} = gql.query([
     }
 ]);
 
-export const epic: Epic = action$ => action$.pipe(
-    switchMap(() => {
-        return EMPTY
-    })
-);
 
 export const onInit: Epic = action$ => action$.pipe(
     ofType(INIT),
@@ -41,11 +44,11 @@ export const onInit: Epic = action$ => action$.pipe(
             payload: {
                 categories: initialData[0].categories,
                 currencies: initialData[0].currencies,
-                products: initialData[0].categories[0].products
+                products: initialData[0].categories.find((category: Category) => category.name === "all").products
             }
         })
     })
 );
 
 
-export const rootEpic = combineEpics(epic, onInit);
+export const rootEpic = combineEpics(onInit);

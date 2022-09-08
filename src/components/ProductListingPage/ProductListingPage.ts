@@ -6,7 +6,9 @@ import {ProductListingPageDispatchProps, ProductListingPageStateProps} from "./P
 
 function mapStateToProps(state: State): ProductListingPageStateProps {
     return {
-        products: state.productListingPage.products
+        products: state.productListingPage.products,
+        currentCurrency: state.currencySwitcher.currentCurrency
+        // currentCurrency: { label: 'USD', symbol: '$'}
     }
 }
 
