@@ -1,4 +1,5 @@
 import {Currency} from "../CurrencySwitcher/CurrencySwitcher.types";
+import {Category} from "../CategoryTabs/CategoryTabs.types";
 
 export interface ProductListingPageProps extends ProductListingPageOwnProps,
     ProductListingPageStateProps,
@@ -6,13 +7,12 @@ export interface ProductListingPageProps extends ProductListingPageOwnProps,
 }
 
 export interface ProductListingPageOwnProps {
-
+    categoryName: string;
 }
 
 export interface ProductListingPageStateProps {
     products: Product[],
     currentCurrency: Currency,
-    // prices: Price[]
 }
 
 export type Price = { currency: { symbol: string, label: string }, amount: number }
@@ -21,4 +21,4 @@ export interface ProductListingPageDispatchProps {
    
 }
 
-export type Product = { name: string; id: string; prices: Price[]};
+export type Product = { name: string; id: string; prices: Price[], category: string};

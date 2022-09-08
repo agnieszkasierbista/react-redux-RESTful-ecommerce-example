@@ -19,7 +19,8 @@ const {query} = gql.query([
                                     'label'
                                 ]},
                             'amount'
-                        ]}
+                        ]},
+                    'category'
                 ]
             }]
     },

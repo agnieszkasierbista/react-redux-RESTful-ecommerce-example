@@ -7,13 +7,19 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
     render() {
         return (
             <StyledProductListingPage>
-                {this.props.products.map(product => {
+                {this.props.products.filter((product) => {
+                    if (product.category === this.props.categoryName) {
+                        return true
+                    } else {
+                        return this.props.categoryName === "all"
+                    }
+                }).map(product => {
 
-                    const price = product.prices.find(
-                        (price) => {
-                            return price.currency.label === this.props.currentCurrency.label;
-                        }
-                    );
+                        const price = product.prices.find(
+                            (price) => {
+                                return price.currency.label === this.props.currentCurrency.label;
+                            }
+                        );
 
                         return (
                             <StyledPLPitem key={product.id}>

@@ -7,7 +7,7 @@ import {rootEpic} from "./epics";
 const preloadedState: State = {
     currencySwitcher: {isExtended: false, currencies: [], currentCurrency: {"symbol": "", "label": ""}},
     categoryTabs: {categories: []},
-    productListingPage: {products: [], currentCurrency: {"symbol": "", "label": ""}}
+    productListingPage: {products: [], currentCurrency: {"symbol": "", "label": ""}, categoryName: ""}
 };
 
 const epicMiddleware = createEpicMiddleware();

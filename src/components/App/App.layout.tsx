@@ -28,16 +28,24 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
                 </NavBar>
 
                 <Routes>
-                    <Route path="/*" element={<ProductListingPage/>}>
+
+                    {}
+                    <Route path="/" element={<ProductListingPage categoryName="all"/>}>
+                    </Route>
+
+                    <Route path="/categories/clothes" element={<ProductListingPage categoryName="clothes"/>}>
+                    </Route>
+
+                    <Route path="/categories/tech" element={<ProductListingPage categoryName="tech"/>}>
                     </Route>
 
                     <Route path="/details" element={<ProductDescriptionPage/>}>
                     </Route>
 
-                    <Route path="/cart*" element={<Cart/>}>
+                    <Route path="/cart" element={<Cart/>}>
                     </Route>
 
-                    <Route path="/mini-cart*" element={<MiniCart/>}>
+                    <Route path="/mini-cart" element={<MiniCart/>}>
                     </Route>
 
                 </Routes>

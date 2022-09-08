@@ -16,5 +16,5 @@ export interface CategoryTabsDispatchProps {
 }
 
 export type Category = {
-   [key:string]: string
+   name: string
 }
