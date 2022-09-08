@@ -1,11 +1,26 @@
-import {CategoryTabsProps} from "../CategoryTabs/CategoryTabs.types";
-import {CurrencySwitcherStateProps} from "../CurrencySwitcher/CurrencySwitcher.types";
-import {ProductListingPageProps} from "../ProductListingPage/ProductListingPage.types";
+import {Currency} from "../CurrencySwitcher/CurrencySwitcher.types";
+import {Category} from "../CategoryTabs/CategoryTabs.types";
+import {Product} from "../ProductListingPage/ProductListingPage.types";
+
+interface CurrencySwitcherState {
+    currentCurrency: Currency,
+    currencies: Currency[],
+    isExtended: boolean
+
+}
+
+interface CategoryTabsState {
+    categories: Category[],
+}
+
+interface ProductListingPageState {
+    products: Product[],
+}
 
 export interface State {
-    currencySwitcher: CurrencySwitcherStateProps,
-    categoryTabs: CategoryTabsProps,
-    productListingPage: ProductListingPageProps
+    currencySwitcher: CurrencySwitcherState,
+    categoryTabs: CategoryTabsState,
+    productListingPage: ProductListingPageState
 
 }
 

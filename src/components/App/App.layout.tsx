@@ -30,13 +30,13 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
                 <Routes>
 
                     {}
-                    <Route path="/" element={<ProductListingPage categoryName="all"/>}>
+                    <Route path="/" element={<ProductListingPage shouldInclude={() => true} />}>
                     </Route>
 
-                    <Route path="/categories/clothes" element={<ProductListingPage categoryName="clothes"/>}>
+                    <Route path="/categories/clothes" element={<ProductListingPage shouldInclude={(product) => product.category === 'clothes'} />}>
                     </Route>
 
-                    <Route path="/categories/tech" element={<ProductListingPage categoryName="tech"/>}>
+                    <Route path="/categories/tech" element={<ProductListingPage shouldInclude={(product) => product.category === 'tech'} />}>
                     </Route>
 
                     <Route path="/details" element={<ProductDescriptionPage/>}>

@@ -8,11 +8,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
         return (
             <StyledProductListingPage>
                 {this.props.products.filter((product) => {
-                    if (product.category === this.props.categoryName) {
-                        return true
-                    } else {
-                        return this.props.categoryName === "all"
-                    }
+                    return this.props.shouldInclude(product);
                 }).map(product => {
 
                         const price = product.prices.find(
