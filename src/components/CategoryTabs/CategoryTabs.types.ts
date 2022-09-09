@@ -1,3 +1,5 @@
+import {Product} from "../ProductListingPage/ProductListingPage.types";
+
 export interface CategoryTabsProps extends CategoryTabsOwnProps,
     CategoryTabsStateProps,
     CategoryTabsDispatchProps {
@@ -16,5 +18,6 @@ export interface CategoryTabsDispatchProps {
 }
 
 export type Category = {
-   name: string
+   name: string,
+   products: Product[],
 }

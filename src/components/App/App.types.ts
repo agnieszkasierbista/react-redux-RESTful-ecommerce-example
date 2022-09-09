@@ -34,7 +34,7 @@ export interface AppOwnProps {
 }
 
 export interface AppStateProps {
-
+    categories: Category[],
 }
 
 export interface AppDispatchProps {

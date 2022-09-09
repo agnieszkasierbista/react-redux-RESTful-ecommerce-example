@@ -5,7 +5,9 @@ import { init } from "../../actions";
 import App from "./App.layout";
 
 function mapStateToProps(state: State): AppStateProps {
-    return {}
+    return {
+        categories: state.categoryTabs.categories
+    }
 }
 
 function mapDispatchToProps(dispatch: Dispatch): AppDispatchProps {

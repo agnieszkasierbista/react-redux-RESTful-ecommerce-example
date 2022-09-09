@@ -11,7 +11,7 @@ export class CategoryTabs extends PureComponent<PropsWithChildren<CategoryTabsPr
 
         return (
             <StyledCategoryTabs>
-                {this.props.categories.map(({name}: any) => <Tab key={name}><Link
+                {this.props.categories.map(({name}: any, idx) => <Tab key={name + idx + name}><Link
                     to={getTabLink(name)}>{name}</Link></Tab>)}
             </StyledCategoryTabs>
         );

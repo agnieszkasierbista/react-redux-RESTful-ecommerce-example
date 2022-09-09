@@ -1,6 +1,8 @@
 import {PropsWithChildren, PureComponent} from "react";
 import {ProductListingPageProps} from "./ProductListingPage.types";
 import {StyledPLPitem, StyledProductListingPage, StyledProductListingPageImg} from "./ProductListingPage.styled";
+import {Link} from "react-router-dom";
+import {getProductDescriptionPageLink} from "../helpers";
 
 
 export class ProductListingPage extends PureComponent<PropsWithChildren<ProductListingPageProps>> {
@@ -16,14 +18,18 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                                 return price.currency.label === this.props.currentCurrency.label;
                             }
                         );
-console.log("src", product.gallery[0])
                         return (
                             <StyledPLPitem key={product.id}>
-                                <StyledProductListingPageImg imgSrc={product.gallery[0]}></StyledProductListingPageImg>
-                                <p>{product.name}</p>
-                                <p>
-                                    Price goes here: {price?.currency.symbol} {price?.amount}
-                                </p>
+                                <Link to={getProductDescriptionPageLink(product.category, product.id)}>
+                                    <StyledProductListingPageImg imgSrc={product.gallery[0]}/>
+                                    <p>{product.name}</p>
+                                    <p>
+                                        Price goes here: {price?.currency.symbol} {price?.amount}
+                                    </p>
+                                </Link>
+                                <div>
+                                    CART ICON
+                                </div>
                             </StyledPLPitem>
                         )
                     }
