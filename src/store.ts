@@ -10,7 +10,8 @@ const preloadedState: State = {
     productListingPage: {products: []}
 };
 
-const epicMiddleware = createEpicMiddleware();
+const epicMiddleware = createEpicMiddleware({dependencies: {abc: window.location}});
+
 const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>

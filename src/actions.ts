@@ -4,6 +4,15 @@ export const TOGGLE_CURRENCY_DROPDOWN_VISIBILITY = "TOGGLE_CURRENCY_DROPDOWN_VIS
 export const INIT = "INIT";
 export const INIT_SUCCESS = "INIT_SUCCESS";
 export const SET_CURRENT_CURRENCY = "SET_CURRENT_CURRENCY";
+export const GET_PRODUCT_DETAILS = "GET_PRODUCT_DETAILS";
+export const GET_PRODUCT_DETAILS_SUCCESS = "GET_PRODUCT_DETAILS_SUCCESS";
+
+export function getProductDetails(id: string) {
+    return {
+        type: GET_PRODUCT_DETAILS,
+        payload: id
+    }
+}
 
 export function setCurrentCurrency(clickedCurrency: Currency) {
     return {

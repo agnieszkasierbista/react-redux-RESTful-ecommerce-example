@@ -4,7 +4,7 @@ export interface ProductDescriptionPageProps extends ProductDescriptionPageOwnPr
 }
 
 export interface ProductDescriptionPageOwnProps {
-
+    pathName: string;
 }
 
 export interface ProductDescriptionPageStateProps {
@@ -12,5 +12,5 @@ export interface ProductDescriptionPageStateProps {
 }
 
 export interface ProductDescriptionPageDispatchProps {
-
+    dispatchGetProductDetails: (id: string) => void;
 }

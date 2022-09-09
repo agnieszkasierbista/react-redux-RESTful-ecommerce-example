@@ -9,10 +9,9 @@ export function getTabLink(name: string) {
 }
 
 export function getProductDescriptionPageLink(category: string, id: string) {
-
     return `/categories/${category}/${id}`
 }
 
 export function getProductDescriptionPagePath(product: Product) {
-    return `/categories/${product.category}/${product.id}`
+    return getProductDescriptionPageLink(product.category, product.id)
 }
