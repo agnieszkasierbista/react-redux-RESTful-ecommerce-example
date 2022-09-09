@@ -20,7 +20,8 @@ const {query} = gql.query([
                                 ]},
                             'amount'
                         ]},
-                    'category'
+                    'category',
+                    'gallery'
                 ]
             }]
     },

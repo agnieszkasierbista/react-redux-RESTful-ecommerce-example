@@ -21,4 +21,4 @@ export interface ProductListingPageDispatchProps {
    
 }
 
-export type Product = { name: string; id: string; prices: Price[], category: string};
+export type Product = { name: string; id: string; prices: Price[], category: string, gallery: string[]};
