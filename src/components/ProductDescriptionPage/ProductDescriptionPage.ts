@@ -7,7 +7,9 @@ import {getProductDetails} from "../../actions";
 import {withPathname} from "./helpers";
 
 function mapStateToProps(state: State): ProductDescriptionPageStateProps {
-    return {}
+    return {
+        productDetails: state.productDescriptionPage.productDetails
+    }
 }
 
 function mapDispatchToProps(dispatch: Dispatch): ProductDescriptionPageDispatchProps {

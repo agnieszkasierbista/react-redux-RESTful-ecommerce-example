@@ -1,6 +1,7 @@
 import {Currency} from "../CurrencySwitcher/CurrencySwitcher.types";
 import {Category} from "../CategoryTabs/CategoryTabs.types";
 import {Product} from "../ProductListingPage/ProductListingPage.types";
+import {ProductDetails} from "../ProductDescriptionPage/ProductDescriptionPage.types";
 
 interface CurrencySwitcherState {
     currentCurrency: Currency,
@@ -17,10 +18,15 @@ interface ProductListingPageState {
     products: Product[],
 }
 
+interface ProductDescriptionPageState {
+    productDetails: ProductDetails
+}
+
 export interface State {
     currencySwitcher: CurrencySwitcherState,
     categoryTabs: CategoryTabsState,
-    productListingPage: ProductListingPageState
+    productListingPage: ProductListingPageState,
+    productDescriptionPage: ProductDescriptionPageState
 
 }
 
