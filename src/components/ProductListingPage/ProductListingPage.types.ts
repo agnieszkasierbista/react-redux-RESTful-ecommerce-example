@@ -1,5 +1,5 @@
-import {Currency} from "../CurrencySwitcher/CurrencySwitcher.types";
-import {Category} from "../CategoryTabs/CategoryTabs.types";
+import {Currency} from '../CurrencySwitcher/CurrencySwitcher.types';
+import {Category} from '../CategoryTabs/CategoryTabs.types';
 
 export interface ProductListingPageProps extends ProductListingPageOwnProps,
     ProductListingPageStateProps,

@@ -1,15 +1,15 @@
-import {Dispatch} from "redux"
-import {connect} from "react-redux";
-import {State} from "../../App/App.types"
-import Tab from "./Tab.layout";
-import {TabDispatchProps, TabStateProps} from "./Tab.types";
+import {Dispatch} from 'redux';
+import {connect} from 'react-redux';
+import {State} from '../../App/App.types';
+import Tab from './Tab.layout';
+import {TabDispatchProps, TabStateProps} from './Tab.types';
 
 function mapStateToProps(state: State): TabStateProps {
-    return {}
+  return {};
 }
 
 function mapDispatchToProps(dispatch: Dispatch): TabDispatchProps {
-    return {}
+  return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tab)
+export default connect(mapStateToProps, mapDispatchToProps)(Tab);

@@ -1,15 +1,15 @@
-import {PropsWithChildren, PureComponent} from "react";
-import {StyledMiniCartIcon} from "./MiniCartIcon.styled";
-import { MiniCartIconProps } from "./MiniCartIcon.types";
+import {PropsWithChildren, PureComponent} from 'react';
+import {StyledMiniCartIcon} from './MiniCartIcon.styled';
+import { MiniCartIconProps } from './MiniCartIcon.types';
 
 export class MiniCartIcon extends PureComponent<PropsWithChildren<MiniCartIconProps>> {
-    render() {
-        return (
-            <StyledMiniCartIcon>
+  render() {
+    return (
+      <StyledMiniCartIcon>
                 MiniCartIcon
-            </StyledMiniCartIcon>
-        );
-    }
+      </StyledMiniCartIcon>
+    );
+  }
 }
 
 export default MiniCartIcon;

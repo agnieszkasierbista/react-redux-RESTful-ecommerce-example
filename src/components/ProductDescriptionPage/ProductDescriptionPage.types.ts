@@ -1,4 +1,4 @@
-import {Price} from "../ProductListingPage/ProductListingPage.types";
+import {Price} from '../ProductListingPage/ProductListingPage.types';
 
 export interface ProductDescriptionPageProps extends ProductDescriptionPageOwnProps,
     ProductDescriptionPageStateProps,

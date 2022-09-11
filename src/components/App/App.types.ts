@@ -1,7 +1,7 @@
-import {Currency} from "../CurrencySwitcher/CurrencySwitcher.types";
-import {Category} from "../CategoryTabs/CategoryTabs.types";
-import {Product} from "../ProductListingPage/ProductListingPage.types";
-import {ProductDetails} from "../ProductDescriptionPage/ProductDescriptionPage.types";
+import {Currency} from '../CurrencySwitcher/CurrencySwitcher.types';
+import {Category} from '../CategoryTabs/CategoryTabs.types';
+import {Product} from '../ProductListingPage/ProductListingPage.types';
+import {ProductDetails} from '../ProductDescriptionPage/ProductDescriptionPage.types';
 
 interface CurrencySwitcherState {
     currentCurrency: Currency,
