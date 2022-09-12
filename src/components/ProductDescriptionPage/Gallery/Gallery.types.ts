@@ -8,9 +8,9 @@ export interface GalleryOwnProps {
 }
 
 export interface GalleryStateProps {
-
+    mainPicture: string
 }
 
 export interface GalleryDispatchProps {
-
+    dispatchSetMainPic: (pic: string) => void;
 }

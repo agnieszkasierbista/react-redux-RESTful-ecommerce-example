@@ -3,6 +3,9 @@ import { StyledGallery, StyledMainPic, StyledThumbnails } from './Gallery.styled
 import {GalleryProps} from './Gallery.types';
 
 export class Gallery extends PureComponent<PropsWithChildren<GalleryProps>> {
+  componentWillUnmount() {
+    this.props.dispatchSetMainPic('');
+  }
 
   render() {
     return (
@@ -11,12 +14,18 @@ export class Gallery extends PureComponent<PropsWithChildren<GalleryProps>> {
           {this.props.pictures.map((pic) => {
             return (
               <div key={pic}>
-                <img width="100" height="100" src={pic}/>
+                <img
+                  width="100"
+                  height="100"
+                  src={pic}
+                  onClick={() => this.props.dispatchSetMainPic(pic)}
+                  alt="prodPic"
+                />
               </div>
             );
           })}
         </StyledThumbnails>
-        <StyledMainPic src={this.props.pictures[0]}/>
+        <StyledMainPic src={this.props.mainPicture || this.props.pictures[0]}/>
       </StyledGallery>);
   }
 }

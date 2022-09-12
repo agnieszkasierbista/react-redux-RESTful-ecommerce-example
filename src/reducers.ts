@@ -2,7 +2,7 @@ import {AnyAction, combineReducers, Reducer} from '@reduxjs/toolkit';
 import {
   GET_PRODUCT_DETAILS_SUCCESS,
   INIT_SUCCESS,
-  SET_CURRENT_CURRENCY,
+  SET_CURRENT_CURRENCY, SET_MAIN_PIC,
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY
 } from './actions';
 
@@ -65,12 +65,25 @@ export const productDescriptionPageReducer: Reducer = (state = {}, action: AnyAc
   }
 };
 
+export const galleryReducer: Reducer = (state = {}, action: AnyAction) => {
+  switch (action.type) {
+  case SET_MAIN_PIC:
+    return {
+      ...state,
+      mainPicture: action.payload
+    };
+  default:
+    return {...state};
+  }
+
+};
 
 const rootReducer = combineReducers({
   currencySwitcher: currencySwitcherReducer,
   categoryTabs: categoryTabsReducer,
   productListingPage: productListingPageReducer,
-  productDescriptionPage: productDescriptionPageReducer
+  productDescriptionPage: productDescriptionPageReducer,
+  gallery: galleryReducer
 });
 
 export default rootReducer;

@@ -22,11 +22,16 @@ interface ProductDescriptionPageState {
     productDetails: ProductDetails
 }
 
+interface galleryState {
+    mainPicture: string
+}
+
 export interface State {
     currencySwitcher: CurrencySwitcherState,
     categoryTabs: CategoryTabsState,
     productListingPage: ProductListingPageState,
-    productDescriptionPage: ProductDescriptionPageState
+    productDescriptionPage: ProductDescriptionPageState,
+    gallery: galleryState
 
 }
 

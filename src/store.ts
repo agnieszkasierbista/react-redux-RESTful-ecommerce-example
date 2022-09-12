@@ -27,7 +27,8 @@ const preloadedState: State = {
         }]
       }]
     }
-  }
+  },
+  gallery: {mainPicture: ''},
 };
 
 const epicMiddleware = createEpicMiddleware({dependencies: {abc: window.location}});

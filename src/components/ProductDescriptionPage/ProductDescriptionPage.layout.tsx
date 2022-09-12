@@ -4,7 +4,7 @@ import {
   StyledAttribute, StyledAttributeName, StyledAttributeValue,
   StyledAttributeValues, StyledProductDescriptionPage, StyledProductDetails
 } from './ProductDescriptionPage.styled';
-import Gallery from './Gallery/Gallery.layout';
+import Gallery from './Gallery/Gallery';
 import {findPrice} from './helpers';
 
 export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
@@ -23,7 +23,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
         {/*<div>{JSON.stringify(this.props.productDetails)}</div>*/}
 
 
-        <Gallery pictures={this.props.productDetails.gallery}/>
+        <Gallery pictures={this.props.productDetails.gallery} />
 
         <StyledProductDetails>
 

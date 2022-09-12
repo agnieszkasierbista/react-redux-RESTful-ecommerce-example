@@ -35,6 +35,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
 
     const categoryAll: Category = this.props.categories.filter((category, idx) => category.name === 'all')[0];
     const productsRoutes = categoryAll?.products.map((product) => {
+
       const productPath = getProductDescriptionPagePath(product);
 
       return (
