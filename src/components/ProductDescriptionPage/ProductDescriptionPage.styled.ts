@@ -9,7 +9,7 @@ export const StyledProductDetails = styled.section`
   flex-grow: 1;
 `;
 
-export const StyledAttribute = styled.div`
+export const StyledAttribute = styled.section`
 display: flex;
   flex-flow: column;
 
@@ -26,7 +26,6 @@ display: flex;
 export const StyledAttributeValue = styled.div`
   border: 2px solid black;
   height: 20px;
-  width: 20px;
   margin: 10px;
   padding: 5px;
 `;

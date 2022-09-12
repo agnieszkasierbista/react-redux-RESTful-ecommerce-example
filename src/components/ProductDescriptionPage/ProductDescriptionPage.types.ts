@@ -1,4 +1,5 @@
 import {Price} from '../ProductListingPage/ProductListingPage.types';
+import {Currency} from '../CurrencySwitcher/CurrencySwitcher.types';
 
 export interface ProductDescriptionPageProps extends ProductDescriptionPageOwnProps,
     ProductDescriptionPageStateProps,
@@ -34,7 +35,8 @@ export interface ProductDetails {
 }
 
 export interface ProductDescriptionPageStateProps {
-    productDetails: ProductDetails
+    productDetails: ProductDetails,
+    currentCurrency: Currency
 }
 
 export interface ProductDescriptionPageDispatchProps {

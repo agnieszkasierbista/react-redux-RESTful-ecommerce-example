@@ -16,9 +16,7 @@ export class Gallery extends PureComponent<PropsWithChildren<GalleryProps>> {
             );
           })}
         </StyledThumbnails>
-        {/*<StyledMainPic>*/}
         <StyledMainPic src={this.props.pictures[0]}/>
-        {/*</StyledMainPic>*/}
       </StyledGallery>);
   }
 }

@@ -5,6 +5,7 @@ import {
   StyledAttributeValues, StyledProductDescriptionPage, StyledProductDetails
 } from './ProductDescriptionPage.styled';
 import Gallery from './Gallery/Gallery.layout';
+import {findPrice} from './helpers';
 
 export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
   componentDidMount() {
@@ -12,7 +13,11 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
   }
 
   render() {
+
+    const currentPrice = findPrice(this.props.productDetails, this.props.currentCurrency);
+
     return (
+
       <StyledProductDescriptionPage>
         {/*{(this.props.pathName).split("/")[3]}*/}
         {/*<div>{JSON.stringify(this.props.productDetails)}</div>*/}
@@ -26,24 +31,29 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
           <section>{this.props.productDetails.brand}</section>
           <section>{this.props.productDetails.name}</section>
 
+         
+          {this.props.productDetails.attributes.map(attribute => {
+            return <StyledAttribute key={attribute.id}>
+              <StyledAttributeName>
+                <p>{`${attribute.name}:`}</p>
+              </StyledAttributeName>
+              <StyledAttributeValues>
+                {attribute.items.map(item => {
+                  return <StyledAttributeValue
+                    key={item.id}>{item.displayValue}</StyledAttributeValue>;
+                })}
+              </StyledAttributeValues>
+            </StyledAttribute>;
+          })}
+
           <section>
-            {this.props.productDetails.attributes.map(attribute => {
-              return <StyledAttribute key={attribute.id}>
-                <StyledAttributeName>
-                  {attribute.name}
-                </StyledAttributeName>
-                <StyledAttributeValues>
-                  {attribute.items.map(item => {
-                    return <StyledAttributeValue
-                      key={item.id}>{item.displayValue}</StyledAttributeValue>;
-                  })}
-                </StyledAttributeValues>
-              </StyledAttribute>;
-            })}
+            <p>Price:</p>
+            <p>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</p>
           </section>
-          <section>{this.props.productDetails.prices[0]?.amount}</section>
           <button>ADD TO CART</button>
-          <section><div dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/></section>
+          <section>
+            <div dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/>
+          </section>
 
 
         </StyledProductDetails>

@@ -3,7 +3,6 @@ import {configureStore} from '@reduxjs/toolkit';
 import {createEpicMiddleware} from 'redux-observable';
 import {State} from './components/App/App.types';
 import {rootEpic} from './epics';
-import {Price} from './components/ProductListingPage/ProductListingPage.types';
 
 const preloadedState: State = {
   currencySwitcher: {isExtended: false, currencies: [], currentCurrency: {'symbol': '', 'label': ''}},

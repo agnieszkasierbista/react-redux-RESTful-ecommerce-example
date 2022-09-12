@@ -8,7 +8,8 @@ import {withPathname} from './helpers';
 
 function mapStateToProps(state: State): ProductDescriptionPageStateProps {
   return {
-    productDetails: state.productDescriptionPage.productDetails
+    productDetails: state.productDescriptionPage.productDetails,
+    currentCurrency: state.currencySwitcher.currentCurrency
   };
 }
 
