@@ -6,7 +6,7 @@ import {
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY
 } from './actions';
 
-export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
+export const currencySwitcherReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
   case TOGGLE_CURRENCY_DROPDOWN_VISIBILITY:
     return {
