@@ -29,7 +29,8 @@ interface GalleryState {
 }
 
 interface CartState {
-    products: ProductInCart[]
+    products: ProductInCart[],
+    isVisible: boolean
 }
 export interface State {
     currencySwitcher: CurrencySwitcherState,

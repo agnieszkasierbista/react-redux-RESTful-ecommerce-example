@@ -1,3 +1,5 @@
+import {toggleMiniCartVisibility} from '../../actions';
+
 export interface MiniCartIconProps extends MiniCartIconOwnProps,
     MiniCartIconStateProps,
     MiniCartIconDispatchProps {
@@ -12,5 +14,5 @@ export interface MiniCartIconStateProps {
 }
 
 export interface MiniCartIconDispatchProps {
-
+    dispatchToggleMiniCartVisibility: () => void
 }

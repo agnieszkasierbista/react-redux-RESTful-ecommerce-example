@@ -5,8 +5,9 @@ import {
   GET_PRODUCT_DETAILS_SUCCESS,
   INIT_SUCCESS, SELECT_ATTR,
   SET_CURRENT_CURRENCY, SET_MAIN_PIC,
-  TOGGLE_CURRENCY_DROPDOWN_VISIBILITY
+  TOGGLE_CURRENCY_DROPDOWN_VISIBILITY, TOGGLE_MINI_CART_VISIBILITY
 } from './actions';
+import {isVisible} from '@testing-library/user-event/dist/utils';
 
 export const currencySwitcherReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
@@ -115,6 +116,13 @@ export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
     return {
       ...state,
       products: [...state.products, action.payload]
+    };
+  }
+
+  case TOGGLE_MINI_CART_VISIBILITY: {
+    return {
+      ...state,
+      isVisible: !state.isVisible,
     };
   }
   default:

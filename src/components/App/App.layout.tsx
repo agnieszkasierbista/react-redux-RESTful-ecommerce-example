@@ -57,6 +57,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           <CategoryTabs/>
 
           <MiniCartIcon/>
+          <MiniCart />
           <CurrencySwitcher/>
         </NavBar>
 
@@ -74,9 +75,6 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           </Route>
 
           <Route path="/cart" element={<Cart/>}>
-          </Route>
-
-          <Route path="/mini-cart" element={<MiniCart/>}>
           </Route>
 
         </Routes>

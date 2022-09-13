@@ -5,7 +5,7 @@ import { MiniCartIconProps } from './MiniCartIcon.types';
 export class MiniCartIcon extends PureComponent<PropsWithChildren<MiniCartIconProps>> {
   render() {
     return (
-      <StyledMiniCartIcon>
+      <StyledMiniCartIcon onClick={() => this.props.dispatchToggleMiniCartVisibility()}>
                 MiniCartIcon {this.props.amount}
       </StyledMiniCartIcon>
     );
