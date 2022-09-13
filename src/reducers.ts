@@ -1,5 +1,6 @@
 import {AnyAction, combineReducers, Reducer} from '@reduxjs/toolkit';
 import {
+  ADD_TO_CART,
   CLEAR_SELECTED_ATTR,
   GET_PRODUCT_DETAILS_SUCCESS,
   INIT_SUCCESS, SELECT_ATTR,
@@ -107,12 +108,27 @@ export const galleryReducer: Reducer = (state = {}, action: AnyAction) => {
 
 };
 
+
+export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
+  switch (action.type) {
+  case ADD_TO_CART: {
+    return {
+      ...state,
+      products: [...state.products, action.payload]
+    };
+  }
+  default:
+    return {...state};
+  }
+
+};
 const rootReducer = combineReducers({
   currencySwitcher: currencySwitcherReducer,
   categoryTabs: categoryTabsReducer,
   productListingPage: productListingPageReducer,
   productDescriptionPage: productDescriptionPageReducer,
-  gallery: galleryReducer
+  gallery: galleryReducer,
+  cart: cartReducer
 });
 
 export default rootReducer;

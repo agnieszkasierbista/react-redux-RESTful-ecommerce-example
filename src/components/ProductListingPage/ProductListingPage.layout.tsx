@@ -25,11 +25,11 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                 <StyledProductListingPageImg imgSrc={product.gallery[0]}/>
                 <p>{product.name}</p>
                 <p>
-                                        Price goes here: {price?.currency.symbol} {price?.amount}
+                    Price goes here: {price?.currency.symbol} {price?.amount}
                 </p>
               </Link>
               <div>
-                                    CART ICON
+               CART ICON
               </div>
             </StyledPLPitem>
           );
