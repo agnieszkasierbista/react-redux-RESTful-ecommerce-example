@@ -6,4 +6,5 @@ export const StyledMiniCart = styled.div`
   position: absolute;
   top: 40px;
   right: 20px;
+  z-index: 10;
 `;
