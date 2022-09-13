@@ -6,7 +6,7 @@ export class MiniCartIcon extends PureComponent<PropsWithChildren<MiniCartIconPr
   render() {
     return (
       <StyledMiniCartIcon>
-                MiniCartIcon
+                MiniCartIcon {this.props.amount}
       </StyledMiniCartIcon>
     );
   }

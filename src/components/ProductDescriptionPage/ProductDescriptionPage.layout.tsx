@@ -32,10 +32,12 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
       };
     });
     console.log(defaultAttributes, 'DEFAULT Attributes');
-    const productInCart: ProductInCart = this.props.selected.length ? {
-      ...this.props.productDetails,
-      selected: [...this.props.selected]
-    }
+    const productInCart: ProductInCart = this.props.selected.length
+      ?
+      {
+        ...this.props.productDetails,
+        selected: [...this.props.selected]
+      }
       :
       {
         ...this.props.productDetails,
