@@ -1,7 +1,7 @@
 import {AnyAction, combineReducers, Reducer} from '@reduxjs/toolkit';
 import {
   GET_PRODUCT_DETAILS_SUCCESS,
-  INIT_SUCCESS,
+  INIT_SUCCESS, SELECT_ATTR,
   SET_CURRENT_CURRENCY, SET_MAIN_PIC,
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY
 } from './actions';
@@ -60,6 +60,23 @@ export const productDescriptionPageReducer: Reducer = (state = {}, action: AnyAc
       ...state,
       productDetails: action.payload.product
     };
+
+  case SELECT_ATTR: {
+    const attribute = state.selected.find(({attribute}: any) => attribute.id === action.payload.attribute.id);
+
+    const selectedAttributes = !attribute ? [...state.selected,
+      action.payload
+    ] : state.selected.map((item:any) => {
+
+      return item.attribute.id === attribute.attribute.id ? action.payload : item;
+    });
+
+
+    return {
+      ...state,
+      selected: selectedAttributes
+    };
+  }
   default:
     return {...state};
   }

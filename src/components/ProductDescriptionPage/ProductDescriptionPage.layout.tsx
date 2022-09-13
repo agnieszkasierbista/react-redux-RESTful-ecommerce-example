@@ -1,5 +1,5 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
-import {ProductDescriptionPageProps} from './ProductDescriptionPage.types';
+import {ProductDescriptionPageProps, ProductInCart} from './ProductDescriptionPage.types';
 import {
   StyledAttribute, StyledAttributeName, StyledAttributeValue,
   StyledAttributeValues, StyledProductDescriptionPage, StyledProductDetails
@@ -15,6 +15,10 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
   render() {
 
     const currentPrice = findPrice(this.props.productDetails, this.props.currentCurrency);
+    const productInCart: ProductInCart = {
+      ...this.props.productDetails,
+      selected: [...this.props.selected]
+    };
 
     return (
 
@@ -23,7 +27,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
         {/*<div>{JSON.stringify(this.props.productDetails)}</div>*/}
 
 
-        <Gallery pictures={this.props.productDetails.gallery} />
+        <Gallery pictures={this.props.productDetails.gallery}/>
 
         <StyledProductDetails>
 
@@ -31,26 +35,40 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
           <section>{this.props.productDetails.brand}</section>
           <section>{this.props.productDetails.name}</section>
 
-         
+
           {this.props.productDetails.attributes.map(attribute => {
-            return <StyledAttribute key={attribute.id}>
+            return (<StyledAttribute key={attribute.id}>
               <StyledAttributeName>
                 <p>{`${attribute.name}:`}</p>
               </StyledAttributeName>
               <StyledAttributeValues>
                 {attribute.items.map(item => {
+
+                  const selectedAttr = {attribute: {
+                    id: attribute.id,
+                    item: {
+                      displayValue: item.displayValue,
+                      value: item.value,
+                      id: item.id,
+                      selected: true
+                    }
+                  }};
+
                   return <StyledAttributeValue
-                    key={item.id}>{item.displayValue}</StyledAttributeValue>;
+                    key={item.id}
+                    onClick={() => this.props.dispatchSelectAttr(selectedAttr)}>
+                    {item.displayValue}
+                  </StyledAttributeValue>;
                 })}
               </StyledAttributeValues>
-            </StyledAttribute>;
+            </StyledAttribute>);
           })}
 
           <section>
             <p>Price:</p>
             <p>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</p>
           </section>
-          <button>ADD TO CART</button>
+          <button onClick={() => this.props.dispatchAddToCart(productInCart)}>ADD TO CART</button>
           <section>
             <div dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/>
           </section>

@@ -1,7 +1,7 @@
 import {Currency} from '../CurrencySwitcher/CurrencySwitcher.types';
 import {Category} from '../CategoryTabs/CategoryTabs.types';
 import {Product} from '../ProductListingPage/ProductListingPage.types';
-import {ProductDetails} from '../ProductDescriptionPage/ProductDescriptionPage.types';
+import {ProductDetails, Selected} from '../ProductDescriptionPage/ProductDescriptionPage.types';
 
 interface CurrencySwitcherState {
     currentCurrency: Currency,
@@ -19,8 +19,10 @@ interface ProductListingPageState {
 }
 
 interface ProductDescriptionPageState {
+    selected: Selected[];
     productDetails: ProductDetails
 }
+
 
 interface galleryState {
     mainPicture: string

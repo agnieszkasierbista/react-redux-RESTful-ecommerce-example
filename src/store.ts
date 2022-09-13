@@ -26,7 +26,8 @@ const preloadedState: State = {
           id: ''
         }]
       }]
-    }
+    },
+    selected: []
   },
   gallery: {mainPicture: ''},
 };

@@ -15,6 +15,7 @@ export interface ProductAttributeItems {
     value: string,
     id: string
 }
+
 export interface AttributeSet {
 
     id: string,
@@ -36,9 +37,28 @@ export interface ProductDetails {
 
 export interface ProductDescriptionPageStateProps {
     productDetails: ProductDetails,
-    currentCurrency: Currency
+    currentCurrency: Currency,
+    selected: Selected[]
 }
 
 export interface ProductDescriptionPageDispatchProps {
     dispatchGetProductDetails: (id: string) => void;
+    dispatchAddToCart: (product: ProductInCart) => void;
+    dispatchSelectAttr: (selected: Selected) => void;
+}
+
+export interface Selected {
+    attribute: {
+        id: string,
+        item: {
+            displayValue: string,
+            value: string,
+            id: string,
+            selected: boolean
+        }
+    }
+}
+
+export interface ProductInCart extends ProductDetails {
+    selected: Selected[]
 }
