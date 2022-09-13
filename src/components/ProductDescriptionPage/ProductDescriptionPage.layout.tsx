@@ -1,5 +1,5 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
-import {ProductDescriptionPageProps, ProductInCart} from './ProductDescriptionPage.types';
+import {ProductDescriptionPageProps, ProductInCart, Selected} from './ProductDescriptionPage.types';
 import {
   StyledAttribute, StyledAttributeName, StyledAttributeValue,
   StyledAttributeValues, StyledProductDescriptionPage, StyledProductDetails
@@ -19,10 +19,28 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
   render() {
 
     const currentPrice = findPrice(this.props.productDetails, this.props.currentCurrency);
-    const productInCart: ProductInCart = {
+    const defaultAttributes: Selected[] = this.props.productDetails.attributes.map((attribute) => {
+      return {
+        id: attribute.id,
+        item: {
+
+          displayValue: attribute.items[0].displayValue,
+          value: attribute.items[0].value,
+          id: attribute.items[0].id,
+          selected: true
+        }
+      };
+    });
+    console.log(defaultAttributes, 'DEFAULT Attributes');
+    const productInCart: ProductInCart = this.props.selected.length ? {
       ...this.props.productDetails,
       selected: [...this.props.selected]
-    };
+    }
+      :
+      {
+        ...this.props.productDetails,
+        selected: defaultAttributes
+      };
 
     return (
 
