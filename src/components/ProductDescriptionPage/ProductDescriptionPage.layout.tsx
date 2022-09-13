@@ -41,31 +41,64 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
 
 
           {this.props.productDetails.attributes.map(attribute => {
-            return (<StyledAttribute key={attribute.id}>
-              <StyledAttributeName>
-                <p>{`${attribute.name}:`}</p>
-              </StyledAttributeName>
-              <StyledAttributeValues>
-                {attribute.items.map(item => {
 
-                  const selectedAttr =  {
-                    id: attribute.id,
-                    item: {
-                      displayValue: item.displayValue,
-                      value: item.value,
-                      id: item.id,
-                      selected: true
-                    }
-                  };
+            if (attribute.id === 'Color') {
+              return (
+                <StyledAttribute key={attribute.id}>
+                  <StyledAttributeName>
+                    <p>{`${attribute.name}:`}</p>
+                  </StyledAttributeName>
+                  <StyledAttributeValues>
+                    {attribute.items.map(item => {
 
-                  return <StyledAttributeValue
-                    key={item.id}
-                    onClick={() => this.props.dispatchSelectAttr(selectedAttr)}>
-                    {item.displayValue}
-                  </StyledAttributeValue>;
-                })}
-              </StyledAttributeValues>
-            </StyledAttribute>);
+                      const selectedAttr = {
+                        id: attribute.id,
+                        item: {
+                          displayValue: item.displayValue,
+                          value: item.value,
+                          id: item.id,
+                          selected: true
+                        }
+                      };
+
+                      return <StyledAttributeValue
+                        color={item.value}
+                        key={item.id}
+                        onClick={() => this.props.dispatchSelectAttr(selectedAttr)}>
+                      </StyledAttributeValue>;
+                    })}
+                  </StyledAttributeValues>
+                </StyledAttribute>
+              );
+            } else {
+              return (
+                <StyledAttribute key={attribute.id}>
+                  <StyledAttributeName>
+                    <p>{`${attribute.name}:`}</p>
+                  </StyledAttributeName>
+                  <StyledAttributeValues>
+                    {attribute.items.map(item => {
+
+                      const selectedAttr = {
+                        id: attribute.id,
+                        item: {
+                          displayValue: item.displayValue,
+                          value: item.value,
+                          id: item.id,
+                          selected: true
+                        }
+                      };
+
+                      return <StyledAttributeValue
+                        key={item.id}
+                        onClick={() => this.props.dispatchSelectAttr(selectedAttr)}>
+                        {item.displayValue}
+                      </StyledAttributeValue>;
+                    })}
+                  </StyledAttributeValues>
+                </StyledAttribute>
+              );
+            }
           })}
 
           <section>
