@@ -45,10 +45,10 @@ export interface ProductDescriptionPageDispatchProps {
     dispatchGetProductDetails: (id: string) => void;
     dispatchAddToCart: (product: ProductInCart) => void;
     dispatchSelectAttr: (selected: Selected) => void;
+    dispatchClearSelectedAttributes: () => void;
 }
 
 export interface Selected {
-    attribute: {
         id: string,
         item: {
             displayValue: string,
@@ -56,7 +56,6 @@ export interface Selected {
             id: string,
             selected: boolean
         }
-    }
 }
 
 export interface ProductInCart extends ProductDetails {

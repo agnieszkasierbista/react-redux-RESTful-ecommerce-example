@@ -12,6 +12,10 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
     this.props.dispatchGetProductDetails((this.props.pathName).split('/')[3]);
   }
 
+  componentWillUnmount() {
+    this.props.dispatchClearSelectedAttributes();
+  }
+
   render() {
 
     const currentPrice = findPrice(this.props.productDetails, this.props.currentCurrency);
@@ -44,7 +48,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
               <StyledAttributeValues>
                 {attribute.items.map(item => {
 
-                  const selectedAttr = {attribute: {
+                  const selectedAttr =  {
                     id: attribute.id,
                     item: {
                       displayValue: item.displayValue,
@@ -52,7 +56,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                       id: item.id,
                       selected: true
                     }
-                  }};
+                  };
 
                   return <StyledAttributeValue
                     key={item.id}

@@ -1,5 +1,6 @@
 import {AnyAction, combineReducers, Reducer} from '@reduxjs/toolkit';
 import {
+  CLEAR_SELECTED_ATTR,
   GET_PRODUCT_DETAILS_SUCCESS,
   INIT_SUCCESS, SELECT_ATTR,
   SET_CURRENT_CURRENCY, SET_MAIN_PIC,
@@ -62,19 +63,25 @@ export const productDescriptionPageReducer: Reducer = (state = {}, action: AnyAc
     };
 
   case SELECT_ATTR: {
-    const attribute = state.selected.find(({attribute}: any) => attribute.id === action.payload.attribute.id);
-
+    const attribute = state.selected.find((attribute: any) => attribute.id === action.payload.id);
     const selectedAttributes = !attribute ? [...state.selected,
       action.payload
     ] : state.selected.map((item:any) => {
 
-      return item.attribute.id === attribute.attribute.id ? action.payload : item;
+      return item.id === attribute.id ? action.payload : item;
     });
 
 
     return {
       ...state,
       selected: selectedAttributes
+    };
+  }
+
+  case CLEAR_SELECTED_ATTR: {
+    return {
+      ...state,
+      selected: []
     };
   }
   default:

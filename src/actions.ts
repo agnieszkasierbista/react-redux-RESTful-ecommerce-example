@@ -10,6 +10,13 @@ export const GET_PRODUCT_DETAILS_SUCCESS = 'GET_PRODUCT_DETAILS_SUCCESS';
 export const SET_MAIN_PIC = 'SET_MAIN_PIC';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const SELECT_ATTR = 'SELECT_ATTR';
+export const CLEAR_SELECTED_ATTR = 'CLEAR_SELECTED_ATTR';
+
+export function clearSelectedAttributes() {
+  return {
+    type: 'CLEAR_SELECTED_ATTR'
+  };
+}
 
 export function selectAttr(selectedAttr: Selected) {
   return {
