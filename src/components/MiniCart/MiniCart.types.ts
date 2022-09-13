@@ -12,5 +12,5 @@ export interface MiniCartStateProps {
 }
 
 export interface MiniCartDispatchProps {
-
+    dispatchToggleMiniCartVisibility: () => void
 }

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 export const StyledCart = styled.section`
-
+  background-color: white;
 `;
 
 export const StyledCartItem = styled.article`

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { State } from '../App/App.types';
 import MiniCart from './MiniCart.layout';
 import {MiniCartDispatchProps, MiniCartStateProps} from './MiniCart.types';
-import { toggleIsExtended } from '../../actions';
+import {toggleIsExtended, toggleMiniCartVisibility} from '../../actions';
 
 function mapStateToProps(state: State): MiniCartStateProps {
   return {
@@ -13,7 +13,7 @@ function mapStateToProps(state: State): MiniCartStateProps {
 
 function mapDispatchToProps(dispatch:Dispatch): MiniCartDispatchProps {
   return {
-
+    dispatchToggleMiniCartVisibility: () => dispatch(toggleMiniCartVisibility())
   };
 }
 
