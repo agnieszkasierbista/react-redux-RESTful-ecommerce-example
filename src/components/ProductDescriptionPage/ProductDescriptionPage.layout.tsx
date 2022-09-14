@@ -1,8 +1,12 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {ProductDescriptionPageProps, ProductInCart, Selected} from './ProductDescriptionPage.types';
 import {
-  StyledAttribute, StyledAttributeName, StyledAttributeValue,
-  StyledAttributeValues, StyledProductDescriptionPage, StyledProductDetails
+  StyledAttribute,
+  StyledAttributeName,
+  StyledAttributeValue,
+  StyledAttributeValues,
+  StyledProductDescriptionPage,
+  StyledProductDetails
 } from './ProductDescriptionPage.styled';
 import Gallery from './Gallery/Gallery';
 import {findPrice} from './helpers';
@@ -36,12 +40,12 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
       ?
       {
         ...this.props.productDetails,
-        selected: [...this.props.selected]
+        selected: [...this.props.selected],
       }
       :
       {
         ...this.props.productDetails,
-        selected: defaultAttributes
+        selected: defaultAttributes,
       };
 
     return (

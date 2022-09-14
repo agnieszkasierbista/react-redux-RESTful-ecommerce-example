@@ -1,9 +1,10 @@
 import {AnyAction, combineReducers, Reducer} from '@reduxjs/toolkit';
 import {
+  ADD_ANOTHER_TO_CART,
   ADD_TO_CART,
   CLEAR_SELECTED_ATTR,
   GET_PRODUCT_DETAILS_SUCCESS,
-  INIT_SUCCESS,
+  INIT_SUCCESS, REMOVE_ONE_FROM_CART,
   SELECT_ATTR,
   SET_CURRENT_CURRENCY,
   SET_MAIN_PIC,
@@ -146,6 +147,56 @@ export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
     return {
       ...state,
       isVisible: !state.isVisible,
+    };
+  }
+
+  case ADD_ANOTHER_TO_CART: {
+
+    const ProductInCartDuplicate = state.products.find((productInCart: ProductInCart) => {
+      const {count, ...rest} = productInCart;
+
+      return JSON.stringify(rest) === JSON.stringify(action.payload);
+    });
+
+    const productsInCartWithCounter = (!ProductInCartDuplicate ? [...state.products, action.payload] : state.products).map((productInCart: ProductInCart) => {
+      const {count, ...rest} = productInCart;
+
+      const shouldAddToCount = JSON.stringify(rest) === JSON.stringify(action.payload);
+      const currentCount = (shouldAddToCount && productInCart.count) ? productInCart.count + 1 : productInCart.count;
+
+      return {
+        ...productInCart,
+        count: !productInCart.count ? 1 : currentCount,
+      };
+    });
+
+    return {
+      ...state,
+      products: productsInCartWithCounter,
+      amount: getNumberOfItemsInTheCart(productsInCartWithCounter)
+    };
+  }
+
+  case REMOVE_ONE_FROM_CART: {
+
+    const productRemoved = (state.products.map((product: ProductInCart) => {
+      if(product === action.payload && (product.count || 0) >= 2) {
+        return {
+          ...product,
+          count: (product.count || 0) - 1
+        };
+      } else if(product === action.payload && (product.count || 0) === 1) {
+        return null;
+      } else {
+        return product;
+      }
+
+    })).filter((product: ProductInCart) => product);
+
+    return {
+      ...state,
+      products: productRemoved,
+      amount: getNumberOfItemsInTheCart(productRemoved)
     };
   }
   default:

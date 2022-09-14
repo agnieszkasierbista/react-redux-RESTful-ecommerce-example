@@ -1,145 +1,173 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {CartProps} from './Cart.types';
 import {
-  StyledAdder,
+  StyledAdder, StyledAdderButton,
   StyledArrow,
   StyledArrows,
   StyledCart,
   StyledCartItem,
   StyledCartItemDetails,
   StyledMiniGallery,
+  StyledPic,
   StyledPurchaseDetails
 } from './Cart.styled';
 import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
 import {findPrice} from '../ProductDescriptionPage/helpers';
 import {StyledAttributeValue, StyledAttributeValues} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
+import {addToCart} from '../../actions';
 
 export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
-  render() {
 
-    const totalCost: string = this.props.products.map((product) => {
+    state = {
+      currentPicIdx: 0
+    }
 
-      const currentPrice = product.prices.find((price) => price.currency.label === this.props.currentCurrency.label);
+    render() {
 
-      const productQuantity = product.count;
+      const currentPicIdx = 0;
 
-      const currentUnitPrice = (currentPrice)?.amount || 0;
+      const totalCost: string = this.props.products.map((product) => {
 
-      return currentUnitPrice * (productQuantity || 0);
+        const currentPrice = product.prices.find((price) => price.currency.label === this.props.currentCurrency.label);
 
-    })
-      .reduce((prev, curr) => prev + curr, 0).toFixed(2);
+        const productQuantity = product.count;
 
-    const totalTax = (parseFloat(totalCost) * 0.21).toFixed(2);
+        const currentUnitPrice = (currentPrice)?.amount || 0;
 
-    return (
-      <StyledCart>
-        {
-          this.props.products.map((productInCart: ProductInCart) => {
+        return currentUnitPrice * (productQuantity || 0);
 
-            const currentPrice = findPrice(productInCart, this.props.currentCurrency);
+      })
+        .reduce((prev, curr) => prev + curr, 0).toFixed(2);
 
-            return (
-              <StyledCartItem
-                key={`${productInCart.productId}_${productInCart.count}`}
-              >
-                <StyledCartItemDetails>
-                  <section>{productInCart.brand}</section>
-                  <section>{productInCart.name}</section>
+      const totalTax = (parseFloat(totalCost) * 0.21).toFixed(2);
 
-                  <section>
-                    <p>Price:</p>
-                    <p>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</p>
-                  </section>
+      return (
+        <StyledCart>
+          {
+            this.props.products.map((productInCart: ProductInCart) => {
 
-                  {productInCart.attributes.map(attribute => {
+              const {count: _, ...productInCartCountRemoved} = productInCart;
 
-                    if (attribute.id === 'Color') {
-                      return (
-                        <section key={attribute.id}>
-                          <div>
-                            <p>{`${attribute.name}:`}</p>
-                          </div>
-                          <StyledAttributeValues>
-                            {attribute.items.map(item => {
+              const currentPrice = findPrice(productInCart, this.props.currentCurrency);
 
-                              const selectedAttr = {
-                                id: attribute.id,
-                                item: {
-                                  displayValue: item.displayValue,
-                                  value: item.value,
-                                  id: item.id,
-                                  selected: true
-                                }
-                              };
+              console.log('productInCart', productInCart);
 
-                              return <StyledAttributeValue
-                                color={item.value}
-                                key={item.id}
-                              >
-                              </StyledAttributeValue>;
-                            })}
-                          </StyledAttributeValues>
-                        </section>
-                      );
-                    } else {
-                      return (
-                        <section key={attribute.id}>
-                          <div>
-                            <p>{`${attribute.name}:`}</p>
-                          </div>
-                          <StyledAttributeValues>
-                            {attribute.items.map(item => {
-
-                              const selectedAttr = {
-                                id: attribute.id,
-                                item: {
-                                  displayValue: item.displayValue,
-                                  value: item.value,
-                                  id: item.id,
-                                  selected: true
-                                }
-                              };
-
-                              return <StyledAttributeValue
-                                key={item.id}
-                              >
-                                {item.displayValue}
-                              </StyledAttributeValue>;
-                            })}
-                          </StyledAttributeValues>
-                        </section>
-                      );
-                    }
-                  })}
-                </StyledCartItemDetails>
-                <StyledAdder>
-                  <div>+</div>
-                  <div>{productInCart?.count}</div>
-                  <div>-</div>
-                </StyledAdder>
-                <StyledMiniGallery
-                  pics={productInCart.gallery}
+              return (
+                <StyledCartItem
+                  key={`${productInCart.name}_${productInCart.count}_${productInCart.selected.reduce((prev, {item}) => prev + item.id, '')}`}
                 >
-                  <StyledArrows>
-                    <StyledArrow>{'<'}</StyledArrow>
-                    <StyledArrow>{'>'}</StyledArrow>
-                  </StyledArrows>
+                  <StyledCartItemDetails>
+                    <section>{productInCart.brand}</section>
+                    <section>{productInCart.name}</section>
+
+                    <section>
+                      <p>Price:</p>
+                      <p>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</p>
+                    </section>
+
+                    {productInCart.attributes.map(attribute => {
+
+                      if (attribute.id === 'Color') {
+                        return (
+                          <section key={attribute.id}>
+                            <div>
+                              <p>{`${attribute.name}:`}</p>
+                            </div>
+                            <StyledAttributeValues>
+                              {attribute.items.map(item => {
+
+                                const selectedAttr = {
+                                  id: attribute.id,
+                                  item: {
+                                    displayValue: item.displayValue,
+                                    value: item.value,
+                                    id: item.id,
+                                    selected: true
+                                  }
+                                };
+
+                                return <StyledAttributeValue
+                                  color={item.value}
+                                  key={item.id}
+                                >
+                                </StyledAttributeValue>;
+                              })}
+                            </StyledAttributeValues>
+                          </section>
+                        );
+                      } else {
+                        return (
+                          <section key={attribute.id}>
+                            <div>
+                              <p>{`${attribute.name}:`}</p>
+                            </div>
+                            <StyledAttributeValues>
+                              {attribute.items.map(item => {
+
+                                const selectedAttr = {
+                                  id: attribute.id,
+                                  item: {
+                                    displayValue: item.displayValue,
+                                    value: item.value,
+                                    id: item.id,
+                                    selected: true
+                                  }
+                                };
+
+                                return <StyledAttributeValue
+                                  key={item.id}
+                                >
+                                  {item.displayValue}
+                                </StyledAttributeValue>;
+                              })}
+                            </StyledAttributeValues>
+                          </section>
+                        );
+                      }
+                    })}
+                  </StyledCartItemDetails>
+                  <StyledAdder>
+                    <StyledAdderButton
+                      onClick={() => this.props.dispatchAddAnotherToCart(productInCartCountRemoved)}>+</StyledAdderButton>
+                    <div>{productInCart?.count}</div>
+                    <StyledAdderButton
+                      onClick={() => this.props.dispatchRemoveOneFromCart(productInCart)}>-</StyledAdderButton>
+                  </StyledAdder>
+                  <StyledMiniGallery>
+                    <StyledArrows>
+                      <StyledArrow onClick={() => {
 
 
-                </StyledMiniGallery>
-              </StyledCartItem>
-            );
-          })
-        }
-        <StyledPurchaseDetails>
-          <p>Total tax 21%: {this.props.currentCurrency.symbol}{totalTax}</p>
-          <p>Quantity: {this.props.amount}</p>
-          <p>Total: {this.props.currentCurrency.symbol}{totalCost}</p>
-        </StyledPurchaseDetails>
-      </StyledCart>
-    );
-  }
+                        console.log(-1);
+                      }}>{'<'}</StyledArrow>
+                      <StyledArrow onClick={() => {
+
+                        this.setState((prev: any) => {
+                          return {
+                            ...prev,
+                            currentPicIdx: prev.currentPicIdx + 1
+                          };
+                        });
+
+                        console.log(1);
+                      }}>{'>'}</StyledArrow>
+                    </StyledArrows>
+                    <StyledPic picIdx={this.state.currentPicIdx}
+                      pics={productInCart.gallery}></StyledPic>
+
+                  </StyledMiniGallery>
+                </StyledCartItem>
+              );
+            })
+          }
+          <StyledPurchaseDetails>
+            <p>Total tax 21%: {this.props.currentCurrency.symbol}{totalTax}</p>
+            <p>Quantity: {this.props.amount}</p>
+            <p>Total: {this.props.currentCurrency.symbol}{totalCost}</p>
+          </StyledPurchaseDetails>
+        </StyledCart>
+      );
+    }
 }
 
 export default Cart;

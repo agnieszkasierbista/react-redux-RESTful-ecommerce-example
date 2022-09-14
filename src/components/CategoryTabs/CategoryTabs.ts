@@ -2,8 +2,7 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {State} from '../App/App.types';
 import CategoryTabs from './CategoryTabs.layout';
-import {CategoryTabsStateProps} from './CategoryTabs.types';
-import {CartDispatchProps} from '../Cart/Cart.types';
+import {CategoryTabsDispatchProps, CategoryTabsStateProps} from './CategoryTabs.types';
 
 function mapStateToProps(state: State): CategoryTabsStateProps {
   return {
@@ -11,7 +10,7 @@ function mapStateToProps(state: State): CategoryTabsStateProps {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch): CartDispatchProps {
+function mapDispatchToProps(dispatch: Dispatch): CategoryTabsDispatchProps {
   return {};
 }
 
