@@ -4,17 +4,17 @@ import {State} from '../App/App.types';
 import MiniCartIcon from './MiniCartIcon.layout';
 import {MiniCartIconDispatchProps, MiniCartIconStateProps} from './MiniCartIcon.types';
 import {toggleMiniCartVisibility} from '../../actions';
-import {getNumberOfItemsInTheCart} from '../helpers';
 
 function mapStateToProps(state: State): MiniCartIconStateProps {
   return {
-    amount: getNumberOfItemsInTheCart(state.cart.products)
+    products: state.cart.products,
+    amount: state.cart.amount
   };
 }
 
 function mapDispatchToProps(dispatch: Dispatch): MiniCartIconDispatchProps {
   return {
-    dispatchToggleMiniCartVisibility: () => dispatch(toggleMiniCartVisibility())
+    dispatchToggleMiniCartVisibility: () => dispatch(toggleMiniCartVisibility()),
   };
 }
 

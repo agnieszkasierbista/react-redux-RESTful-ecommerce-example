@@ -11,6 +11,7 @@ import {
   TOGGLE_MINI_CART_VISIBILITY
 } from './actions';
 import {ProductInCart} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
+import {getNumberOfItemsInTheCart} from './components/helpers';
 
 export const currencySwitcherReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
@@ -76,7 +77,7 @@ export const productDescriptionPageReducer: Reducer = (state = {}, action: AnyAc
     const attribute = state.selected.find((attribute: any) => attribute.id === action.payload.id);
     const selectedAttributes = !attribute ? [...state.selected,
       action.payload
-    ] : state.selected.map((item:any) => {
+    ] : state.selected.map((item: any) => {
 
       return item.id === attribute.id ? action.payload : item;
     });
@@ -112,19 +113,18 @@ export const galleryReducer: Reducer = (state = {}, action: AnyAction) => {
 
 };
 
-
 export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
   case ADD_TO_CART: {
 
     const ProductInCartDuplicate = state.products.find((productInCart: ProductInCart) => {
-      const { count, ...rest } = productInCart;
+      const {count, ...rest} = productInCart;
 
       return JSON.stringify(rest) === JSON.stringify(action.payload);
     });
 
     const productsInCartWithCounter = (!ProductInCartDuplicate ? [...state.products, action.payload] : state.products).map((productInCart: ProductInCart) => {
-      const { count, ...rest } = productInCart;
+      const {count, ...rest} = productInCart;
 
       const shouldAddToCount = JSON.stringify(rest) === JSON.stringify(action.payload);
       const c = (shouldAddToCount && productInCart.count) ? productInCart.count + 1 : productInCart.count;
@@ -137,7 +137,8 @@ export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
 
     return {
       ...state,
-      products: productsInCartWithCounter
+      products: productsInCartWithCounter,
+      amount: getNumberOfItemsInTheCart(productsInCartWithCounter)
     };
   }
 
@@ -158,7 +159,7 @@ const rootReducer = combineReducers({
   productListingPage: productListingPageReducer,
   productDescriptionPage: productDescriptionPageReducer,
   gallery: galleryReducer,
-  cart: cartReducer
+  cart: cartReducer,
 });
 
 export default rootReducer;

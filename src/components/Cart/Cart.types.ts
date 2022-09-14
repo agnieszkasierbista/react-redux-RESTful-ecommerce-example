@@ -12,7 +12,8 @@ export interface CartOwnProps {
 
 export interface CartStateProps {
     products: ProductInCart[],
-    currentCurrency: Currency
+    currentCurrency: Currency,
+    amount: number
 }
 
 export interface CartDispatchProps {

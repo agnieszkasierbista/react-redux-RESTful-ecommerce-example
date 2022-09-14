@@ -54,4 +54,8 @@ export const StyledArrow = styled.div`
   height: 100%;
 `;
 
+export const StyledPurchaseDetails = styled.section`
+  border: 1px solid blue;
+
+`;
 

@@ -1,6 +1,6 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {CartProps} from './Cart.types';
-import {StyledAdder, StyledArrow, StyledArrows, StyledCart, StyledCartItem, StyledCartItemDetails, StyledMiniGallery} from './Cart.styled';
+import {StyledAdder, StyledArrow, StyledArrows, StyledCart, StyledCartItem, StyledCartItemDetails, StyledMiniGallery, StyledPurchaseDetails} from './Cart.styled';
 import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
 import {findPrice} from '../ProductDescriptionPage/helpers';
 import {StyledAttributeValue, StyledAttributeValues} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
@@ -107,6 +107,11 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
             );
           })
         }
+        <StyledPurchaseDetails>
+          <p>Total tax 21%: XXX</p>
+          <p>Quantity: {this.props.amount}</p>
+          <p>Total: XXX</p>
+        </StyledPurchaseDetails>
       </StyledCart>
     );
   }

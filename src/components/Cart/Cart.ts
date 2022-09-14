@@ -7,7 +7,8 @@ import {CartDispatchProps, CartStateProps} from './Cart.types';
 function mapStateToProps(state: State): CartStateProps {
   return {
     products: state.cart.products,
-    currentCurrency: state.currencySwitcher.currentCurrency
+    currentCurrency: state.currencySwitcher.currentCurrency,
+    amount: state.cart.amount,
   };
 }
 

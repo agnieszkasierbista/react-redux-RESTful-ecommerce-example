@@ -31,7 +31,7 @@ const preloadedState: State = {
     selected: []
   },
   gallery: {mainPicture: ''},
-  cart: {products: [], isVisible: false}
+  cart: {products: [], isVisible: false, amount: 0},
 };
 
 const epicMiddleware = createEpicMiddleware({dependencies: {abc: window.location}});

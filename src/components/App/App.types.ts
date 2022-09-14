@@ -30,8 +30,11 @@ interface GalleryState {
 
 interface CartState {
     products: ProductInCart[],
-    isVisible: boolean
+    isVisible: boolean,
+    amount: number
+
 }
+
 export interface State {
     currencySwitcher: CurrencySwitcherState,
     categoryTabs: CategoryTabsState,
@@ -39,7 +42,6 @@ export interface State {
     productDescriptionPage: ProductDescriptionPageState,
     gallery: GalleryState,
     cart: CartState,
-
 }
 
 export interface AppProps extends AppOwnProps,
