@@ -1,12 +1,37 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {CartProps} from './Cart.types';
-import {StyledAdder, StyledArrow, StyledArrows, StyledCart, StyledCartItem, StyledCartItemDetails, StyledMiniGallery, StyledPurchaseDetails} from './Cart.styled';
+import {
+  StyledAdder,
+  StyledArrow,
+  StyledArrows,
+  StyledCart,
+  StyledCartItem,
+  StyledCartItemDetails,
+  StyledMiniGallery,
+  StyledPurchaseDetails
+} from './Cart.styled';
 import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
 import {findPrice} from '../ProductDescriptionPage/helpers';
 import {StyledAttributeValue, StyledAttributeValues} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
 
 export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
   render() {
+
+    const totalCost: string = this.props.products.map((product) => {
+
+      const currentPrice = product.prices.find((price) => price.currency.label === this.props.currentCurrency.label);
+
+      const productQuantity = product.count;
+
+      const currentUnitPrice = (currentPrice)?.amount || 0;
+
+      return currentUnitPrice * (productQuantity || 0);
+
+    })
+      .reduce((prev, curr) => prev + curr, 0).toFixed(2);
+
+    const totalTax = (parseFloat(totalCost) * 0.21).toFixed(2);
+
     return (
       <StyledCart>
         {
@@ -108,9 +133,9 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
           })
         }
         <StyledPurchaseDetails>
-          <p>Total tax 21%: XXX</p>
+          <p>Total tax 21%: {this.props.currentCurrency.symbol}{totalTax}</p>
           <p>Quantity: {this.props.amount}</p>
-          <p>Total: XXX</p>
+          <p>Total: {this.props.currentCurrency.symbol}{totalCost}</p>
         </StyledPurchaseDetails>
       </StyledCart>
     );
