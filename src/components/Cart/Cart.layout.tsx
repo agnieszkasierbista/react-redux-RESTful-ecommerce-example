@@ -1,6 +1,6 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {CartProps} from './Cart.types';
-import {StyledAdder, StyledArrow, StyledArrows, StyledCart, StyledCartItem, StyledMiniGallery} from './Cart.styled';
+import {StyledAdder, StyledArrow, StyledArrows, StyledCart, StyledCartItem, StyledCartItemDetails, StyledMiniGallery} from './Cart.styled';
 import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
 import {findPrice} from '../ProductDescriptionPage/helpers';
 import {StyledAttributeValue, StyledAttributeValues} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
@@ -16,9 +16,9 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
             return (
               <StyledCartItem
-                key={productInCart.productId}
+                key={`${productInCart.productId}_${productInCart.count}`}
               >
-                <section>
+                <StyledCartItemDetails>
                   <section>{productInCart.brand}</section>
                   <section>{productInCart.name}</section>
 
@@ -87,14 +87,14 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                       );
                     }
                   })}
-                </section>
+                </StyledCartItemDetails>
                 <StyledAdder>
                   <div>+</div>
                   <div>{productInCart?.count}</div>
                   <div>-</div>
                 </StyledAdder>
                 <StyledMiniGallery
-                  // pics={productInCart.gallery}
+                  pics={productInCart.gallery}
                 >
                   <StyledArrows>
                     <StyledArrow>{'<'}</StyledArrow>

@@ -12,6 +12,10 @@ export const StyledCartItem = styled.article`
   flex-flow: row;
 `;
 
+export const StyledCartItemDetails = styled.section`
+  flex-grow: 3;
+`;
+
 export const StyledAdder = styled.section`
   flex-basis: 75px;
   display: flex;
@@ -20,10 +24,11 @@ export const StyledAdder = styled.section`
   align-items: center;
 `;
 
-export const StyledMiniGallery = styled.section`
+export const StyledMiniGallery = styled.section<{pics: string[]}>`
   position: relative;
   flex-grow: 2;
   max-width: 500px;
+  background-image: ${props => `url(${props.pics[0]})`};
 `;
 
 export const StyledArrows = styled.div`
