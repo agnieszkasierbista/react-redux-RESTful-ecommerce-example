@@ -10,7 +10,7 @@ import {
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY,
   TOGGLE_MINI_CART_VISIBILITY
 } from './actions';
-import {ProductInCart} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
+import {ProductInCart, Selected} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
 import {getNumberOfItemsInTheCart} from './components/helpers';
 
 export const currencySwitcherReducer: Reducer = (state = {}, action: AnyAction) => {
@@ -74,10 +74,10 @@ export const productDescriptionPageReducer: Reducer = (state = {}, action: AnyAc
     };
   }
   case SELECT_ATTR: {
-    const attribute = state.selected.find((attribute: any) => attribute.id === action.payload.id);
+    const attribute = state.selected.find((attribute: Selected) => attribute.id === action.payload.id);
     const selectedAttributes = !attribute ? [...state.selected,
       action.payload
-    ] : state.selected.map((item: any) => {
+    ] : state.selected.map((item: Selected) => {
 
       return item.id === attribute.id ? action.payload : item;
     });
@@ -127,11 +127,11 @@ export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
       const {count, ...rest} = productInCart;
 
       const shouldAddToCount = JSON.stringify(rest) === JSON.stringify(action.payload);
-      const c = (shouldAddToCount && productInCart.count) ? productInCart.count + 1 : productInCart.count;
+      const currentCount = (shouldAddToCount && productInCart.count) ? productInCart.count + 1 : productInCart.count;
 
       return {
         ...productInCart,
-        count: !productInCart.count ? 1 : c,
+        count: !productInCart.count ? 1 : currentCount,
       };
     });
 
