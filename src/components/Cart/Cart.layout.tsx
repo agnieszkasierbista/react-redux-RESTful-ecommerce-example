@@ -1,7 +1,8 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {CartProps} from './Cart.types';
 import {
-  StyledAdder, StyledAdderButton,
+  StyledAdder,
+  StyledAdderButton,
   StyledArrow,
   StyledArrows,
   StyledCart,
@@ -14,17 +15,14 @@ import {
 import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
 import {findPrice} from '../ProductDescriptionPage/helpers';
 import {StyledAttributeValue, StyledAttributeValues} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
-import {addToCart} from '../../actions';
 
 export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
     state = {
       currentPicIdx: 0
-    }
+    };
 
     render() {
-
-      const currentPicIdx = 0;
 
       const totalCost: string = this.props.products.map((product) => {
 
@@ -136,20 +134,37 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                   <StyledMiniGallery>
                     <StyledArrows>
                       <StyledArrow onClick={() => {
+                        this.setState((prev: any) => {
+                          if (prev.currentPicIdx === 0) {
+                            return {
+                              ...prev,
+                              currentPicIdx: productInCart.gallery.length - 1
+                            };
+                          } else {
+                            return {
+                              ...prev,
+                              currentPicIdx: prev.currentPicIdx - 1
+                            };
+                          }
+                        });
 
 
-                        console.log(-1);
                       }}>{'<'}</StyledArrow>
                       <StyledArrow onClick={() => {
 
                         this.setState((prev: any) => {
-                          return {
-                            ...prev,
-                            currentPicIdx: prev.currentPicIdx + 1
-                          };
+                          if (prev.currentPicIdx === productInCart.gallery.length - 1) {
+                            return {
+                              ...prev,
+                              currentPicIdx: 0
+                            };
+                          } else {
+                            return {
+                              ...prev,
+                              currentPicIdx: prev.currentPicIdx + 1
+                            };
+                          }
                         });
-
-                        console.log(1);
                       }}>{'>'}</StyledArrow>
                     </StyledArrows>
                     <StyledPic picIdx={this.state.currentPicIdx}

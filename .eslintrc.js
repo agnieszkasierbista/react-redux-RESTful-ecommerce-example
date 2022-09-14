@@ -24,7 +24,7 @@ module.exports = {
   'rules': {
     '@typescript-eslint/no-empty-interface': 0,
     'indent': [
-      'error',
+      'warn',
       2
     ],
     'react/react-in-jsx-scope': 0,
