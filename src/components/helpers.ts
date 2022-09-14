@@ -1,4 +1,5 @@
 import {Product} from './ProductListingPage/ProductListingPage.types';
+import {ProductInCart} from './ProductDescriptionPage/ProductDescriptionPage.types';
 
 export function getTabLink(name: string) {
   if (name === 'all') {
@@ -14,4 +15,14 @@ export function getProductDescriptionPageLink(category: string, id: string) {
 
 export function getProductDescriptionPagePath(product: Product) {
   return getProductDescriptionPageLink(product.category, product.id);
+}
+
+export function getNumberOfItemsInTheCart(productsInCartWithCounter: ProductInCart[]) {
+  return (productsInCartWithCounter).map((product) => {
+    if(product.count) {
+      return product.count;
+    } else {
+      return 0;
+    }
+  })?.reduce((prev, curr) => prev + curr, 0);
 }

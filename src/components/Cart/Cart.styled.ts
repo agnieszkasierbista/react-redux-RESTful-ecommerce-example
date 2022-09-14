@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const StyledCart = styled.section`
   background-color: white;
+  outline: 5px dashed magenta;
 `;
 
 export const StyledCartItem = styled.article`

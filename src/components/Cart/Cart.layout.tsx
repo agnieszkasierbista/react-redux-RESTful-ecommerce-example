@@ -90,7 +90,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                 </section>
                 <StyledAdder>
                   <div>+</div>
-                  <div>AMOUNT</div>
+                  <div>{productInCart?.count}</div>
                   <div>-</div>
                 </StyledAdder>
                 <StyledMiniGallery

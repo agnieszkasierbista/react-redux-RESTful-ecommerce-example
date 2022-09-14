@@ -14,8 +14,6 @@ export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
           onClick={() => this.props.dispatchToggleMiniCartVisibility()}/>
         <Cart/>
         <Link to='/cart'>GO TO CART</Link>
-
-
       </StyledMiniCart>
 
     );

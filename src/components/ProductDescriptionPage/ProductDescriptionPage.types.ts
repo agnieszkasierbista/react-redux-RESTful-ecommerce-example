@@ -59,5 +59,6 @@ export interface Selected {
 }
 
 export interface ProductInCart extends ProductDetails {
-    selected: Selected[]
+    selected: Selected[],
+    count?: number
 }

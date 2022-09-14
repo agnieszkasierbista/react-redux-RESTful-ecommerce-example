@@ -3,11 +3,14 @@ import {
   ADD_TO_CART,
   CLEAR_SELECTED_ATTR,
   GET_PRODUCT_DETAILS_SUCCESS,
-  INIT_SUCCESS, SELECT_ATTR,
-  SET_CURRENT_CURRENCY, SET_MAIN_PIC,
-  TOGGLE_CURRENCY_DROPDOWN_VISIBILITY, TOGGLE_MINI_CART_VISIBILITY
+  INIT_SUCCESS,
+  SELECT_ATTR,
+  SET_CURRENT_CURRENCY,
+  SET_MAIN_PIC,
+  TOGGLE_CURRENCY_DROPDOWN_VISIBILITY,
+  TOGGLE_MINI_CART_VISIBILITY
 } from './actions';
-import {isVisible} from '@testing-library/user-event/dist/utils';
+import {ProductInCart} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
 
 export const currencySwitcherReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
@@ -113,9 +116,28 @@ export const galleryReducer: Reducer = (state = {}, action: AnyAction) => {
 export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
   case ADD_TO_CART: {
+
+    const ProductInCartDuplicate = state.products.find((productInCart: ProductInCart) => {
+      const { count, ...rest } = productInCart;
+
+      return JSON.stringify(rest) === JSON.stringify(action.payload);
+    });
+
+    const productsInCartWithCounter = (!ProductInCartDuplicate ? [...state.products, action.payload] : state.products).map((productInCart: ProductInCart) => {
+      const { count, ...rest } = productInCart;
+
+      const shouldAddToCount = JSON.stringify(rest) === JSON.stringify(action.payload);
+      const c = (shouldAddToCount && productInCart.count) ? productInCart.count + 1 : productInCart.count;
+
+      return {
+        ...productInCart,
+        count: !productInCart.count ? 1 : c,
+      };
+    });
+
     return {
       ...state,
-      products: [...state.products, action.payload]
+      products: productsInCartWithCounter
     };
   }
 

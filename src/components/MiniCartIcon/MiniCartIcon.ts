@@ -4,10 +4,11 @@ import {State} from '../App/App.types';
 import MiniCartIcon from './MiniCartIcon.layout';
 import {MiniCartIconDispatchProps, MiniCartIconStateProps} from './MiniCartIcon.types';
 import {toggleMiniCartVisibility} from '../../actions';
+import {getNumberOfItemsInTheCart} from '../helpers';
 
 function mapStateToProps(state: State): MiniCartIconStateProps {
   return {
-    amount: state.cart.products.length
+    amount: getNumberOfItemsInTheCart(state.cart.products)
   };
 }
 
