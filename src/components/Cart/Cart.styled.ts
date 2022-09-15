@@ -57,7 +57,7 @@ export const StyledArrows = styled.div`
   height: 40px;
 `;
 
-export const StyledArrow = styled.div`
+export const StyledArrow = styled.button`
   border: 2px solid white;
   align-items: center;
   justify-content: center;

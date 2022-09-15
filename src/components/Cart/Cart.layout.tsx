@@ -18,22 +18,17 @@ import {StyledAttributeValue, StyledAttributeValues} from '../ProductDescription
 
 export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
-    state = {
-      currentPicIdx: 0
+    state: {currentPicIdx: { [key: string]: number }} = {
+      currentPicIdx: {}
     };
 
     render() {
 
       const totalCost: string = this.props.products.map((product) => {
-
         const currentPrice = product.prices.find((price) => price.currency.label === this.props.currentCurrency.label);
-
         const productQuantity = product.count;
-
         const currentUnitPrice = (currentPrice)?.amount || 0;
-
         return currentUnitPrice * (productQuantity || 0);
-
       })
         .reduce((prev, curr) => prev + curr, 0).toFixed(2);
 
@@ -43,16 +38,13 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
         <StyledCart>
           {
             this.props.products.map((productInCart: ProductInCart) => {
-
               const {count: _, ...productInCartCountRemoved} = productInCart;
-
               const currentPrice = findPrice(productInCart, this.props.currentCurrency);
-
-              console.log('productInCart', productInCart);
+              const uniqueKey = `${productInCart.name}_${productInCart.count}_${productInCart.selected.reduce((prev, {item}) => prev + item.id, '')}`;
 
               return (
                 <StyledCartItem
-                  key={`${productInCart.name}_${productInCart.count}_${productInCart.selected.reduce((prev, {item}) => prev + item.id, '')}`}
+                  key={uniqueKey}
                 >
                   <StyledCartItemDetails>
                     <section>{productInCart.brand}</section>
@@ -126,50 +118,59 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                   </StyledCartItemDetails>
                   <StyledAdder>
                     <StyledAdderButton
-                      onClick={() => this.props.dispatchAddAnotherToCart(productInCartCountRemoved)}>+</StyledAdderButton>
+                      onClick={() => this.props.dispatchAddAnotherToCart(productInCartCountRemoved)}>
+                        +
+                    </StyledAdderButton>
                     <div>{productInCart?.count}</div>
                     <StyledAdderButton
-                      onClick={() => this.props.dispatchRemoveOneFromCart(productInCart)}>-</StyledAdderButton>
+                      onClick={() => this.props.dispatchRemoveOneFromCart(productInCart)}>
+                        -
+                    </StyledAdderButton>
                   </StyledAdder>
                   <StyledMiniGallery>
                     <StyledArrows>
-                      <StyledArrow onClick={() => {
-                        this.setState((prev: any) => {
-                          if (prev.currentPicIdx === 0) {
-                            return {
-                              ...prev,
-                              currentPicIdx: productInCart.gallery.length - 1
-                            };
-                          } else {
-                            return {
-                              ...prev,
-                              currentPicIdx: prev.currentPicIdx - 1
-                            };
-                          }
-                        });
+                      <StyledArrow
+                        onClick={() => {
+                          this.setState((prev: any) => {
 
-
-                      }}>{'<'}</StyledArrow>
-                      <StyledArrow onClick={() => {
-
-                        this.setState((prev: any) => {
-                          if (prev.currentPicIdx === productInCart.gallery.length - 1) {
                             return {
                               ...prev,
-                              currentPicIdx: 0
+                              currentPicIdx: {...prev.currentPicIdx, [uniqueKey]: (
+                                prev.currentPicIdx[uniqueKey]
+                                  ? (prev.currentPicIdx[uniqueKey] - 1)
+                                  : productInCart.gallery.length - 1)
+                              }
                             };
-                          } else {
+                          });
+                        }}
+                        disabled={productInCart.gallery.length === 1 ? true : false}
+                      >
+                        {'<'}
+                      </StyledArrow>
+                      <StyledArrow
+                        onClick={() => {
+                          this.setState((prev: any) => {
+
                             return {
                               ...prev,
-                              currentPicIdx: prev.currentPicIdx + 1
+                              currentPicIdx: {...prev.currentPicIdx, [uniqueKey]: (
+                                prev.currentPicIdx[uniqueKey]
+                                  ?
+                                  prev.currentPicIdx[uniqueKey] === productInCart.gallery.length - 1
+                                    ? 0
+                                    : (prev.currentPicIdx[uniqueKey] + 1)
+                                  : 1)}
                             };
-                          }
-                        });
-                      }}>{'>'}</StyledArrow>
+                          });
+                        }}
+                        disabled={productInCart.gallery.length === 1 ? true : false}
+                      >
+                        {'>'}
+                      </StyledArrow>
                     </StyledArrows>
-                    <StyledPic picIdx={this.state.currentPicIdx}
-                      pics={productInCart.gallery}></StyledPic>
-
+                    <StyledPic
+                      picIdx={this.state.currentPicIdx[uniqueKey] || 0}
+                      pics={productInCart.gallery}/>
                   </StyledMiniGallery>
                 </StyledCartItem>
               );
