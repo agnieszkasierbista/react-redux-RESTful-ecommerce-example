@@ -131,7 +131,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                     </StyledAdderButton>
                   </StyledAdder>
                   <StyledMiniGallery>
-                    <StyledArrows>
+                    {(productInCart.gallery.length !== 1) && <StyledArrows>
                       <StyledArrow
                         onClick={() => {
                           this.setState((prev: any) => {
@@ -146,7 +146,6 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                             };
                           });
                         }}
-                        disabled={productInCart.gallery.length === 1}
                       >
                         {'<'}
                       </StyledArrow>
@@ -166,11 +165,10 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                             };
                           });
                         }}
-                        disabled={productInCart.gallery.length === 1}
                       >
                         {'>'}
                       </StyledArrow>
-                    </StyledArrows>
+                    </StyledArrows>}
                     <StyledPic
                       picIdx={this.state.currentPicIdx[uniqueKey] || 0}
                       pics={productInCart.gallery}/>
