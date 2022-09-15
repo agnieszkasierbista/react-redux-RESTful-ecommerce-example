@@ -42,7 +42,13 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
       ?
       {
         ...this.props.productDetails,
-        selected: [...this.props.selected],
+        selected: defaultAttributes.map((defaultAttribute) => {
+
+          return {
+            ...defaultAttribute,
+            ...(this.props.selected.find((selectedAttr) => selectedAttr.id === defaultAttribute.id))
+          };
+        }),
       }
       :
       {
