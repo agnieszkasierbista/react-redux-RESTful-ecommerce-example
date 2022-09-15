@@ -2,7 +2,6 @@ import {Product} from './ProductListingPage/ProductListingPage.types';
 import {
   AttributeSet,
   ProductAttributeItems,
-  ProductDetails,
   ProductInCart
 } from './ProductDescriptionPage/ProductDescriptionPage.types';
 

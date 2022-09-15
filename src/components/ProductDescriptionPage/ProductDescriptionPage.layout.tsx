@@ -11,7 +11,6 @@ import {
 import Gallery from './Gallery/Gallery';
 import {findPrice} from './helpers';
 import {getIsSelected} from '../helpers';
-import {batch} from 'react-redux';
 
 export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
   componentDidMount() {

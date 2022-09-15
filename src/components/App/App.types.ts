@@ -30,7 +30,6 @@ interface GalleryState {
 
 interface CartState {
     products: ProductInCart[],
-    isVisible: boolean,
     amount: number
 
 }

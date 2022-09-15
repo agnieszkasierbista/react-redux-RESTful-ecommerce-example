@@ -11,7 +11,6 @@ export const SET_MAIN_PIC = 'SET_MAIN_PIC';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const SELECT_ATTR = 'SELECT_ATTR';
 export const CLEAR_SELECTED_ATTR = 'CLEAR_SELECTED_ATTR';
-export const TOGGLE_MINI_CART_VISIBILITY = 'TOGGLE_MINI_CART_VISIBILITY';
 export const ADD_ANOTHER_TO_CART = 'ADD_ANOTHER_TO_CART';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 
@@ -28,12 +27,6 @@ export function removeOneFromCart(product: ProductInCart) {
     payload: product
   };
 
-}
-
-export function toggleMiniCartVisibility() {
-  return {
-    type: TOGGLE_MINI_CART_VISIBILITY
-  };
 }
 
 export function clearSelectedAttributes() {

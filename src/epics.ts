@@ -63,7 +63,7 @@ export const onGetProductDetails: Epic = action$ => action$.pipe(
     const queryDetails = gql.query([{
       operation: 'product',
       variables: {id: {value: action.payload, required: true}},
-      fields: ['id', 'name', 'description', 'inStock', 'gallery', 'description',
+      fields: ['id', 'name', 'description', 'inStock', 'gallery',
         {
           attributes: ['id', 'name', 'type', {items: ['displayValue', 'value', 'id']}],
         },

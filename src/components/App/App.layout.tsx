@@ -55,9 +55,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
 
         <NavBar>
           <CategoryTabs/>
-
           <MiniCartIcon/>
-          <MiniCart />
           <CurrencySwitcher/>
         </NavBar>
 
