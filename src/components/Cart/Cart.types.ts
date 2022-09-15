@@ -17,6 +17,6 @@ export interface CartStateProps {
 }
 
 export interface CartDispatchProps {
-    dispatchAddAnotherToCart: (product: ProductInCart) => void,
+    dispatchAddToCart: (product: ProductInCart) => void,
     dispatchRemoveOneFromCart: (product: ProductInCart) => void
 }

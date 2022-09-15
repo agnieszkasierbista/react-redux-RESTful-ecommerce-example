@@ -15,6 +15,7 @@ export class Gallery extends PureComponent<PropsWithChildren<GalleryProps>> {
             return (
               <div key={pic}>
                 <img
+                  style={{objectFit: 'cover'}}
                   width="100"
                   height="100"
                   src={pic}

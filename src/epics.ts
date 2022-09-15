@@ -2,8 +2,17 @@ import {combineEpics, Epic, ofType} from 'redux-observable';
 import {from, of, switchMap} from 'rxjs';
 import * as gql from 'gql-query-builder';
 import {request} from 'graphql-request';
-import {GET_PRODUCT_DETAILS, GET_PRODUCT_DETAILS_SUCCESS, INIT, INIT_SUCCESS} from './actions';
+import {
+  ADD_TO_CART,
+  ADD_TO_CART_BY_PRODUCT_ID, ADD_TO_CART_BY_PRODUCT_ID_SUCCESS, addToCart,
+  GET_PRODUCT_DETAILS,
+  GET_PRODUCT_DETAILS_SUCCESS,
+  INIT,
+  INIT_SUCCESS
+} from './actions';
 import {Category} from './components/CategoryTabs/CategoryTabs.types';
+import {createDefaultAttrObj} from './components/helpers';
+import {ProductInCart, Selected} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
 
 const {query} = gql.query([
   {
@@ -59,7 +68,6 @@ export const onInit: Epic = action$ => action$.pipe(
 export const onGetProductDetails: Epic = action$ => action$.pipe(
   ofType(GET_PRODUCT_DETAILS),
   switchMap((action) => {
-    console.log(action.payload);
     const queryDetails = gql.query([{
       operation: 'product',
       variables: {id: {value: action.payload, required: true}},
@@ -91,5 +99,46 @@ export const onGetProductDetails: Epic = action$ => action$.pipe(
   })
 );
 
+export const onAddToCartByProductId : Epic = action$ => action$.pipe(
+  ofType(ADD_TO_CART_BY_PRODUCT_ID),
+  switchMap((action) => {
+    console.log('action', action.payload);
 
-export const rootEpic = combineEpics(onInit, onGetProductDetails);
+    const queryDetails = gql.query([{
+      operation: 'product',
+      variables: {id: {value: action.payload, required: true}},
+      fields: ['id', 'name', 'description', 'inStock', 'gallery',
+        {
+          attributes: ['id', 'name', 'type', {items: ['displayValue', 'value', 'id']}],
+        },
+        'brand', {
+          prices: [
+            {
+              currency: [
+                'symbol',
+                'label'
+              ]
+            },
+            'amount'
+          ]
+        },]
+    }]);
+    return from(
+      request('http://localhost:4000', queryDetails.query, queryDetails.variables)
+    );
+  }),
+  switchMap(({product}) => {
+
+    const defaultAttrs: Selected[] = product.attributes.map(createDefaultAttrObj);
+
+    const productToCart: ProductInCart = {
+      ...product,
+      selected: defaultAttrs
+    };
+
+    return of(addToCart(productToCart));
+  })
+);
+
+
+export const rootEpic = combineEpics(onInit, onGetProductDetails, onAddToCartByProductId);

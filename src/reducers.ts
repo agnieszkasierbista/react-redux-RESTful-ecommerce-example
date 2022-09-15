@@ -1,6 +1,5 @@
 import {AnyAction, combineReducers, Reducer} from '@reduxjs/toolkit';
 import {
-  ADD_ANOTHER_TO_CART,
   ADD_TO_CART,
   CLEAR_SELECTED_ATTR,
   GET_PRODUCT_DETAILS_SUCCESS,
@@ -117,33 +116,6 @@ export const galleryReducer: Reducer = (state = {}, action: AnyAction) => {
 export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
   case ADD_TO_CART: {
-
-    const ProductInCartDuplicate = state.products.find((productInCart: ProductInCart) => {
-      const {count, ...rest} = productInCart;
-
-      return JSON.stringify(rest) === JSON.stringify(action.payload);
-    });
-
-    const productsInCartWithCounter = (!ProductInCartDuplicate ? [...state.products, action.payload] : state.products).map((productInCart: ProductInCart) => {
-      const {count, ...rest} = productInCart;
-
-      const shouldAddToCount = JSON.stringify(rest) === JSON.stringify(action.payload);
-      const currentCount = (shouldAddToCount && productInCart.count) ? productInCart.count + 1 : productInCart.count;
-
-      return {
-        ...productInCart,
-        count: !productInCart.count ? 1 : currentCount,
-      };
-    });
-
-    return {
-      ...state,
-      products: productsInCartWithCounter,
-      amount: getNumberOfItemsInTheCart(productsInCartWithCounter)
-    };
-  }
-
-  case ADD_ANOTHER_TO_CART: {
 
     const ProductInCartDuplicate = state.products.find((productInCart: ProductInCart) => {
       const {count, ...rest} = productInCart;

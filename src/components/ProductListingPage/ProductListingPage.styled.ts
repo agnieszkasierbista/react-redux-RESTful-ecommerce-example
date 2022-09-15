@@ -7,6 +7,7 @@ export const StyledProductListingPage = styled.section`
 `;
 
 export const StyledPLPitem = styled.article`
+  position: relative;
   display: inline-block;
   background-color: aqua;
   border: 1px solid deepskyblue;
@@ -27,7 +28,7 @@ export const StyledPLPoutOfStockItem = styled.article`
   opacity: 0.5;
 `;
 
-export const StyledProductListingPageImg = styled.div<{imgSrc: string}>`
+export const StyledProductListingPageImg = styled.div<{ imgSrc: string }>`
   background-image: url(${(props) => props.imgSrc});
   background-repeat: no-repeat;
   background-size: cover;
@@ -35,7 +36,7 @@ export const StyledProductListingPageImg = styled.div<{imgSrc: string}>`
   height: 70%;
 `;
 
-export const StyledProductListingPageOutOfStockImg = styled.div<{imgSrc: string}>`
+export const StyledProductListingPageOutOfStockImg = styled.div<{ imgSrc: string }>`
   display: flex;
   background-image: url(${(props) => props.imgSrc});
   background-repeat: no-repeat;
@@ -44,4 +45,19 @@ export const StyledProductListingPageOutOfStockImg = styled.div<{imgSrc: string}
   height: 70%;
   align-items: center;
   justify-content: center;
+`;
+
+export const StyledAddToCartShorthand = styled.button`
+  position: absolute;
+  right: 15px;
+  bottom: 55px;
+  display: flex;
+  background-color: forestgreen;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  cursor: pointer;
 `;

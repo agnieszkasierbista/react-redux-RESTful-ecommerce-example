@@ -1,5 +1,5 @@
 import {Currency} from '../CurrencySwitcher/CurrencySwitcher.types';
-import {Category} from '../CategoryTabs/CategoryTabs.types';
+import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
 
 export interface ProductListingPageProps extends ProductListingPageOwnProps,
     ProductListingPageStateProps,
@@ -18,7 +18,8 @@ export interface ProductListingPageStateProps {
 export type Price = { currency: { symbol: string, label: string }, amount: number }
 
 export interface ProductListingPageDispatchProps {
-   
+   dispatchAddToCart: (product: ProductInCart) => void,
+   dispatchAddToCartByProductId: (productId: string) => void
 }
 
 export type Product = { name: string; id: string; prices: Price[], category: string, gallery: string[], inStock: boolean};

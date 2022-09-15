@@ -1,6 +1,7 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {ProductListingPageProps} from './ProductListingPage.types';
 import {
+  StyledAddToCartShorthand,
   StyledPLPitem,
   StyledPLPoutOfStockItem,
   StyledProductListingPage,
@@ -9,6 +10,7 @@ import {
 } from './ProductListingPage.styled';
 import {Link} from 'react-router-dom';
 import {getProductDescriptionPageLink} from '../helpers';
+import {addToCartByProductId} from '../../actions';
 
 
 export class ProductListingPage extends PureComponent<PropsWithChildren<ProductListingPageProps>> {
@@ -31,12 +33,12 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                   <StyledProductListingPageImg imgSrc={product.gallery[0]}/>
                   <p>{product.name}</p>
                   <p>
-                                            Price goes here: {price?.currency.symbol} {price?.amount}
+                    Price goes here: {price?.currency.symbol} {price?.amount}
                   </p>
                 </Link>
-                <div>
-                                        CART ICON
-                </div>
+                <StyledAddToCartShorthand onClick={() => this.props.dispatchAddToCartByProductId(product.id)}>
+                  🛒
+                </StyledAddToCartShorthand>
               </StyledPLPitem>
             );
           } else {
@@ -44,16 +46,13 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
               <StyledPLPoutOfStockItem key={product.id}>
                 <Link to={getProductDescriptionPageLink(product.category, product.id)}>
                   <StyledProductListingPageOutOfStockImg imgSrc={product.gallery[0]}>
-                                            OUT OF STOCK
+                    OUT OF STOCK
                   </StyledProductListingPageOutOfStockImg>
                   <p>{product.name}</p>
                   <p>
-                                            Price goes here: {price?.currency.symbol} {price?.amount}
+                     Price goes here: {price?.currency.symbol} {price?.amount}
                   </p>
                 </Link>
-                <div>
-                                        CART ICON
-                </div>
               </StyledPLPoutOfStockItem>
             );
           }

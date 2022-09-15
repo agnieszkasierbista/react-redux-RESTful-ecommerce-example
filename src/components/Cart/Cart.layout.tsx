@@ -121,7 +121,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                   </StyledCartItemDetails>
                   <StyledAdder>
                     <StyledAdderButton
-                      onClick={() => this.props.dispatchAddAnotherToCart(productInCartCountRemoved)}>
+                      onClick={() => this.props.dispatchAddToCart(productInCartCountRemoved)}>
                         +
                     </StyledAdderButton>
                     <div>{productInCart?.count}</div>

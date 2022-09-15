@@ -37,3 +37,16 @@ export function getIsSelected(product: ProductInCart, item: ProductAttributeItem
 
   return !!itemInQuestion;
 }
+
+export function createDefaultAttrObj(attribute: any) {
+  return {
+    id: attribute.id,
+    item: {
+
+      displayValue: attribute.items[0].displayValue,
+      value: attribute.items[0].value,
+      id: attribute.items[0].id,
+      selected: true
+    }
+  };
+}

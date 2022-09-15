@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {State} from '../App/App.types';
 import Cart from './Cart.layout';
 import {CartDispatchProps, CartStateProps} from './Cart.types';
-import {addAnotherToCart, removeOneFromCart} from '../../actions';
+import {addToCart, removeOneFromCart} from '../../actions';
 
 function mapStateToProps(state: State): CartStateProps {
   return {
@@ -16,7 +16,7 @@ function mapStateToProps(state: State): CartStateProps {
 function mapDispatchToProps(dispatch: Dispatch): CartDispatchProps {
   return {
     dispatchRemoveOneFromCart: (product) => dispatch(removeOneFromCart(product)),
-    dispatchAddAnotherToCart: (product) => dispatch(addAnotherToCart(product))
+    dispatchAddToCart: (product) => dispatch(addToCart(product))
   };
 }
 

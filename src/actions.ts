@@ -9,15 +9,16 @@ export const GET_PRODUCT_DETAILS = 'GET_PRODUCT_DETAILS';
 export const GET_PRODUCT_DETAILS_SUCCESS = 'GET_PRODUCT_DETAILS_SUCCESS';
 export const SET_MAIN_PIC = 'SET_MAIN_PIC';
 export const ADD_TO_CART = 'ADD_TO_CART';
+export const ADD_TO_CART_BY_PRODUCT_ID = 'ADD_TO_CART_BY_PRODUCT_ID';
 export const SELECT_ATTR = 'SELECT_ATTR';
 export const CLEAR_SELECTED_ATTR = 'CLEAR_SELECTED_ATTR';
-export const ADD_ANOTHER_TO_CART = 'ADD_ANOTHER_TO_CART';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
+export const ADD_TO_CART_BY_PRODUCT_ID_SUCCESS = 'ADD_TO_CART_BY_PRODUCT_ID_SUCCESS';
 
-export function addAnotherToCart(product: ProductInCart) {
+export function addToCartByProductId(productId: string) {
   return {
-    type: 'ADD_ANOTHER_TO_CART',
-    payload: product
+    type: ADD_TO_CART_BY_PRODUCT_ID,
+    payload: productId
   };
 }
 

@@ -10,7 +10,7 @@ import {
 } from './ProductDescriptionPage.styled';
 import Gallery from './Gallery/Gallery';
 import {findPrice} from './helpers';
-import {getIsSelected} from '../helpers';
+import {createDefaultAttrObj, getIsSelected} from '../helpers';
 
 export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
   componentDidMount() {
@@ -24,18 +24,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
   render() {
 
     const currentPrice = findPrice(this.props.productDetails, this.props.currentCurrency);
-    const defaultAttributes: Selected[] = this.props.productDetails.attributes.map((attribute) => {
-      return {
-        id: attribute.id,
-        item: {
-
-          displayValue: attribute.items[0].displayValue,
-          value: attribute.items[0].value,
-          id: attribute.items[0].id,
-          selected: true
-        }
-      };
-    });
+    const defaultAttributes: Selected[] = this.props.productDetails.attributes.map(createDefaultAttrObj);
 
     const productInCart: ProductInCart = this.props.selected.length
       ?
