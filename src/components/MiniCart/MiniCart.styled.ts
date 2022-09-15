@@ -14,7 +14,7 @@ export const StyledMiniCartOverlay = styled.div<{ isVisible: boolean }>`
   display: ${props => props.isVisible ? 'block' : 'none'};
   width: 100%;
   height: 100%;
-  top: 0;
+  top: 35px;
   left: 0;
   right: 0;
   bottom: 0;

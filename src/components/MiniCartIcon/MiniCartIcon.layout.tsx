@@ -6,13 +6,14 @@ import {MiniCartIconProps} from './MiniCartIcon.types';
 export class MiniCartIcon extends PureComponent<PropsWithChildren<MiniCartIconProps>> {
   render() {
     return (
-      <Link to='/cart'>
-        <StyledMiniCartIcon>
+      <Link to='/cart' onClick={() => this.props.dispatchToggleMiniCartVisibility()}>
+        <StyledMiniCartIcon onMouseOver={() => !this.props.isVisible && this.props.dispatchToggleMiniCartVisibility()}>
                     MiniCartIcon {this.props.amount !== 0 ? this.props.amount : null}
         </StyledMiniCartIcon>
       </Link>
     );
   }
 }
+//TODO: disable hover when in /cart
 
 export default MiniCartIcon;

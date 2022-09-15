@@ -8,7 +8,8 @@ import {toggleMiniCartVisibility} from '../../actions';
 function mapStateToProps(state: State): MiniCartIconStateProps {
   return {
     products: state.cart.products,
-    amount: state.cart.amount
+    amount: state.cart.amount,
+    isVisible: state.cart.isVisible
   };
 }
 
