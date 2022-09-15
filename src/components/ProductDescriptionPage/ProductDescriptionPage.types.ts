@@ -31,7 +31,8 @@ export interface ProductDetails {
     gallery: string[],
     brand: string,
     prices: Price[],
-    attributes: AttributeSet[]
+    attributes: AttributeSet[],
+    inStock: boolean
 
 }
 

@@ -138,7 +138,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
             <p>Price:</p>
             <p>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</p>
           </section>
-          <button onClick={() => this.props.dispatchAddToCart(productInCart)}>ADD TO CART</button>
+          <button disabled={!this.props.productDetails.inStock} onClick={() => this.props.dispatchAddToCart(productInCart)}>ADD TO CART</button>
           <section>
             <div dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/>
           </section>

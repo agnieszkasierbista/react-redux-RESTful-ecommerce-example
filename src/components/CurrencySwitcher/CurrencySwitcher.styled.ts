@@ -29,6 +29,7 @@ export const StyledCurrencyDropdownContainer = styled.div`
   width: 100%;
   left: 0;
   right: 0;
+  z-index: 3;
 `;
 
 export const StyledCurrencyDropdownList = styled.ul`

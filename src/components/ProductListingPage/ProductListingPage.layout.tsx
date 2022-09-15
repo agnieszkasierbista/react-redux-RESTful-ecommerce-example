@@ -1,9 +1,9 @@
-import {PropsWithChildren, PureComponent} from 'react';
+import React, {PropsWithChildren, PureComponent} from 'react';
 import {ProductListingPageProps} from './ProductListingPage.types';
-import {StyledPLPitem, StyledProductListingPage, StyledProductListingPageImg} from './ProductListingPage.styled';
+import {StyledOutOfStock, StyledPLPitem,
+  StyledPLPoutOfStockItem, StyledProductListingPage, StyledProductListingPageImg, StyledProductListingPageOutOfStockImg} from './ProductListingPage.styled';
 import {Link} from 'react-router-dom';
 import {getProductDescriptionPageLink} from '../helpers';
-import React from 'react';
 
 
 export class ProductListingPage extends PureComponent<PropsWithChildren<ProductListingPageProps>> {
@@ -19,20 +19,39 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
               return price.currency.label === this.props.currentCurrency.label;
             }
           );
-          return (
-            <StyledPLPitem key={product.id}>
-              <Link to={getProductDescriptionPageLink(product.category, product.id)}>
-                <StyledProductListingPageImg imgSrc={product.gallery[0]}/>
-                <p>{product.name}</p>
-                <p>
-                    Price goes here: {price?.currency.symbol} {price?.amount}
-                </p>
-              </Link>
-              <div>
-               CART ICON
-              </div>
-            </StyledPLPitem>
-          );
+          if(product.inStock) {
+            return (
+              <StyledPLPitem key={product.id}>
+                <Link to={getProductDescriptionPageLink(product.category, product.id)}>
+                  <StyledProductListingPageImg imgSrc={product.gallery[0]}/>
+                  <p>{product.name}</p>
+                  <p>
+                      Price goes here: {price?.currency.symbol} {price?.amount}
+                  </p>
+                </Link>
+                <div>
+                    CART ICON
+                </div>
+              </StyledPLPitem>
+            );
+          } else {
+            return (
+              <StyledPLPoutOfStockItem key={product.id}>
+                <Link to={getProductDescriptionPageLink(product.category, product.id)}>
+                  <StyledProductListingPageOutOfStockImg imgSrc={product.gallery[0]}>
+                    OUT OF STOCK
+                  </StyledProductListingPageOutOfStockImg>
+                  <p>{product.name}</p>
+                  <p>
+                      Price goes here: {price?.currency.symbol} {price?.amount}
+                  </p>
+                </Link>
+                <div>
+                    CART ICON
+                </div>
+              </StyledPLPoutOfStockItem>
+            );
+          }
         }
         )}
       </StyledProductListingPage>

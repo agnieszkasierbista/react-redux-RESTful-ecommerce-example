@@ -25,7 +25,8 @@ const {query} = gql.query([
             ]
           },
           'category',
-          'gallery'
+          'gallery',
+          'inStock'
         ]
       }]
   },

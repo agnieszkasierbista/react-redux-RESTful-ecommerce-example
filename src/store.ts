@@ -16,6 +16,7 @@ const preloadedState: State = {
       gallery: [],
       brand: '',
       prices: [],
+      inStock: true,
       attributes: [{
         id: '',
         name: '',
