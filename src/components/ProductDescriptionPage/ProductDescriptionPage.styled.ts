@@ -20,12 +20,12 @@ export const StyledAttributeName = styled.div`
 `;
 
 export const StyledAttributeValues = styled.div`
-display: flex;
+  display: flex;
 `;
 
-export const StyledAttributeValue = styled.div<{color?: string}>`
+export const StyledAttributeValue = styled.div<{color?: string, isSelected?: boolean}>`
   background-color: ${props => props.color ? props.color.toLowerCase() : 'none'};
-  border: 2px solid black;
+  border: ${props => props.isSelected ? '5px dotted green' : '1px solid black'};
   height: 20px;
   min-width: 20px;
   margin: 10px;

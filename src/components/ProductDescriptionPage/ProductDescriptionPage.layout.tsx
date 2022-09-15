@@ -10,6 +10,8 @@ import {
 } from './ProductDescriptionPage.styled';
 import Gallery from './Gallery/Gallery';
 import {findPrice} from './helpers';
+import {getIsSelected} from '../helpers';
+import {batch} from 'react-redux';
 
 export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
   componentDidMount() {
@@ -88,7 +90,9 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                       return <StyledAttributeValue
                         color={item.value}
                         key={item.id}
-                        onClick={() => this.props.dispatchSelectAttr(selectedAttr)}>
+                        onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
+                        isSelected={getIsSelected(productInCart, item)}
+                      >
                       </StyledAttributeValue>;
                     })}
                   </StyledAttributeValues>
@@ -113,11 +117,16 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                         }
                       };
 
-                      return <StyledAttributeValue
-                        key={item.id}
-                        onClick={() => this.props.dispatchSelectAttr(selectedAttr)}>
-                        {item.displayValue}
-                      </StyledAttributeValue>;
+                      return (
+                        <StyledAttributeValue
+                          key={item.id}
+                          onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
+                          isSelected={getIsSelected(productInCart, item)}
+                        >
+                          {item.displayValue}
+
+                        </StyledAttributeValue>
+                      );
                     })}
                   </StyledAttributeValues>
                 </StyledAttribute>

@@ -15,6 +15,7 @@ import {
 import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
 import {findPrice} from '../ProductDescriptionPage/helpers';
 import {StyledAttributeValue, StyledAttributeValues} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
+import {getIsSelected} from '../helpers';
 
 export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
@@ -79,6 +80,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                                 return <StyledAttributeValue
                                   color={item.value}
                                   key={item.id}
+                                  isSelected={getIsSelected(productInCart, item)}
                                 >
                                 </StyledAttributeValue>;
                               })}
@@ -106,6 +108,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
                                 return <StyledAttributeValue
                                   key={item.id}
+                                  isSelected={getIsSelected(productInCart, item)}
                                 >
                                   {item.displayValue}
                                 </StyledAttributeValue>;
@@ -143,7 +146,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                             };
                           });
                         }}
-                        disabled={productInCart.gallery.length === 1 ? true : false}
+                        disabled={productInCart.gallery.length === 1}
                       >
                         {'<'}
                       </StyledArrow>
@@ -163,7 +166,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                             };
                           });
                         }}
-                        disabled={productInCart.gallery.length === 1 ? true : false}
+                        disabled={productInCart.gallery.length === 1}
                       >
                         {'>'}
                       </StyledArrow>

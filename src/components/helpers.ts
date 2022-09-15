@@ -1,5 +1,5 @@
 import {Product} from './ProductListingPage/ProductListingPage.types';
-import {ProductInCart} from './ProductDescriptionPage/ProductDescriptionPage.types';
+import {ProductAttributeItems, ProductDetails, ProductInCart} from './ProductDescriptionPage/ProductDescriptionPage.types';
 
 export function getTabLink(name: string) {
   if (name === 'all') {
@@ -25,4 +25,11 @@ export function getNumberOfItemsInTheCart(productsInCartWithCounter: ProductInCa
       return 0;
     }
   })?.reduce((prev, curr) => prev + curr, 0);
+}
+
+export function getIsSelected(product: ProductInCart, item: ProductAttributeItems) {
+
+  const itemInQuestion = product.selected.find((selectedItem) => selectedItem.item.displayValue === item.displayValue);
+
+  return !!itemInQuestion;
 }
