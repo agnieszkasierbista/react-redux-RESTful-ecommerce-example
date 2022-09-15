@@ -80,7 +80,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                                 return <StyledAttributeValue
                                   color={item.value}
                                   key={item.id}
-                                  isSelected={getIsSelected(productInCart, item)}
+                                  isSelected={getIsSelected(productInCart, item, attribute)}
                                 >
                                 </StyledAttributeValue>;
                               })}
@@ -108,7 +108,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
                                 return <StyledAttributeValue
                                   key={item.id}
-                                  isSelected={getIsSelected(productInCart, item)}
+                                  isSelected={getIsSelected(productInCart, item, attribute)}
                                 >
                                   {item.displayValue}
                                 </StyledAttributeValue>;

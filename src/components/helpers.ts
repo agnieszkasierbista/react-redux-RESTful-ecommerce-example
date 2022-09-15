@@ -1,5 +1,10 @@
 import {Product} from './ProductListingPage/ProductListingPage.types';
-import {ProductAttributeItems, ProductDetails, ProductInCart} from './ProductDescriptionPage/ProductDescriptionPage.types';
+import {
+  AttributeSet,
+  ProductAttributeItems,
+  ProductDetails,
+  ProductInCart
+} from './ProductDescriptionPage/ProductDescriptionPage.types';
 
 export function getTabLink(name: string) {
   if (name === 'all') {
@@ -27,9 +32,9 @@ export function getNumberOfItemsInTheCart(productsInCartWithCounter: ProductInCa
   })?.reduce((prev, curr) => prev + curr, 0);
 }
 
-export function getIsSelected(product: ProductInCart, item: ProductAttributeItems) {
+export function getIsSelected(product: ProductInCart, item: ProductAttributeItems, attribute: AttributeSet) {
 
-  const itemInQuestion = product.selected.find((selectedItem) => selectedItem.item.displayValue === item.displayValue);
+  const itemInQuestion = product.selected.find((selectedItem) => (selectedItem.item.displayValue === item.displayValue) && (selectedItem.id === attribute.id));
 
   return !!itemInQuestion;
 }

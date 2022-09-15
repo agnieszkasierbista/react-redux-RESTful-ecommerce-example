@@ -91,7 +91,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                         color={item.value}
                         key={item.id}
                         onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
-                        isSelected={getIsSelected(productInCart, item)}
+                        isSelected={getIsSelected(productInCart, item, attribute)}
                       >
                       </StyledAttributeValue>;
                     })}
@@ -121,7 +121,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                         <StyledAttributeValue
                           key={item.id}
                           onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
-                          isSelected={getIsSelected(productInCart, item)}
+                          isSelected={getIsSelected(productInCart, item, attribute)}
                         >
                           {item.displayValue}
 
