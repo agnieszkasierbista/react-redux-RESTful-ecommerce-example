@@ -182,7 +182,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
             <p>Quantity: {this.props.amount}</p>
             <p>Total: {this.props.currentCurrency.symbol}{totalCost}</p>
           </StyledPurchaseDetails>
-          <button onClick={() => console.log('Buy, buy, buy!')}>ORDER</button>
+          { this.props.isCheckoutAllowed && <button onClick={() => console.log('Buy, buy, buy!')}>ORDER</button> }
         </StyledCart>
       );
     }

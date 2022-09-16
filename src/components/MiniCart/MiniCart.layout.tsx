@@ -9,13 +9,14 @@ export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
     return (
 
       <StyledMiniCart>
-        <Cart/>
-        <Link to='/cart'>
+        <Cart isCheckoutAllowed={false}/>
+        <div>
+          <Link to='/cart' onClick={() => 1}>
             GO TO CART
-        </Link>
-        <button onClick={() => console.log('Buy, buy, buy!')}>Order</button>
+          </Link>
+          <button onClick={() => console.log('Buy, buy, buy!')}>CheckOut</button>
+        </div>
       </StyledMiniCart>
-
     );
   }
 }

@@ -11,4 +11,5 @@ export interface MiniCartStateProps {
 }
 
 export interface MiniCartDispatchProps {
+
 }

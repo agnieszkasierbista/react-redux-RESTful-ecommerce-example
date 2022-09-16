@@ -8,9 +8,7 @@ export class MiniCartIcon extends PureComponent<PropsWithChildren<MiniCartIconPr
   render() {
     return (
       <StyledMiniCartIcon>
-        <Link to='/cart'>
             MiniCartIcon {this.props.amount !== 0 ? this.props.amount : null}
-        </Link>
         <MiniCart />
       </StyledMiniCartIcon>
     );
