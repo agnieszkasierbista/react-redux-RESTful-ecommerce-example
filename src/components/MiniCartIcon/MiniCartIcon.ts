@@ -4,6 +4,7 @@ import {State} from '../App/App.types';
 import MiniCartIcon from './MiniCartIcon.layout';
 import {MiniCartIconDispatchProps, MiniCartIconStateProps} from './MiniCartIcon.types';
 import {toggleMiniCartVisibility} from '../../actions';
+import { withPathname } from '../ProductDescriptionPage/helpers';
 
 function mapStateToProps(state: State): MiniCartIconStateProps {
   return {
@@ -19,4 +20,4 @@ function mapDispatchToProps(dispatch: Dispatch): MiniCartIconDispatchProps {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MiniCartIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(withPathname(MiniCartIcon));

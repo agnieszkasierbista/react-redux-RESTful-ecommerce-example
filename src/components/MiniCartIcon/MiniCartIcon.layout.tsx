@@ -6,7 +6,11 @@ import MiniCart from '../MiniCart/MiniCart';
 export class MiniCartIcon extends PureComponent<PropsWithChildren<MiniCartIconProps>> {
   render() {
     return (
-      <StyledMiniCartIcon onMouseOver={() => !this.props.isVisible && this.props.dispatchToggleMiniCartVisibility()}>
+      <StyledMiniCartIcon onMouseOver={() => {
+        if(this.props.pathName !== '/cart' &&  !this.props.isVisible) {
+          this.props.dispatchToggleMiniCartVisibility();
+        }
+      }}>
                     MiniCartIcon {this.props.amount !== 0 ? this.props.amount : null}
         <MiniCart />
       </StyledMiniCartIcon>
