@@ -9,7 +9,7 @@ export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
     return (
 
       <StyledMiniCart>
-        <Cart isCheckoutAllowed={false}/>
+        <Cart isBigCart={false}/>
         <div>
           <Link to='/cart' onClick={() => 1}>
             GO TO CART

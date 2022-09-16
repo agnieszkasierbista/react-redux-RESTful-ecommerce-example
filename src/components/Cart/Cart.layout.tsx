@@ -178,11 +178,11 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
             })
           }
           <StyledPurchaseDetails>
-            <p>Total tax 21%: {this.props.currentCurrency.symbol}{totalTax}</p>
-            <p>Quantity: {this.props.amount}</p>
+            { this.props.isBigCart && <p>Total tax 21%: {this.props.currentCurrency.symbol}{totalTax}</p> }
+            { this.props.isBigCart && <p>Quantity: {this.props.amount}</p> }
             <p>Total: {this.props.currentCurrency.symbol}{totalCost}</p>
           </StyledPurchaseDetails>
-          { this.props.isCheckoutAllowed && <button onClick={() => console.log('Buy, buy, buy!')}>ORDER</button> }
+          { this.props.isBigCart && <button onClick={() => console.log('Buy, buy, buy!')}>ORDER</button> }
         </StyledCart>
       );
     }

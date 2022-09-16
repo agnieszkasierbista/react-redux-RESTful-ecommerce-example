@@ -7,7 +7,7 @@ export interface CartProps extends CartOwnProps,
 }
 
 export interface CartOwnProps {
-    isCheckoutAllowed: boolean
+    isBigCart: boolean
 }
 
 export interface CartStateProps {

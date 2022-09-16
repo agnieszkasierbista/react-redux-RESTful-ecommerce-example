@@ -67,7 +67,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           <Route path="/details" element={<ProductDescriptionPage/>}>
           </Route>
 
-          <Route path="/cart" element={<Cart isCheckoutAllowed={true}/>}>
+          <Route path="/cart" element={<Cart isBigCart={true}/>}>
           </Route>
 
         </Routes>
