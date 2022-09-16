@@ -13,6 +13,7 @@ export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
         <Link to='/cart'>
             GO TO CART
         </Link>
+        <button onClick={() => console.log('Buy, buy, buy!')}>Order</button>
       </StyledMiniCart>
 
     );

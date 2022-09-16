@@ -1,1 +1,1 @@
-1. 
+1. Fix a bug with two order buttons in mini cart
