@@ -1,7 +1,7 @@
 import React from 'react';
-import {Price, Product} from '../ProductListingPage/ProductListingPage.types';
+import {Price} from '../ProductListingPage/ProductListingPage.types';
 import {Currency} from '../CurrencySwitcher/CurrencySwitcher.types';
-import { ProductDetails } from './ProductDescriptionPage.types';
+import {ProductDetails} from './ProductDescriptionPage.types';
 
 export function withPathname(Xyz: typeof React.Component<{ pathName: string }>) {
   return class Abc extends React.Component {

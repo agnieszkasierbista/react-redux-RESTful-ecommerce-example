@@ -22,4 +22,4 @@ export interface ProductListingPageDispatchProps {
    dispatchAddToCartByProductId: (productId: string) => void
 }
 
-export type Product = { name: string; id: string; prices: Price[], category: string, gallery: string[], inStock: boolean};
+export type Product = { name: string; id: string; prices: Price[], category: string, gallery: string[], inStock: boolean, brand: string};

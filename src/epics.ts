@@ -3,8 +3,8 @@ import {from, of, switchMap} from 'rxjs';
 import * as gql from 'gql-query-builder';
 import {request} from 'graphql-request';
 import {
-  ADD_TO_CART,
-  ADD_TO_CART_BY_PRODUCT_ID, ADD_TO_CART_BY_PRODUCT_ID_SUCCESS, addToCart,
+  ADD_TO_CART_BY_PRODUCT_ID,
+  addToCart,
   GET_PRODUCT_DETAILS,
   GET_PRODUCT_DETAILS_SUCCESS,
   INIT,
@@ -22,6 +22,7 @@ const {query} = gql.query([
         products: [
           'id',
           'name',
+          'brand',
           {
             prices: [
               {
@@ -102,7 +103,6 @@ export const onGetProductDetails: Epic = action$ => action$.pipe(
 export const onAddToCartByProductId : Epic = action$ => action$.pipe(
   ofType(ADD_TO_CART_BY_PRODUCT_ID),
   switchMap((action) => {
-    console.log('action', action.payload);
 
     const queryDetails = gql.query([{
       operation: 'product',

@@ -3,6 +3,15 @@ import {configureStore} from '@reduxjs/toolkit';
 import {createEpicMiddleware} from 'redux-observable';
 import {State} from './components/App/App.types';
 import {rootEpic} from './epics';
+import {persistReducer, persistStore} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const preloadedState: State = {
   currencySwitcher: {isExtended: false, currencies: [], currentCurrency: {'symbol': '', 'label': ''}},
@@ -37,13 +46,17 @@ const preloadedState: State = {
 const epicMiddleware = createEpicMiddleware({dependencies: {abc: window.location}});
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(epicMiddleware),
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(epicMiddleware),
   devTools: true,
   preloadedState,
 });
 
 epicMiddleware.run(rootEpic);
 
-export default store;
+const persistor = persistStore(store);
+
+export {store, persistor};

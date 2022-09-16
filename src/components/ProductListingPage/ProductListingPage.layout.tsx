@@ -10,7 +10,6 @@ import {
 } from './ProductListingPage.styled';
 import {Link} from 'react-router-dom';
 import {getProductDescriptionPageLink} from '../helpers';
-import {addToCartByProductId} from '../../actions';
 
 
 export class ProductListingPage extends PureComponent<PropsWithChildren<ProductListingPageProps>> {
@@ -31,7 +30,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
               <StyledPLPitem key={product.id}>
                 <Link to={getProductDescriptionPageLink(product.category, product.id)}>
                   <StyledProductListingPageImg imgSrc={product.gallery[0]}/>
-                  <p>{product.name}</p>
+                  <p>{`${product.brand} ${product.name}`}</p>
                   <p>
                     Price goes here: {price?.currency.symbol} {price?.amount}
                   </p>
@@ -48,7 +47,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                   <StyledProductListingPageOutOfStockImg imgSrc={product.gallery[0]}>
                     OUT OF STOCK
                   </StyledProductListingPageOutOfStockImg>
-                  <p>{product.name}</p>
+                  <p>{`${product.brand} ${product.name}`}</p>
                   <p>
                      Price goes here: {price?.currency.symbol} {price?.amount}
                   </p>

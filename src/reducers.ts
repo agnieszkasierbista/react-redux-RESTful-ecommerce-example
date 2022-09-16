@@ -12,9 +12,17 @@ import {
 } from './actions';
 import {ProductInCart, Selected} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
 import {getNumberOfItemsInTheCart} from './components/helpers';
+import {REHYDRATE} from 'redux-persist/es/constants';
 
-export const currencySwitcherReducer: Reducer = (state = {}, action: AnyAction) => {
+export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
   switch (action.type) {
+
+  case REHYDRATE: {
+    return {
+      ...state,
+      ...action.payload.currencySwitcher
+    };
+  }
   case TOGGLE_CURRENCY_DROPDOWN_VISIBILITY: {
     return {
       ...state,
@@ -25,7 +33,7 @@ export const currencySwitcherReducer: Reducer = (state = {}, action: AnyAction) 
     return {
       ...state,
       currencies: action.payload.currencies,
-      currentCurrency: action.payload.currencies[0],
+      currentCurrency: state.currentCurrency || action.payload.currencies[0],
     };
   }
   case SET_CURRENT_CURRENCY: {
@@ -39,8 +47,16 @@ export const currencySwitcherReducer: Reducer = (state = {}, action: AnyAction) 
   }
 };
 
-export const categoryTabsReducer: Reducer = (state = {}, action: AnyAction) => {
+export const categoryTabsReducer: Reducer = (state, action: AnyAction) => {
   switch (action.type) {
+
+  case REHYDRATE: {
+    return {
+      ...state,
+      ...action.payload.categoryTabs
+    };
+  }
+
   case INIT_SUCCESS: {
     return {
       ...state,
@@ -52,8 +68,16 @@ export const categoryTabsReducer: Reducer = (state = {}, action: AnyAction) => {
   }
 };
 
-export const productListingPageReducer: Reducer = (state = {}, action: AnyAction) => {
+export const productListingPageReducer: Reducer = (state, action: AnyAction) => {
   switch (action.type) {
+
+  case REHYDRATE: {
+    return {
+      ...state,
+      ...action.payload.productListingPage
+    };
+  }
+
   case INIT_SUCCESS: {
     return {
       ...state,
@@ -65,7 +89,7 @@ export const productListingPageReducer: Reducer = (state = {}, action: AnyAction
   }
 };
 
-export const productDescriptionPageReducer: Reducer = (state = {}, action: AnyAction) => {
+export const productDescriptionPageReducer: Reducer = (state, action: AnyAction) => {
   switch (action.type) {
   case GET_PRODUCT_DETAILS_SUCCESS: {
     return {
@@ -99,7 +123,7 @@ export const productDescriptionPageReducer: Reducer = (state = {}, action: AnyAc
   }
 };
 
-export const galleryReducer: Reducer = (state = {}, action: AnyAction) => {
+export const galleryReducer: Reducer = (state, action: AnyAction) => {
   switch (action.type) {
   case SET_MAIN_PIC: {
     return {
@@ -113,8 +137,16 @@ export const galleryReducer: Reducer = (state = {}, action: AnyAction) => {
 
 };
 
-export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
+export const cartReducer: Reducer = (state, action: AnyAction) => {
   switch (action.type) {
+
+  case REHYDRATE: {
+    return {
+      ...state,
+      ...action.payload.cart
+    };
+  }
+
   case ADD_TO_CART: {
 
     const ProductInCartDuplicate = state.products.find((productInCart: ProductInCart) => {

@@ -1,6 +1,6 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {StyledCategoryTabs} from './CategoryTabs.styled';
-import {CategoryTabsProps} from './CategoryTabs.types';
+import {Category, CategoryTabsProps} from './CategoryTabs.types';
 import Tab from './Tab/Tab';
 import {Link} from 'react-router-dom';
 import {getTabLink} from '../helpers';
@@ -11,7 +11,7 @@ export class CategoryTabs extends PureComponent<PropsWithChildren<CategoryTabsPr
 
     return (
       <StyledCategoryTabs>
-        {this.props.categories.map(({name}: any, idx) => <Tab key={name + idx + name}><Link
+        {this.props.categories.map(({name}: Category, idx) => <Tab key={name + idx + name}><Link
           to={getTabLink(name)}>{name}</Link></Tab>)}
       </StyledCategoryTabs>
     );
