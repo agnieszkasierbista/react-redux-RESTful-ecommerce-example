@@ -7,5 +7,7 @@ export const StyledMiniCart = styled.div`
   top: 40px;
   //right: 50px;
   z-index: 10;
+  
+  
 `;
 

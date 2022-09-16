@@ -6,6 +6,20 @@ export const StyledProductListingPage = styled.section`
   flex-flow: row wrap;
 `;
 
+export const StyledAddToCartShorthand = styled.button`
+  position: absolute;
+  right: 15px;
+  bottom: 55px;
+  background-color: forestgreen;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  cursor: pointer;
+`;
+
 export const StyledPLPitem = styled.article`
   position: relative;
   display: inline-block;
@@ -15,6 +29,15 @@ export const StyledPLPitem = styled.article`
   width: 25%;
   margin: 20px;
   padding: 10px;
+
+  ${StyledAddToCartShorthand} {
+    display: none;
+  }
+
+  &:hover ${StyledAddToCartShorthand} {
+    display: flex;
+    outline: 3px solid greenyellow;
+  }
 `;
 
 export const StyledPLPoutOfStockItem = styled.article`
@@ -47,17 +70,3 @@ export const StyledProductListingPageOutOfStockImg = styled.div<{ imgSrc: string
   justify-content: center;
 `;
 
-export const StyledAddToCartShorthand = styled.button`
-  position: absolute;
-  right: 15px;
-  bottom: 55px;
-  display: flex;
-  background-color: forestgreen;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  justify-content: center;
-  align-items: center;
-  font-size: x-large;
-  cursor: pointer;
-`;

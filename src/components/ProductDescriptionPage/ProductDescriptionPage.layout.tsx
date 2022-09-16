@@ -62,7 +62,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
 
           {this.props.productDetails.attributes.map(attribute => {
 
-            if (attribute.id === 'Color') {
+            if (attribute.type === 'swatch') {
               return (
                 <StyledAttribute key={attribute.id}>
                   <StyledAttributeName>

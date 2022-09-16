@@ -44,15 +44,11 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           key={`${product.name}_${product.id}`}
           element={<ProductDescriptionPage/>}
         >
-
         </Route>
       );
-
-
     });
     return (
       <>
-
         <NavBar>
           <CategoryTabs/>
           <MiniCartIcon/>
@@ -68,7 +64,6 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
 
           {productsRoutes}
 
-
           <Route path="/details" element={<ProductDescriptionPage/>}>
           </Route>
 
@@ -76,7 +71,6 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           </Route>
 
         </Routes>
-
       </>
     );
   }
