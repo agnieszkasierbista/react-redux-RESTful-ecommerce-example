@@ -38,7 +38,7 @@ export function getIsSelected(product: ProductInCart, item: ProductAttributeItem
   return !!itemInQuestion;
 }
 
-export function createDefaultAttrObj(attribute: any) {
+export function createDefaultAttrObj(attribute: AttributeSet) {
   return {
     id: attribute.id,
     item: {

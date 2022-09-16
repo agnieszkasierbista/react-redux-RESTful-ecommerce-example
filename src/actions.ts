@@ -12,8 +12,8 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const ADD_TO_CART_BY_PRODUCT_ID = 'ADD_TO_CART_BY_PRODUCT_ID';
 export const SELECT_ATTR = 'SELECT_ATTR';
 export const CLEAR_SELECTED_ATTR = 'CLEAR_SELECTED_ATTR';
+export const TOGGLE_MINI_CART_VISIBILITY = 'TOGGLE_MINI_CART_VISIBILITY';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
-export const ADD_TO_CART_BY_PRODUCT_ID_SUCCESS = 'ADD_TO_CART_BY_PRODUCT_ID_SUCCESS';
 
 export function addToCartByProductId(productId: string) {
   return {
@@ -28,6 +28,12 @@ export function removeOneFromCart(product: ProductInCart) {
     payload: product
   };
 
+}
+
+export function toggleMiniCartVisibility() {
+  return {
+    type: TOGGLE_MINI_CART_VISIBILITY
+  };
 }
 
 export function clearSelectedAttributes() {

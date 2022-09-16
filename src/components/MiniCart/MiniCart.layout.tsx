@@ -6,13 +6,15 @@ import Cart from '../Cart/Cart';
 
 export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
   render() {
-    return (
 
-      <StyledMiniCart>
+    return (
+      this.props.isVisible && <StyledMiniCart onMouseLeave={() => this.props.dispatchToggleMiniCartVisibility()}>
         <Cart isBigCart={false}/>
         <div>
-          <Link to='/cart' onClick={() => 1}>
-            GO TO CART
+          <Link
+            to='/cart'
+            onClick={() => this.props.dispatchToggleMiniCartVisibility()}>
+                GO TO CART
           </Link>
           <button onClick={() => console.log('Buy, buy, buy!')}>CheckOut</button>
         </div>

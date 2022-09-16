@@ -8,8 +8,9 @@ export interface MiniCartOwnProps {
 }
 
 export interface MiniCartStateProps {
+    isVisible: boolean,
 }
 
 export interface MiniCartDispatchProps {
-
+    dispatchToggleMiniCartVisibility: () => void
 }

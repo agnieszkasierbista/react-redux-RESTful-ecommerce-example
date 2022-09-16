@@ -3,12 +3,12 @@ import {
   ADD_TO_CART,
   CLEAR_SELECTED_ATTR,
   GET_PRODUCT_DETAILS_SUCCESS,
-  INIT_SUCCESS,
-  REMOVE_ONE_FROM_CART,
+  INIT_SUCCESS, REMOVE_ONE_FROM_CART,
   SELECT_ATTR,
   SET_CURRENT_CURRENCY,
   SET_MAIN_PIC,
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY,
+  TOGGLE_MINI_CART_VISIBILITY
 } from './actions';
 import {ProductInCart, Selected} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
 import {getNumberOfItemsInTheCart} from './components/helpers';
@@ -147,6 +147,13 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
     };
   }
 
+  case TOGGLE_MINI_CART_VISIBILITY: {
+    return {
+      ...state,
+      isVisible: !state.isVisible,
+    };
+  }
+
   case ADD_TO_CART: {
 
     const ProductInCartDuplicate = state.products.find((productInCart: ProductInCart) => {
@@ -177,12 +184,12 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
   case REMOVE_ONE_FROM_CART: {
 
     const productRemoved = (state.products.map((product: ProductInCart) => {
-      if (product === action.payload && (product.count || 0) >= 2) {
+      if(product === action.payload && (product.count || 0) >= 2) {
         return {
           ...product,
           count: (product.count || 0) - 1
         };
-      } else if (product === action.payload && (product.count || 0) === 1) {
+      } else if(product === action.payload && (product.count || 0) === 1) {
         return null;
       } else {
         return product;
