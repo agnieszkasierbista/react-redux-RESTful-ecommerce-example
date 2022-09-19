@@ -1,5 +1,5 @@
 import {PropsWithChildren, PureComponent} from 'react';
-import { StyledGallery, StyledMainPic, StyledThumbnails } from './Gallery.styled';
+import { StyledGallery, StyledMainPic, StyledThumbnail, StyledThumbnails } from './Gallery.styled';
 import {GalleryProps} from './Gallery.types';
 
 export class Gallery extends PureComponent<PropsWithChildren<GalleryProps>> {
@@ -13,16 +13,11 @@ export class Gallery extends PureComponent<PropsWithChildren<GalleryProps>> {
         <StyledThumbnails>
           {this.props.pictures.map((pic) => {
             return (
-              <div key={pic}>
-                <img
-                  style={{objectFit: 'cover'}}
-                  width="100"
-                  height="100"
-                  src={pic}
-                  onClick={() => this.props.dispatchSetMainPic(pic)}
-                  alt="prodPic"
-                />
-              </div>
+              <StyledThumbnail
+                key={pic}
+                onClick={() => this.props.dispatchSetMainPic(pic)}
+                src={pic}
+              />
             );
           })}
         </StyledThumbnails>

@@ -4,7 +4,7 @@ import ProductDescriptionPage from '../ProductDescriptionPage/ProductDescription
 import Cart from '../Cart/Cart';
 import {Route, Routes} from 'react-router-dom';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
-import NavBar from '../NavBar/NavBar.layout';
+import NavBar from '../NavBar/NavBar';
 import MiniCartIcon from '../MiniCartIcon/MiniCartIcon';
 import CategoryTabs from '../CategoryTabs/CategoryTabs';
 import {AppProps} from './App.types';

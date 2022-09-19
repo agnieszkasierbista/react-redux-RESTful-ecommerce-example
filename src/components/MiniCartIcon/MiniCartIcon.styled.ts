@@ -6,7 +6,6 @@ export const StyledMiniCartIcon = styled.div`
   margin: 10px;
   min-width: 120px;
   min-height: 20px;
-  position: relative;
   border: 2px solid magenta;
 `;
 
