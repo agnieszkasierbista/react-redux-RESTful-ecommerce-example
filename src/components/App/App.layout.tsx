@@ -4,7 +4,6 @@ import ProductDescriptionPage from '../ProductDescriptionPage/ProductDescription
 import Cart from '../Cart/Cart';
 import {Route, Routes} from 'react-router-dom';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
-import MiniCart from '../MiniCart/MiniCart';
 import NavBar from '../NavBar/NavBar.layout';
 import MiniCartIcon from '../MiniCartIcon/MiniCartIcon';
 import CategoryTabs from '../CategoryTabs/CategoryTabs';
@@ -24,29 +23,27 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
       return (
         <Route path={`categories/${category.name}`}
           key={category.name}
-          element={
-            <ProductListingPage
-              shouldInclude={(product) => product.category === category.name}
-            />
-          }>
+          element={ <ProductListingPage shouldInclude={(product) => product.category === category.name} />}
+        >
         </Route>
       );
     });
 
-    const categoryAll: Category = this.props.categories.filter((category, idx) => category.name === 'all')[0];
+    const categoryAll: Category = this.props.categories.filter((category) => category.name === 'all')[0];
     const productsRoutes = categoryAll?.products.map((product) => {
 
-      const productPath = getProductDescriptionPagePath(product);
+      const productPagePath = getProductDescriptionPagePath(product);
 
       return (
         <Route
-          path={productPath}
+          path={productPagePath}
           key={`${product.name}_${product.id}`}
           element={<ProductDescriptionPage/>}
         >
         </Route>
       );
     });
+
     return (
       <>
         <NavBar>
@@ -63,9 +60,6 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           {tabsRoutes}
 
           {productsRoutes}
-
-          <Route path="/details" element={<ProductDescriptionPage/>}>
-          </Route>
 
           <Route path="/cart" element={<Cart isBigCart={true}/>}>
           </Route>
