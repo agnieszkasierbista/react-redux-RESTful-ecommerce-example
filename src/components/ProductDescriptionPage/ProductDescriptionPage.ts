@@ -1,10 +1,10 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {State} from '../App/App.types';
 import ProductDescriptionPage from './ProductDescriptionPage.layout';
 import {ProductDescriptionPageDispatchProps, ProductDescriptionPageStateProps} from './ProductDescriptionPage.types';
 import {addToCart, clearSelectedAttributes, getProductDetails, selectAttr} from '../../actions';
 import {withPathname} from './helpers';
+import {State} from '../../types';
 
 function mapStateToProps(state: State): ProductDescriptionPageStateProps {
   return {

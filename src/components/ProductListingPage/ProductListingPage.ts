@@ -1,10 +1,10 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {State} from '../App/App.types';
 import ProductListingPage from './ProductListingPage.layout';
 import {ProductListingPageDispatchProps, ProductListingPageStateProps} from './ProductListingPage.types';
 import {addToCart, addToCartByProductId} from '../../actions';
 import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
+import {State} from '../../types';
 
 function mapStateToProps(state: State): ProductListingPageStateProps {
   return {

@@ -1,8 +1,9 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {AppDispatchProps, AppStateProps, State} from '../App/App.types';
+import {AppDispatchProps, AppStateProps} from './App.types';
 import { init } from '../../actions';
 import App from './App.layout';
+import {State} from '../../types';
 
 function mapStateToProps(state: State): AppStateProps {
   return {

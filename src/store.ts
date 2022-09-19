@@ -1,10 +1,10 @@
 import rootReducer from './reducers';
 import {configureStore} from '@reduxjs/toolkit';
 import {createEpicMiddleware} from 'redux-observable';
-import {State} from './components/App/App.types';
 import {rootEpic} from './epics';
 import {persistReducer, persistStore} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import {State} from './types';
 
 const persistConfig = {
   key: 'root',

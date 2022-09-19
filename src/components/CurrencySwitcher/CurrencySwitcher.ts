@@ -1,9 +1,9 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {State} from '../App/App.types';
 import CurrencySwitcher from './CurrencySwitcher.layout';
 import {setCurrentCurrency, toggleIsExtended} from '../../actions';
 import {Currency, CurrencySwitcherDispatchProps, CurrencySwitcherStateProps} from './CurrencySwitcher.types';
+import {State} from '../../types';
 
 function mapStateToProps(state: State): CurrencySwitcherStateProps {
   return {

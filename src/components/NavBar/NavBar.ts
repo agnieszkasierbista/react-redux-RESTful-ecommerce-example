@@ -1,8 +1,8 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {State} from '../App/App.types';
 import NavBar from './NavBar.layout';
 import {NavBarDispatchProps, NavBarStateProps} from './NavBar.types';
+import {State} from '../../types';
 
 function mapStateToProps(state: State): NavBarStateProps {
   return {};

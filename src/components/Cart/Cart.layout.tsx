@@ -16,40 +16,43 @@ import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.ty
 import {findPrice} from '../ProductDescriptionPage/helpers';
 import {StyledAttributeValue, StyledAttributeValues} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
 import {getIsSelected} from '../helpers';
+import {CartLocalState} from '../../types';
+
+const tax = 0.21;
 
 export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
-    state: {currentPicIdx: { [key: string]: number }} = {
+    state: CartLocalState = {
       currentPicIdx: {}
     };
 
     render() {
 
-      const totalCost: string = this.props.products.map((product) => {
-        const currentPrice = product.prices.find((price) => price.currency.label === this.props.currentCurrency.label);
+      const totalCost: string = this.props.products.map((product: ProductInCart) => {
+        const currentPrice = findPrice(product, this.props.currentCurrency);
         const productQuantity = product.count;
         const currentUnitPrice = (currentPrice)?.amount || 0;
         return currentUnitPrice * (productQuantity || 0);
       })
         .reduce((prev, curr) => prev + curr, 0).toFixed(2);
 
-      const totalTax = (parseFloat(totalCost) * 0.21).toFixed(2);
+      const totalTax = (parseFloat(totalCost) * tax).toFixed(2);
 
       return (
         <StyledCart>
           {
             this.props.products.map((productInCart: ProductInCart) => {
-              const {count: _, ...productInCartCountRemoved} = productInCart;
+              const {count, ...productInCartCountRemoved} = productInCart;
               const currentPrice = findPrice(productInCart, this.props.currentCurrency);
-              const uniqueKey = `${productInCart.name}_${productInCart.count}_${productInCart.selected.reduce((prev, {item}) => prev + item.id, '')}`;
+              const uniqueKey: string = `${productInCart.name}_${productInCart.count}_${productInCart.selected.reduce((prev, {item}) => prev + item.id, '')}`;
 
               return (
                 <StyledCartItem
                   key={uniqueKey}
                 >
                   <StyledCartItemDetails>
-                    <section>{productInCart.brand}</section>
-                    <section>{productInCart.name}</section>
+                    <section><p>{productInCart.brand}</p></section>
+                    <section><p>{productInCart.name}</p></section>
 
                     <section>
                       <p>Price:</p>
@@ -58,7 +61,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
                     {productInCart.attributes.map(attribute => {
 
-                      if (attribute.id === 'Color') {
+                      if (attribute.type === 'swatch') {
                         return (
                           <section key={attribute.id}>
                             <div>
@@ -67,22 +70,14 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                             <StyledAttributeValues>
                               {attribute.items.map(item => {
 
-                                const selectedAttr = {
-                                  id: attribute.id,
-                                  item: {
-                                    displayValue: item.displayValue,
-                                    value: item.value,
-                                    id: item.id,
-                                    selected: true
-                                  }
-                                };
-
-                                return <StyledAttributeValue
-                                  color={item.value}
-                                  key={item.id}
-                                  isSelected={getIsSelected(productInCart, item, attribute)}
-                                >
-                                </StyledAttributeValue>;
+                                return (
+                                  <StyledAttributeValue
+                                    color={item.value}
+                                    key={item.id}
+                                    isSelected={getIsSelected(productInCart, item, attribute)}
+                                  >
+                                  </StyledAttributeValue>
+                                );
                               })}
                             </StyledAttributeValues>
                           </section>
@@ -96,22 +91,14 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                             <StyledAttributeValues>
                               {attribute.items.map(item => {
 
-                                const selectedAttr = {
-                                  id: attribute.id,
-                                  item: {
-                                    displayValue: item.displayValue,
-                                    value: item.value,
-                                    id: item.id,
-                                    selected: true
-                                  }
-                                };
-
-                                return <StyledAttributeValue
-                                  key={item.id}
-                                  isSelected={getIsSelected(productInCart, item, attribute)}
-                                >
-                                  {item.displayValue}
-                                </StyledAttributeValue>;
+                                return (
+                                  <StyledAttributeValue
+                                    key={item.id}
+                                    isSelected={getIsSelected(productInCart, item, attribute)}
+                                  >
+                                    {item.displayValue}
+                                  </StyledAttributeValue>
+                                );
                               })}
                             </StyledAttributeValues>
                           </section>
@@ -122,53 +109,62 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                   <StyledAdder>
                     <StyledAdderButton
                       onClick={() => this.props.dispatchAddToCart(productInCartCountRemoved)}>
-                        +
+                                        +
                     </StyledAdderButton>
                     <div>{productInCart?.count}</div>
                     <StyledAdderButton
                       onClick={() => this.props.dispatchRemoveOneFromCart(productInCart)}>
-                        -
+                                        -
                     </StyledAdderButton>
                   </StyledAdder>
                   <StyledMiniGallery>
-                    {(productInCart.gallery.length !== 1) && <StyledArrows>
-                      <StyledArrow
-                        onClick={() => {
-                          this.setState((prev: any) => {
+                    {(productInCart.gallery.length !== 1)
+                                    &&
+                                    <StyledArrows>
+                                      <StyledArrow
+                                        onClick={() => {
+                                          this.setState((prev: CartLocalState) => {
 
-                            return {
-                              ...prev,
-                              currentPicIdx: {...prev.currentPicIdx, [uniqueKey]: (
-                                prev.currentPicIdx[uniqueKey]
-                                  ? (prev.currentPicIdx[uniqueKey] - 1)
-                                  : productInCart.gallery.length - 1)
-                              }
-                            };
-                          });
-                        }}
-                      >
-                        {'<'}
-                      </StyledArrow>
-                      <StyledArrow
-                        onClick={() => {
-                          this.setState((prev: any) => {
+                                            return {
+                                              ...prev,
+                                              currentPicIdx: {
+                                                ...prev.currentPicIdx, [uniqueKey]: (
+                                                  prev.currentPicIdx[uniqueKey]
+                                                    ? (prev.currentPicIdx[uniqueKey] - 1)
+                                                    : productInCart.gallery.length - 1)
+                                              }
+                                            };
+                                          });
+                                        }}
+                                      >
 
-                            return {
-                              ...prev,
-                              currentPicIdx: {...prev.currentPicIdx, [uniqueKey]: (
-                                prev.currentPicIdx[uniqueKey]
-                                  ?
-                                  prev.currentPicIdx[uniqueKey] === productInCart.gallery.length - 1
-                                    ? 0
-                                    : (prev.currentPicIdx[uniqueKey] + 1)
-                                  : 1)}
-                            };
-                          });
-                        }}
-                      >
-                        {'>'}
-                      </StyledArrow>
-                    </StyledArrows>}
+                                        {'<'}
+
+                                      </StyledArrow>
+                                      <StyledArrow
+                                        onClick={() => {
+                                          this.setState((prev: CartLocalState) => {
+
+                                            return {
+                                              ...prev,
+                                              currentPicIdx: {
+                                                ...prev.currentPicIdx, [uniqueKey]: (
+                                                  prev.currentPicIdx[uniqueKey]
+                                                    ?
+                                                    prev.currentPicIdx[uniqueKey] === productInCart.gallery.length - 1
+                                                      ? 0
+                                                      : (prev.currentPicIdx[uniqueKey] + 1)
+                                                    : 1)
+                                              }
+                                            };
+                                          });
+                                        }}
+                                      >
+
+                                        {'>'}
+                                          
+                                      </StyledArrow>
+                                    </StyledArrows>}
                     <StyledPic
                       picIdx={this.state.currentPicIdx[uniqueKey] || 0}
                       pics={productInCart.gallery}/>
@@ -178,11 +174,12 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
             })
           }
           <StyledPurchaseDetails>
-            { this.props.isBigCart && <p>Total tax 21%: {this.props.currentCurrency.symbol}{totalTax}</p> }
-            { this.props.isBigCart && <p>Quantity: {this.props.amount}</p> }
+            {this.props.isBigCart && <p>Total tax 21%: {this.props.currentCurrency.symbol}{totalTax}</p>}
+            {this.props.isBigCart && <p>Quantity: {this.props.amount}</p>}
             <p>Total: {this.props.currentCurrency.symbol}{totalCost}</p>
           </StyledPurchaseDetails>
-          { this.props.isBigCart && <button onClick={() => console.log('Buy, buy, buy!')}>ORDER</button> }
+          {this.props.isBigCart &&
+                <button onClick={() => console.log(this.props.products, 'Buy, buy, buy!')}>ORDER</button>}
         </StyledCart>
       );
     }

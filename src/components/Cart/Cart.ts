@@ -1,9 +1,9 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {State} from '../App/App.types';
 import Cart from './Cart.layout';
 import {CartDispatchProps, CartStateProps} from './Cart.types';
 import {addToCart, removeOneFromCart} from '../../actions';
+import {State} from '../../types';
 
 function mapStateToProps(state: State): CartStateProps {
   return {

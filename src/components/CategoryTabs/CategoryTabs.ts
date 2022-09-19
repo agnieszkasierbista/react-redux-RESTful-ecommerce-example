@@ -1,8 +1,8 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {State} from '../App/App.types';
 import CategoryTabs from './CategoryTabs.layout';
 import {CategoryTabsDispatchProps, CategoryTabsStateProps} from './CategoryTabs.types';
+import {State} from '../../types';
 
 function mapStateToProps(state: State): CategoryTabsStateProps {
   return {

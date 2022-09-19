@@ -13,7 +13,7 @@ export class CurrencySwitcher extends PureComponent<PropsWithChildren<CurrencySw
 
     return (
       <StyledCurrencySwitcher onClick={() => this.props.dispatchToggleIsExtended()}>
-        {`${this.props.currentCurrency.symbol}`}
+        <p>{`${this.props.currentCurrency.symbol}`}</p>
         <StyledCurrencySwitcherOverlay isExtended={this.props.isExtended}/>
         <StyledCurrencyDropdownContainer>
           {

@@ -1,5 +1,5 @@
 import {PropsWithChildren, PureComponent} from 'react';
-import {StyledMiniCartIcon} from './MiniCartIcon.styled';
+import {StyledMiniCartIcon, StyledQuantityBadge} from './MiniCartIcon.styled';
 import {MiniCartIconProps} from './MiniCartIcon.types';
 import MiniCart from '../MiniCart/MiniCart';
 
@@ -11,7 +11,7 @@ export class MiniCartIcon extends PureComponent<PropsWithChildren<MiniCartIconPr
           this.props.dispatchToggleMiniCartVisibility();
         }
       }}>
-                    MiniCartIcon {this.props.amount !== 0 ? this.props.amount : null}
+                    MiniCartIcon <StyledQuantityBadge>{this.props.amount !== 0 ? this.props.amount : null}</StyledQuantityBadge>
         <MiniCart />
       </StyledMiniCartIcon>
     );
