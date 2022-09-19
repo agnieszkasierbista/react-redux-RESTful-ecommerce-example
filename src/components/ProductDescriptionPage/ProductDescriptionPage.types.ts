@@ -1,5 +1,4 @@
-import {Price} from '../ProductListingPage/ProductListingPage.types';
-import {Currency} from '../CurrencySwitcher/CurrencySwitcher.types';
+import {Currency, ProductDetails, ProductInCart, Selected} from '../../types';
 
 export interface ProductDescriptionPageProps extends ProductDescriptionPageOwnProps,
     ProductDescriptionPageStateProps,
@@ -8,32 +7,6 @@ export interface ProductDescriptionPageProps extends ProductDescriptionPageOwnPr
 
 export interface ProductDescriptionPageOwnProps {
     pathName: string;
-}
-
-export interface ProductAttributeItems {
-    displayValue: string,
-    value: string,
-    id: string
-}
-
-export interface AttributeSet {
-
-    id: string,
-    name: string,
-    type: string
-    items: ProductAttributeItems[]
-}
-
-export interface ProductDetails {
-    productId: string,
-    name: string,
-    description: string,
-    gallery: string[],
-    brand: string,
-    prices: Price[],
-    attributes: AttributeSet[],
-    inStock: boolean
-
 }
 
 export interface ProductDescriptionPageStateProps {
@@ -49,17 +22,3 @@ export interface ProductDescriptionPageDispatchProps {
     dispatchClearSelectedAttributes: () => void;
 }
 
-export interface Selected {
-        id: string,
-        item: {
-            displayValue: string,
-            value: string,
-            id: string,
-            selected: boolean
-        }
-}
-
-export interface ProductInCart extends ProductDetails {
-    selected: Selected[],
-    count?: number
-}

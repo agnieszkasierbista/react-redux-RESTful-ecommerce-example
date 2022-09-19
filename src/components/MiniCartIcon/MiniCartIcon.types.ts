@@ -1,4 +1,4 @@
-import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
+import {ProductInCart} from '../../types';
 
 export interface MiniCartIconProps extends MiniCartIconOwnProps,
     MiniCartIconStateProps,

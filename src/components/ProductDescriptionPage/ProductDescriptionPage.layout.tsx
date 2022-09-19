@@ -1,5 +1,5 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
-import {ProductDescriptionPageProps, ProductInCart, Selected} from './ProductDescriptionPage.types';
+import {ProductDescriptionPageProps} from './ProductDescriptionPage.types';
 import {
   StyledAttribute,
   StyledAttributeName,
@@ -9,8 +9,8 @@ import {
   StyledProductDetails
 } from './ProductDescriptionPage.styled';
 import Gallery from './Gallery/Gallery';
-import {findPrice} from './helpers';
-import {createDefaultAttrObj, getIsSelected} from '../helpers';
+import {createDefaultAttrObj, findPrice, getIsSelected} from '../helpers';
+import {ProductInCart, Selected} from '../../types';
 
 export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
   componentDidMount() {
@@ -47,9 +47,6 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
     return (
 
       <StyledProductDescriptionPage>
-        {/*{(this.props.pathName).split("/")[3]}*/}
-        {/*<div>{JSON.stringify(this.props.productDetails)}</div>*/}
-
 
         <Gallery pictures={this.props.productDetails.gallery}/>
 
@@ -58,7 +55,6 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
           <h1>DETAILS</h1>
           <section>{this.props.productDetails.brand}</section>
           <section>{this.props.productDetails.name}</section>
-
 
           {this.props.productDetails.attributes.map(attribute => {
 
@@ -81,13 +77,15 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                         }
                       };
 
-                      return <StyledAttributeValue
-                        color={item.value}
-                        key={item.id}
-                        onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
-                        isSelected={getIsSelected(productInCart, item, attribute)}
-                      >
-                      </StyledAttributeValue>;
+                      return (
+                        <StyledAttributeValue
+                          color={item.value}
+                          key={item.id}
+                          onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
+                          isSelected={getIsSelected(productInCart, item, attribute)}
+                        >
+                        </StyledAttributeValue>
+                      );
                     })}
                   </StyledAttributeValues>
                 </StyledAttribute>
@@ -132,11 +130,12 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
             <p>Price:</p>
             <p>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</p>
           </section>
-          <button disabled={!this.props.productDetails.inStock} onClick={() => this.props.dispatchAddToCart(productInCart)}>ADD TO CART</button>
+          <button disabled={!this.props.productDetails.inStock} onClick={() => this.props.dispatchAddToCart(productInCart)}>
+            ADD TO CART
+          </button>
           <section>
             <div dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/>
           </section>
-
 
         </StyledProductDetails>
       </StyledProductDescriptionPage>

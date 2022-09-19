@@ -1,3 +1,4 @@
+import {Currency} from '../../types';
 
 export interface CurrencySwitcherProps extends CurrencySwitcherOwnProps,
     CurrencySwitcherStateProps,
@@ -19,6 +20,3 @@ export interface CurrencySwitcherDispatchProps {
     dispatchSetCurrentCurrency: (currency: Currency) => void,
 }
 
-export type Currency = {
-    [key:string]: string
-}

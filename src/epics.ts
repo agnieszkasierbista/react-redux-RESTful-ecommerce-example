@@ -6,13 +6,37 @@ import {
   ADD_TO_CART_BY_PRODUCT_ID,
   addToCart,
   GET_PRODUCT_DETAILS,
-  GET_PRODUCT_DETAILS_SUCCESS,
+  getProductDetailsSuccess,
   INIT,
-  INIT_SUCCESS
+  initSuccess
 } from './actions';
-import {Category} from './components/CategoryTabs/CategoryTabs.types';
 import {createDefaultAttrObj} from './components/helpers';
-import {ProductInCart, Selected} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
+import {InitialData, ProductInCart, Selected} from './types';
+import {AnyAction} from '@reduxjs/toolkit';
+
+function getQueryDetails(action: AnyAction) {
+  const queryDetails = gql.query([{
+    operation: 'product',
+    variables: {id: {value: action.payload, required: true}},
+    fields: ['id', 'name', 'description', 'inStock', 'gallery',
+      {
+        attributes: ['id', 'name', 'type', {items: ['displayValue', 'value', 'id']}],
+      },
+      'brand', {
+        prices: [
+          {
+            currency: [
+              'symbol',
+              'label'
+            ]
+          },
+          'amount'
+        ]
+      },]
+  }]);
+
+  return queryDetails;
+}
 
 const {query} = gql.query([
   {
@@ -54,77 +78,29 @@ export const onInit: Epic = action$ => action$.pipe(
       Promise.all([request('http://localhost:4000', query)])
     );
   }),
-  switchMap((initialData) => {
-    return of({
-      type: INIT_SUCCESS,
-      payload: {
-        categories: initialData[0].categories,
-        currencies: initialData[0].currencies,
-        products: initialData[0].categories.find((category: Category) => category.name === 'all').products
-      }
-    });
+  switchMap((initialData: InitialData) => {
+    return of(initSuccess(initialData));
   })
 );
 
 export const onGetProductDetails: Epic = action$ => action$.pipe(
   ofType(GET_PRODUCT_DETAILS),
   switchMap((action) => {
-    const queryDetails = gql.query([{
-      operation: 'product',
-      variables: {id: {value: action.payload, required: true}},
-      fields: ['id', 'name', 'description', 'inStock', 'gallery',
-        {
-          attributes: ['id', 'name', 'type', {items: ['displayValue', 'value', 'id']}],
-        },
-        'brand', {
-          prices: [
-            {
-              currency: [
-                'symbol',
-                'label'
-              ]
-            },
-            'amount'
-          ]
-        },]
-    }]);
     return from(
-      request('http://localhost:4000', queryDetails.query, queryDetails.variables)
+      request('http://localhost:4000', getQueryDetails(action).query, getQueryDetails(action).variables)
     );
   }),
   switchMap((productDetails) => {
-    return of({
-      type: GET_PRODUCT_DETAILS_SUCCESS,
-      payload: productDetails
-    });
+    return of(getProductDetailsSuccess(productDetails));
   })
 );
 
-export const onAddToCartByProductId : Epic = action$ => action$.pipe(
+export const onAddToCartByProductId: Epic = action$ => action$.pipe(
   ofType(ADD_TO_CART_BY_PRODUCT_ID),
   switchMap((action) => {
 
-    const queryDetails = gql.query([{
-      operation: 'product',
-      variables: {id: {value: action.payload, required: true}},
-      fields: ['id', 'name', 'description', 'inStock', 'gallery',
-        {
-          attributes: ['id', 'name', 'type', {items: ['displayValue', 'value', 'id']}],
-        },
-        'brand', {
-          prices: [
-            {
-              currency: [
-                'symbol',
-                'label'
-              ]
-            },
-            'amount'
-          ]
-        },]
-    }]);
     return from(
-      request('http://localhost:4000', queryDetails.query, queryDetails.variables)
+      request('http://localhost:4000', getQueryDetails(action).query, getQueryDetails(action).variables)
     );
   }),
   switchMap(({product}) => {

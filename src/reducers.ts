@@ -10,9 +10,9 @@ import {
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY,
   TOGGLE_MINI_CART_VISIBILITY
 } from './actions';
-import {ProductInCart, Selected} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
 import {getNumberOfItemsInTheCart} from './components/helpers';
 import {REHYDRATE} from 'redux-persist/es/constants';
+import {ProductInCart, Selected} from './types';
 
 export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
   switch (action.type) {
@@ -20,7 +20,7 @@ export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
   case REHYDRATE: {
     return {
       ...state,
-      ...action.payload.currencySwitcher
+      ...(action.payload ? action.payload.currencySwitcher : {}),
     };
   }
   case TOGGLE_CURRENCY_DROPDOWN_VISIBILITY: {
@@ -53,7 +53,7 @@ export const categoryTabsReducer: Reducer = (state, action: AnyAction) => {
   case REHYDRATE: {
     return {
       ...state,
-      ...action.payload.categoryTabs
+      ...(action.payload ? action.payload.categoryTabs : {})
     };
   }
 
@@ -74,7 +74,7 @@ export const productListingPageReducer: Reducer = (state, action: AnyAction) => 
   case REHYDRATE: {
     return {
       ...state,
-      ...action.payload.productListingPage
+      ...(action.payload ? action.payload.productListingPage : {})
     };
   }
 
@@ -97,6 +97,7 @@ export const productDescriptionPageReducer: Reducer = (state, action: AnyAction)
       productDetails: action.payload.product
     };
   }
+
   case SELECT_ATTR: {
     const attribute = state.selected.find((attribute: Selected) => attribute.id === action.payload.id);
     const selectedAttributes = !attribute ? [...state.selected,
@@ -142,8 +143,9 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
 
   case REHYDRATE: {
     return {
+
       ...state,
-      ...action.payload.cart
+      ...(action.payload ? action.payload.cart : {}),
     };
   }
 

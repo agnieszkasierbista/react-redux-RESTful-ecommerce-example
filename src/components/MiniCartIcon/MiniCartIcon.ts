@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import MiniCartIcon from './MiniCartIcon.layout';
 import {MiniCartIconDispatchProps, MiniCartIconStateProps} from './MiniCartIcon.types';
 import {toggleMiniCartVisibility} from '../../actions';
-import { withPathname } from '../ProductDescriptionPage/helpers';
+import { withPathname } from '../hocs';
 import {State} from '../../types';
 
 function mapStateToProps(state: State): MiniCartIconStateProps {

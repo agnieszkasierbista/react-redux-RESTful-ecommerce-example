@@ -14,7 +14,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const preloadedState: State = {
-  currencySwitcher: {isExtended: false, currencies: [], currentCurrency: {'symbol': '', 'label': ''}},
+  currencySwitcher: {isExtended: false, currencies: [], currentCurrency: {symbol: '', label: ''}},
   categoryTabs: {categories: []},
   productListingPage: {products: []},
   productDescriptionPage: {

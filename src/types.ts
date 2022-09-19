@@ -1,37 +1,81 @@
-import {
-  ProductDetails,
-  ProductInCart,
-  Selected
-} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
-import {Currency} from './components/CurrencySwitcher/CurrencySwitcher.types';
 import {Category} from './components/CategoryTabs/CategoryTabs.types';
-import {Product} from './components/ProductListingPage/ProductListingPage.types';
 
-interface CurrencySwitcherState {
+export type InitialData = [
+    {categories: Category[], currencies: Currency[]},
+]
+
+export type Currency = {
+    symbol: string,
+    label: string
+}
+
+export interface CurrencySwitcherState {
     currentCurrency: Currency,
     currencies: Currency[],
     isExtended: boolean
-
 }
 
-interface CategoryTabsState {
+export interface CategoryTabsState {
     categories: Category[],
 }
 
-interface ProductListingPageState {
+export type Price = { currency: Currency, amount: number }
+export type Product = { name: string; id: string; prices: Price[], category: string, gallery: string[], inStock: boolean, brand: string };
+
+export interface ProductListingPageState {
     products: Product[],
 }
 
-interface ProductDescriptionPageState {
+export interface ProductAttributeItems {
+    displayValue: string,
+    value: string,
+    id: string
+}
+
+export interface AttributeSet {
+    id: string,
+    name: string,
+    type: string
+    items: ProductAttributeItems[]
+}
+
+export interface ProductDetails {
+    productId: string,
+    name: string,
+    description: string,
+    gallery: string[],
+    brand: string,
+    prices: Price[],
+    attributes: AttributeSet[],
+    inStock: boolean
+
+}
+
+export interface Selected {
+    id: string,
+    item: {
+        displayValue: string,
+        value: string,
+        id: string,
+        selected: boolean
+    }
+}
+
+export interface ProductInCart extends ProductDetails {
+    selected: Selected[],
+    count?: number
+}
+
+export interface ProductDescriptionPageState {
     selected: Selected[];
     productDetails: ProductDetails
 }
 
-interface GalleryState {
+export interface GalleryState {
     mainPicture: string
 }
 
-interface CartState {
+export interface CartState {
     products: ProductInCart[],
     isVisible: boolean,
     amount: number

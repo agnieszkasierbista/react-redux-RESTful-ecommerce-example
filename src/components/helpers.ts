@@ -1,9 +1,4 @@
-import {Product} from './ProductListingPage/ProductListingPage.types';
-import {
-  AttributeSet,
-  ProductAttributeItems,
-  ProductInCart
-} from './ProductDescriptionPage/ProductDescriptionPage.types';
+import {AttributeSet, Currency, Price, Product, ProductAttributeItems, ProductDetails, ProductInCart} from '../types';
 
 export function getTabLink(name: string) {
   if (name === 'all') {
@@ -48,5 +43,12 @@ export function createDefaultAttrObj(attribute: AttributeSet) {
       id: attribute.items[0].id,
       selected: true
     }
+  };
+}
+
+export function findPrice(product: ProductDetails, currentCurrency: Currency): Price {
+  return product.prices.find((price) => price.currency.label === currentCurrency.label) || {
+    currency: {symbol: '$', label: 'USD'},
+    amount: 0
   };
 }

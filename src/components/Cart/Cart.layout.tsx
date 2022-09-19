@@ -12,11 +12,9 @@ import {
   StyledPic,
   StyledPurchaseDetails
 } from './Cart.styled';
-import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
-import {findPrice} from '../ProductDescriptionPage/helpers';
 import {StyledAttributeValue, StyledAttributeValues} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
-import {getIsSelected} from '../helpers';
-import {CartLocalState} from '../../types';
+import {findPrice, getIsSelected} from '../helpers';
+import {CartLocalState, ProductInCart} from '../../types';
 
 const tax = 0.21;
 

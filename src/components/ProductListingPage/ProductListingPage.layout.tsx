@@ -13,7 +13,9 @@ import {getProductDescriptionPageLink} from '../helpers';
 
 
 export class ProductListingPage extends PureComponent<PropsWithChildren<ProductListingPageProps>> {
+
   render() {
+
     return (
       <StyledProductListingPage>
         {this.props.products.filter((product) => {
@@ -31,9 +33,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                 <Link to={getProductDescriptionPageLink(product.category, product.id)}>
                   <StyledProductListingPageImg imgSrc={product.gallery[0]}/>
                   <p>{`${product.brand} ${product.name}`}</p>
-                  <p>
-                    Price goes here: {price?.currency.symbol} {price?.amount}
-                  </p>
+                  <p>{`${price?.currency.symbol} ${price?.amount}`}</p>
                 </Link>
                 <StyledAddToCartShorthand onClick={() => this.props.dispatchAddToCartByProductId(product.id)}>
                   🛒
@@ -48,9 +48,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                     OUT OF STOCK
                   </StyledProductListingPageOutOfStockImg>
                   <p>{`${product.brand} ${product.name}`}</p>
-                  <p>
-                     Price goes here: {price?.currency.symbol} {price?.amount}
-                  </p>
+                  <p>{`${price?.currency.symbol} ${price?.amount}`}</p>
                 </Link>
               </StyledPLPoutOfStockItem>
             );

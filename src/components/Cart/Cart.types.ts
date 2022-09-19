@@ -1,5 +1,4 @@
-import {ProductInCart} from '../ProductDescriptionPage/ProductDescriptionPage.types';
-import {Currency} from '../CurrencySwitcher/CurrencySwitcher.types';
+import {Currency, ProductInCart} from '../../types';
 
 export interface CartProps extends CartOwnProps,
     CartStateProps,

@@ -1,5 +1,5 @@
-import {Currency} from './components/CurrencySwitcher/CurrencySwitcher.types';
-import {ProductInCart, Selected} from './components/ProductDescriptionPage/ProductDescriptionPage.types';
+import {Currency, InitialData, ProductDetails, ProductInCart, Selected} from './types';
+import {Category} from './components/CategoryTabs/CategoryTabs.types';
 
 export const TOGGLE_CURRENCY_DROPDOWN_VISIBILITY = 'TOGGLE_CURRENCY_DROPDOWN_VISIBILITY';
 export const INIT = 'INIT';
@@ -70,6 +70,13 @@ export function getProductDetails(id: string) {
   };
 }
 
+export function getProductDetailsSuccess(productDetails: ProductDetails) {
+  return {
+    type: GET_PRODUCT_DETAILS_SUCCESS,
+    payload: productDetails
+  };
+}
+
 export function setCurrentCurrency(clickedCurrency: Currency) {
   return {
     type: SET_CURRENT_CURRENCY,
@@ -80,6 +87,17 @@ export function setCurrentCurrency(clickedCurrency: Currency) {
 export function init() {
   return {
     type: INIT
+  };
+}
+
+export function initSuccess(initialData: InitialData) {
+  return {
+    type: INIT_SUCCESS,
+    payload: {
+      categories: initialData[0].categories,
+      currencies: initialData[0].currencies,
+      products: (initialData[0].categories?.find((category: Category) => category.name === 'all')?.products) || []
+    }
   };
 }
 
