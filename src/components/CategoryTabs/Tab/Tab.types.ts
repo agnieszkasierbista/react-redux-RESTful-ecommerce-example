@@ -4,7 +4,8 @@ export interface TabProps extends TabOwnProps,
 }
 
 export interface TabOwnProps {
-
+    shouldHighlight: boolean,
+    pathName: string
 }
 
 export interface TabStateProps {
@@ -12,5 +13,5 @@ export interface TabStateProps {
 }
 
 export interface TabDispatchProps {
-
+    dispatchSetCurrentNavigation: (path: string) => void,
 }

@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 
-export const StyledMiniCartIcon = styled.div`
+export const StyledMiniCartIconContainer = styled.div`
   position: relative;
-  margin: 10px;
-  min-width: 120px;
-  min-height: 20px;
-  border: 2px solid magenta;
+ 
+`;
+
+export const StyledMiniCartIcon = styled.img`
+ height: 20px;
+  width: 20px;
 `;
 
 export const StyledQuantityBadge = styled.div`
@@ -14,11 +16,13 @@ export const StyledQuantityBadge = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  right: 15px;
+  right: -10px;
   top: -5px;
   width: 16px;
   height: 16px;
-  border-radius: 50%;
-  background-color: black;
-  color: white;
+  font-size: 14px;
+  border-radius: 60px;
+  background-color: #1D1F22;
+  color: #FFFFFF;
+;
 `;

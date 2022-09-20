@@ -8,6 +8,14 @@ export function getTabLink(name: string) {
   }
 }
 
+export function getTabPath(name: string) {
+  if (name === 'all') {
+    return '/';
+  } else {
+    return `/categories/${name}`;
+  }
+}
+
 export function getProductDescriptionPageLink(category: string, id: string) {
   return `/categories/${category}/${id}`;
 }

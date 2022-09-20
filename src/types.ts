@@ -82,6 +82,11 @@ export interface CartState {
 
 }
 
+export interface TabState {
+    currentNavigation: string
+
+}
+
 export interface State {
     currencySwitcher: CurrencySwitcherState,
     categoryTabs: CategoryTabsState,
@@ -89,6 +94,7 @@ export interface State {
     productDescriptionPage: ProductDescriptionPageState,
     gallery: GalleryState,
     cart: CartState,
+    tab: TabState,
 }
 
 export interface CartLocalState {

@@ -6,6 +6,7 @@ import {State} from '../../types';
 
 function mapStateToProps(state: State): CategoryTabsStateProps {
   return {
+    currentNavigation: state.tab.currentNavigation,
     categories: state.categoryTabs.categories
   };
 }

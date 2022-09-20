@@ -5,7 +5,7 @@ import {
   GET_PRODUCT_DETAILS_SUCCESS,
   INIT_SUCCESS, REMOVE_ONE_FROM_CART,
   SELECT_ATTR,
-  SET_CURRENT_CURRENCY,
+  SET_CURRENT_CURRENCY, SET_CURRENT_NAVIGATION,
   SET_MAIN_PIC,
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY,
   TOGGLE_MINI_CART_VISIBILITY
@@ -61,6 +61,35 @@ export const categoryTabsReducer: Reducer = (state, action: AnyAction) => {
     return {
       ...state,
       categories: action.payload.categories
+    };
+  }
+  default:
+    return {...state};
+  }
+};
+
+export const tabReducer: Reducer = (state, action: AnyAction) => {
+  switch (action.type) {
+
+  case REHYDRATE: {
+    return {
+      ...state,
+      ...(action.payload ? action.payload.tab : {})
+    };
+  }
+
+  case INIT_SUCCESS: {
+    return {
+      ...state,
+      currentNavigation: '/'
+    };
+  }
+
+
+  case SET_CURRENT_NAVIGATION: {
+    return {
+      ...state,
+      currentNavigation: action.payload
     };
   }
   default:
@@ -217,6 +246,7 @@ const rootReducer = combineReducers({
   productDescriptionPage: productDescriptionPageReducer,
   gallery: galleryReducer,
   cart: cartReducer,
+  tab: tabReducer,
 });
 
 export default rootReducer;

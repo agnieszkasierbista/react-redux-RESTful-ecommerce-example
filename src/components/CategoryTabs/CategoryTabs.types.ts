@@ -11,6 +11,7 @@ export interface CategoryTabsOwnProps {
 
 export interface CategoryTabsStateProps {
    categories: Category[],
+   currentNavigation: string
 }
 
 export interface CategoryTabsDispatchProps {

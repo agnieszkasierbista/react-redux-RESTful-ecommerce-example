@@ -13,4 +13,8 @@ export const GlobalStyle = createGlobalStyle`
     all: unset;
     cursor: pointer;
   }
+  a {
+    all: unset;
+    cursor: pointer;
+  }
 `;

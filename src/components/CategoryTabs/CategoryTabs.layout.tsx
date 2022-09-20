@@ -1,9 +1,8 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
-import {StyledCategoryTabs} from './CategoryTabs.styled';
+import {StyledCategoryTabLink, StyledCategoryTabs} from './CategoryTabs.styled';
 import {Category, CategoryTabsProps} from './CategoryTabs.types';
 import Tab from './Tab/Tab';
-import {Link} from 'react-router-dom';
-import {getTabLink} from '../helpers';
+import {getTabLink, getTabPath} from '../helpers';
 
 
 export class CategoryTabs extends PureComponent<PropsWithChildren<CategoryTabsProps>> {
@@ -11,8 +10,20 @@ export class CategoryTabs extends PureComponent<PropsWithChildren<CategoryTabsPr
 
     return (
       <StyledCategoryTabs>
-        {this.props.categories.map(({name}: Category, idx) => <Tab key={name + idx + name}><Link
-          to={getTabLink(name)}>{name}</Link></Tab>)}
+        {this.props.categories.map(({name}: Category, idx) => {
+          return (
+            <Tab
+              key={name + idx + name}
+              shouldHighlight={this.props.currentNavigation === getTabPath(name)}
+              pathName={getTabPath(name)}
+            >
+              <StyledCategoryTabLink
+                to={getTabLink(name)}>
+                {name}
+              </StyledCategoryTabLink>
+            </Tab>
+          );
+        })}
       </StyledCategoryTabs>
     );
   }

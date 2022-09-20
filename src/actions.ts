@@ -14,6 +14,14 @@ export const SELECT_ATTR = 'SELECT_ATTR';
 export const CLEAR_SELECTED_ATTR = 'CLEAR_SELECTED_ATTR';
 export const TOGGLE_MINI_CART_VISIBILITY = 'TOGGLE_MINI_CART_VISIBILITY';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
+export const SET_CURRENT_NAVIGATION = 'SET_CURRENT_NAVIGATION';
+
+export function setCurrentNavigation(path: string) {
+  return {
+    type: SET_CURRENT_NAVIGATION,
+    payload: path
+  };
+}
 
 export function addToCartByProductId(productId: string) {
   return {
