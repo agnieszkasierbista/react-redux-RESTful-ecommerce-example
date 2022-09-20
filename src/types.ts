@@ -4,7 +4,7 @@ export type InitialData = [
     {categories: Category[], currencies: Currency[]},
 ]
 
-export type Currency = {
+export interface Currency {
     symbol: string,
     label: string
 }
