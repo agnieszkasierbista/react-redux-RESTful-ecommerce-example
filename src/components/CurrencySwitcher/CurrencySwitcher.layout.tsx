@@ -1,9 +1,11 @@
 import {PropsWithChildren, PureComponent} from 'react';
 import {
+  StyledChevron,
   StyledCurrencyDropdownContainer,
   StyledCurrencyDropdownItem,
+  StyledCurrencyDropdownItemButton,
   StyledCurrencyDropdownList,
-  StyledCurrencySwitcher, StyledCurrencySwitcherOverlay
+  StyledCurrencySwitcher, StyledCurrencySwitcherHeader, StyledCurrencySwitcherOverlay, StyledCurrencySymbol
 } from './CurrencySwitcher.styled';
 import {CurrencySwitcherProps} from './CurrencySwitcher.types';
 
@@ -13,7 +15,10 @@ export class CurrencySwitcher extends PureComponent<PropsWithChildren<CurrencySw
 
     return (
       <StyledCurrencySwitcher onClick={() => this.props.dispatchToggleIsExtended()}>
-        <p>{`${this.props.currentCurrency.symbol}`}</p>
+        <StyledCurrencySwitcherHeader>
+          <StyledCurrencySymbol>{`${this.props.currentCurrency.symbol}`}</StyledCurrencySymbol>
+          <StyledChevron src="../pictures/Vector.svg" alt="chevron" isExtended={this.props.isExtended}/>
+        </StyledCurrencySwitcherHeader>
         <StyledCurrencySwitcherOverlay isExtended={this.props.isExtended}/>
         <StyledCurrencyDropdownContainer>
           {
@@ -24,10 +29,14 @@ export class CurrencySwitcher extends PureComponent<PropsWithChildren<CurrencySw
                             return (
                               <StyledCurrencyDropdownItem
                                 key={`${currency.symbol}.${currency.label}`}
-                                onClick={() => this.props.dispatchSetCurrentCurrency(currency)}
                               >
 
-                                {`${currency.symbol} ${currency.label}`}
+                                <StyledCurrencyDropdownItemButton
+                                  onClick={() => this.props.dispatchSetCurrentCurrency(currency)}
+                                >
+                                  {`${currency.symbol} ${currency.label}`}
+                                    
+                                </StyledCurrencyDropdownItemButton>
 
                               </StyledCurrencyDropdownItem>
                             );

@@ -10,6 +10,7 @@ import CategoryTabs from '../CategoryTabs/CategoryTabs';
 import {AppProps} from './App.types';
 import {getProductDescriptionPagePath} from '../helpers';
 import {Category} from '../CategoryTabs/CategoryTabs.types';
+import {StyledActions, StyledLogo } from './App.styled';
 
 
 class App extends PureComponent<PropsWithChildren<AppProps>> {
@@ -48,8 +49,11 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
       <>
         <NavBar>
           <CategoryTabs/>
-          <MiniCartIcon/>
-          <CurrencySwitcher/>
+          <StyledLogo src="../pictures/a-logo.svg"/>
+          <StyledActions>
+            <MiniCartIcon/>
+            <CurrencySwitcher/>
+          </StyledActions>
         </NavBar>
 
         <Routes>
