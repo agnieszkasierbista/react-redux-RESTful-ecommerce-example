@@ -18,7 +18,6 @@ export const StyledCurrencySwitcherOverlay = styled.div<{isExtended: boolean}>`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 255, 0, 0.5);
 `;
 
 
@@ -37,7 +36,7 @@ export const StyledCurrencyDropdownList = styled.ul`
   padding: 0;
   width: 114px;
   background-color: #FFFFFF;
-  filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+  filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.2));
 
 `;
 

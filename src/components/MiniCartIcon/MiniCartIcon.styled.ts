@@ -7,6 +7,7 @@ export const StyledMiniCartIconContainer = styled.div`
 `;
 
 export const StyledMiniCartIcon = styled.img`
+  margin-top:2px;
  height: 20px;
   width: 20px;
 `;

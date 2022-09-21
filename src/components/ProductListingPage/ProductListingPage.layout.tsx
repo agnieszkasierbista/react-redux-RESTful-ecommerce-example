@@ -2,11 +2,13 @@ import React, {PropsWithChildren, PureComponent} from 'react';
 import {ProductListingPageProps} from './ProductListingPage.types';
 import {
   StyledAddToCartShorthand,
+  StyledAddToCartShorthandIcon,
   StyledPLPitem,
   StyledPLPoutOfStockItem,
   StyledProductListingPage,
   StyledProductListingPageImg,
-  StyledProductListingPageOutOfStockImg
+  StyledProductListingPageOutOfStockImg,
+  StyledProductListingPageTitle
 } from './ProductListingPage.styled';
 import {Link} from 'react-router-dom';
 import {getProductDescriptionPageLink} from '../helpers';
@@ -18,6 +20,9 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
 
     return (
       <StyledProductListingPage>
+        <StyledProductListingPageTitle>
+          <h2>{this.props.categoryName}</h2>
+        </StyledProductListingPageTitle>
         {this.props.products.filter((product) => {
           return this.props.shouldInclude(product);
         }).map(product => {
@@ -36,7 +41,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                   <p>{`${price?.currency.symbol} ${price?.amount}`}</p>
                 </Link>
                 <StyledAddToCartShorthand onClick={() => this.props.dispatchAddToCartByProductId(product.id)}>
-                  <img src="../pictures/Empty Cart.svg" alt="empty cart icon"/>
+                  <StyledAddToCartShorthandIcon src="../pictures/Empty Cart.svg" alt="empty cart icon"/>
                 </StyledAddToCartShorthand>
               </StyledPLPitem>
             );

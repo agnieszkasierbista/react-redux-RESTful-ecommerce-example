@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 
 export const StyledLogo = styled.img`
+  position: absolute;
+  left: calc(50% - 20px);
+  top: calc(50% - 24px);
   width: 41px;
   height: 41px;
 `;
@@ -11,6 +14,6 @@ export const StyledActions = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding: 0px;
+  padding: 0;
   gap: 22px;
 `;

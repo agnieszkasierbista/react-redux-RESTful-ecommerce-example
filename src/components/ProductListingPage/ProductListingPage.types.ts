@@ -7,6 +7,7 @@ export interface ProductListingPageProps extends ProductListingPageOwnProps,
 
 export interface ProductListingPageOwnProps {
     shouldInclude: (product: Product) => boolean;
+    categoryName: string;
 }
 
 export interface ProductListingPageStateProps {

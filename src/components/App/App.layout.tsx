@@ -10,7 +10,7 @@ import CategoryTabs from '../CategoryTabs/CategoryTabs';
 import {AppProps} from './App.types';
 import {getProductDescriptionPagePath} from '../helpers';
 import {Category} from '../CategoryTabs/CategoryTabs.types';
-import {StyledActions, StyledLogo } from './App.styled';
+import {StyledActions, StyledLogo} from './App.styled';
 
 
 class App extends PureComponent<PropsWithChildren<AppProps>> {
@@ -24,7 +24,10 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
       return (
         <Route path={`categories/${category.name}`}
           key={category.name}
-          element={ <ProductListingPage shouldInclude={(product) => product.category === category.name} />}
+          element={<ProductListingPage
+            shouldInclude={(product) => product.category === category.name}
+            categoryName={category.name}
+          />}
         >
         </Route>
       );
@@ -43,7 +46,9 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
         >
         </Route>
       );
-    });
+    }
+    )
+        ;
 
     return (
       <>
@@ -58,7 +63,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
 
         <Routes>
 
-          <Route path="/" element={<ProductListingPage shouldInclude={() => true}/>}>
+          <Route path="/" element={<ProductListingPage shouldInclude={() => true} categoryName='all'/>}>
           </Route>
 
           {tabsRoutes}
