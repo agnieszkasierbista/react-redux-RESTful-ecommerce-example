@@ -1,7 +1,7 @@
 import {Category} from './components/CategoryTabs/CategoryTabs.types';
 
 export type InitialData = [
-    {categories: Category[], currencies: Currency[]},
+    {categories: Category[], currencies: Currency[], pathName: string},
 ]
 
 export interface Currency {

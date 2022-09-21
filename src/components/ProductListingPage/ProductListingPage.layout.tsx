@@ -36,7 +36,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                   <p>{`${price?.currency.symbol} ${price?.amount}`}</p>
                 </Link>
                 <StyledAddToCartShorthand onClick={() => this.props.dispatchAddToCartByProductId(product.id)}>
-                  🛒
+                  <img src="../pictures/Empty Cart.svg" alt="empty cart icon"/>
                 </StyledAddToCartShorthand>
               </StyledPLPitem>
             );

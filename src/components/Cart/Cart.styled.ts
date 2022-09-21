@@ -2,15 +2,23 @@ import styled from 'styled-components';
 
 
 export const StyledCart = styled.section`
+  display: flex;
+  flex-direction: column;
   background-color: white;
   outline: 5px dashed magenta;
+`;
+
+export const StyledCartItemWrapper = styled.section`
+display: flex;
+  flex-direction: row;
+
 `;
 
 export const StyledCartItem = styled.article`
   border: 2px solid red;
   display: flex;
   outline: 2px solid green;
-  flex-flow: row;
+  flex-direction: column;
 `;
 
 export const StyledCartItemDetails = styled.section`
@@ -70,5 +78,11 @@ export const StyledArrow = styled.button`
 export const StyledPurchaseDetails = styled.section`
   border: 1px solid blue;
 
+`;
+
+export const StyledHr = styled.hr`
+  border: none;
+  border-top: 1px solid #E5E5E5;
+  width: 100%;
 `;
 

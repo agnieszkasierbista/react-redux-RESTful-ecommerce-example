@@ -98,13 +98,14 @@ export function init() {
   };
 }
 
-export function initSuccess(initialData: InitialData) {
+export function initSuccess(initialData: InitialData, pathName: string) {
   return {
     type: INIT_SUCCESS,
     payload: {
       categories: initialData[0].categories,
       currencies: initialData[0].currencies,
-      products: (initialData[0].categories?.find((category: Category) => category.name === 'all')?.products) || []
+      products: (initialData[0].categories?.find((category: Category) => category.name === 'all')?.products) || [],
+      pathName
     }
   };
 }

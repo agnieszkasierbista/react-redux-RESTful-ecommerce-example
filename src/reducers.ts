@@ -81,7 +81,7 @@ export const tabReducer: Reducer = (state, action: AnyAction) => {
   case INIT_SUCCESS: {
     return {
       ...state,
-      currentNavigation: '/'
+      currentNavigation: action.payload.pathName
     };
   }
 

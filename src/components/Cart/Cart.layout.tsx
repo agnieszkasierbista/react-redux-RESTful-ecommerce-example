@@ -8,6 +8,8 @@ import {
   StyledCart,
   StyledCartItem,
   StyledCartItemDetails,
+  StyledCartItemWrapper,
+  StyledHr,
   StyledMiniGallery,
   StyledPic,
   StyledPurchaseDetails
@@ -38,6 +40,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
       return (
         <StyledCart>
+          <p>CART</p>
           {
             this.props.products.map((productInCart: ProductInCart) => {
               const {count, ...productInCartCountRemoved} = productInCart;
@@ -48,125 +51,131 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                 <StyledCartItem
                   key={uniqueKey}
                 >
-                  <StyledCartItemDetails>
-                    <section><p>{productInCart.brand}</p></section>
-                    <section><p>{productInCart.name}</p></section>
+                  <StyledHr/>
+                  <StyledCartItemWrapper>
+                    <StyledCartItemDetails>
+                      <section><p>{productInCart.brand}</p></section>
+                      <section><p>{productInCart.name}</p></section>
 
-                    <section>
-                      <p>Price:</p>
-                      <p>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</p>
-                    </section>
+                      <section>
+                        <p>Price:</p>
+                        <p>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</p>
+                      </section>
 
-                    {productInCart.attributes.map(attribute => {
+                      {productInCart.attributes.map(attribute => {
 
-                      if (attribute.type === 'swatch') {
-                        return (
-                          <section key={attribute.id}>
-                            <div>
-                              <p>{`${attribute.name}:`}</p>
-                            </div>
-                            <StyledAttributeValues>
-                              {attribute.items.map(item => {
+                        if (attribute.type === 'swatch') {
+                          return (
+                            <section key={attribute.id}>
+                              <div>
+                                <p>{`${attribute.name}:`}</p>
+                              </div>
+                              <StyledAttributeValues>
+                                {attribute.items.map(item => {
 
-                                return (
-                                  <StyledAttributeValue
-                                    color={item.value}
-                                    key={item.id}
-                                    isSelected={getIsSelected(productInCart, item, attribute)}
-                                  >
-                                  </StyledAttributeValue>
-                                );
-                              })}
-                            </StyledAttributeValues>
-                          </section>
-                        );
-                      } else {
-                        return (
-                          <section key={attribute.id}>
-                            <div>
-                              <p>{`${attribute.name}:`}</p>
-                            </div>
-                            <StyledAttributeValues>
-                              {attribute.items.map(item => {
+                                  return (
+                                    <StyledAttributeValue
+                                      color={item.value}
+                                      key={item.id}
+                                      isSelected={getIsSelected(productInCart, item, attribute)}
+                                    >
+                                    </StyledAttributeValue>
+                                  );
+                                })}
+                              </StyledAttributeValues>
+                            </section>
+                          );
+                        } else {
+                          return (
+                            <section key={attribute.id}>
+                              <div>
+                                <p>{`${attribute.name}:`}</p>
+                              </div>
+                              <StyledAttributeValues>
+                                {attribute.items.map(item => {
 
-                                return (
-                                  <StyledAttributeValue
-                                    key={item.id}
-                                    isSelected={getIsSelected(productInCart, item, attribute)}
-                                  >
-                                    {item.displayValue}
-                                  </StyledAttributeValue>
-                                );
-                              })}
-                            </StyledAttributeValues>
-                          </section>
-                        );
-                      }
-                    })}
-                  </StyledCartItemDetails>
-                  <StyledAdder>
-                    <StyledAdderButton
-                      onClick={() => this.props.dispatchAddToCart(productInCartCountRemoved)}>
-                                        +
-                    </StyledAdderButton>
-                    <div>{productInCart?.count}</div>
-                    <StyledAdderButton
-                      onClick={() => this.props.dispatchRemoveOneFromCart(productInCart)}>
-                                        -
-                    </StyledAdderButton>
-                  </StyledAdder>
-                  <StyledMiniGallery>
-                    {(productInCart.gallery.length !== 1)
-                                    &&
-                                    <StyledArrows>
-                                      <StyledArrow
-                                        onClick={() => {
-                                          this.setState((prev: CartLocalState) => {
+                                  return (
+                                    <StyledAttributeValue
+                                      key={item.id}
+                                      isSelected={getIsSelected(productInCart, item, attribute)}
+                                    >
+                                      {item.value}
+                                    </StyledAttributeValue>
+                                  );
+                                })}
+                              </StyledAttributeValues>
+                            </section>
+                          );
+                        }
+                      })}
+                    </StyledCartItemDetails>
+                    <StyledAdder>
+                      <StyledAdderButton
+                        onClick={() => this.props.dispatchAddToCart(productInCartCountRemoved)}>
+                                +
+                      </StyledAdderButton>
+                      <div>{productInCart?.count}</div>
+                      <StyledAdderButton
+                        onClick={() => this.props.dispatchRemoveOneFromCart(productInCart)}>
+                                -
+                      </StyledAdderButton>
+                    </StyledAdder>
+                    <StyledMiniGallery>
+                      {(productInCart.gallery.length !== 1)
+                            &&
+                            <StyledArrows>
+                              <StyledArrow
+                                onClick={() => {
+                                  this.setState((prev: CartLocalState) => {
 
-                                            return {
-                                              ...prev,
-                                              currentPicIdx: {
-                                                ...prev.currentPicIdx, [uniqueKey]: (
-                                                  prev.currentPicIdx[uniqueKey]
-                                                    ? (prev.currentPicIdx[uniqueKey] - 1)
-                                                    : productInCart.gallery.length - 1)
-                                              }
-                                            };
-                                          });
-                                        }}
-                                      >
+                                    return {
+                                      ...prev,
+                                      currentPicIdx: {
+                                        ...prev.currentPicIdx, [uniqueKey]: (
+                                          prev.currentPicIdx[uniqueKey]
+                                            ? (prev.currentPicIdx[uniqueKey] - 1)
+                                            : productInCart.gallery.length - 1)
+                                      }
+                                    };
+                                  });
+                                }}
+                              >
 
-                                        {'<'}
+                                {'<'}
 
-                                      </StyledArrow>
-                                      <StyledArrow
-                                        onClick={() => {
-                                          this.setState((prev: CartLocalState) => {
+                              </StyledArrow>
+                              <StyledArrow
+                                onClick={() => {
+                                  this.setState((prev: CartLocalState) => {
 
-                                            return {
-                                              ...prev,
-                                              currentPicIdx: {
-                                                ...prev.currentPicIdx, [uniqueKey]: (
-                                                  prev.currentPicIdx[uniqueKey]
-                                                    ?
-                                                    prev.currentPicIdx[uniqueKey] === productInCart.gallery.length - 1
-                                                      ? 0
-                                                      : (prev.currentPicIdx[uniqueKey] + 1)
-                                                    : 1)
-                                              }
-                                            };
-                                          });
-                                        }}
-                                      >
+                                    return {
+                                      ...prev,
+                                      currentPicIdx: {
+                                        ...prev.currentPicIdx, [uniqueKey]: (
+                                          prev.currentPicIdx[uniqueKey]
+                                            ?
+                                            prev.currentPicIdx[uniqueKey] === productInCart.gallery.length - 1
+                                              ? 0
+                                              : (prev.currentPicIdx[uniqueKey] + 1)
+                                            : 1)
+                                      }
+                                    };
+                                  });
+                                }}
+                              >
 
-                                        {'>'}
-                                          
-                                      </StyledArrow>
-                                    </StyledArrows>}
-                    <StyledPic
-                      picIdx={this.state.currentPicIdx[uniqueKey] || 0}
-                      pics={productInCart.gallery}/>
-                  </StyledMiniGallery>
+                                {'>'}
+
+                              </StyledArrow>
+                            </StyledArrows>}
+                      <StyledPic
+                        picIdx={this.state.currentPicIdx[uniqueKey] || 0}
+                        pics={productInCart.gallery}/>
+                    </StyledMiniGallery>
+
+                  </StyledCartItemWrapper>
+
+
                 </StyledCartItem>
               );
             })

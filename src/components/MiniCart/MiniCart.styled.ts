@@ -16,3 +16,7 @@ export const StyledMiniCart = styled.div`
   outline: 2px solid purple;
 `;
 
+export const StyledMiniCartTitle = styled.section`
+
+`;
+

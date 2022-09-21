@@ -79,7 +79,7 @@ export const onInit: Epic = action$ => action$.pipe(
     );
   }),
   switchMap((initialData: InitialData) => {
-    return of(initSuccess(initialData));
+    return of(initSuccess(initialData, window.location.pathname));
   })
 );
 
