@@ -7,15 +7,14 @@ export const StyledProductListingPage = styled.section`
   margin: auto;
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  //grid-template-rows: 10% auto auto;
   justify-content: space-around;
-  grid-row-gap: 10px;
+  grid-row-gap: 12px;
 `;
 
 export const StyledAddToCartShorthand = styled.button`
   position: absolute;
-  right: 15px;
-  bottom: 55px;
+  right: 35px;
+  bottom: 128px;
   background-color :#5ECE7B;
   border-radius: 50%;
   width: 35px;
@@ -30,7 +29,6 @@ export const StyledAddToCartShorthand = styled.button`
 export const StyledPLPitem = styled.article`
   position: relative;
   display: inline-block;
-  //aspect-ratio : 1 / 1
   min-height: 37vh;
   width: 100%;
   
@@ -65,16 +63,37 @@ export const StyledProductListingPageImg = styled.div<{ imgSrc: string }>`
   box-sizing: border-box;
 `;
 
-export const StyledProductListingPageOutOfStockImg = styled.div<{ imgSrc: string }>`
+export const StyledProductListingPageItemDetails = styled.section`
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 20px solid #FFFFFF;
+`;
+
+export const StyledBrandAndName = styled.p`
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 160%;
+  color: #1D1F22;
+`;
+
+export const StyledPrice = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  color: #1D1F22;
+`;
+
+export const StyledProductListingPageOutOfStockImg = styled.div<{ imgSrc: string }>`
   background-image: url(${(props) => props.imgSrc});
   background-repeat: no-repeat;
   background-size: cover;
   border: 20px solid #FFFFFF;
   width: 100%;
   height: 70%;
-  align-items: center;
-  justify-content: center;
+  box-sizing: border-box;
 `;
 
 export const StyledProductListingPageTitle = styled.header`
@@ -85,14 +104,25 @@ export const StyledProductListingPageTitle = styled.header`
   grid-row: 1 /span 1;
   
   & h2 {
-    //font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
     font-size: 42px;
     line-height: 160%;
     text-transform: capitalize;
-    //margin:auto;
   }
+`;
+
+export const StyledOutOfStock = styled.p`
+  position:absolute;
+  padding:0;
+  margin: 0;
+  top: calc(50% - 49px);
+  left: calc(50% - 69px);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 160%;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 `;
 
 export const StyledAddToCartShorthandIcon = styled.img`

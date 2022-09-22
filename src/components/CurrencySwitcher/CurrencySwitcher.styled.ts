@@ -71,6 +71,7 @@ export const StyledCurrencySwitcherHeader = styled.button`
 `;
 
 export const StyledCurrencySymbol = styled.div`
+  font-weight: 500;
   text-align: right;
   font-size: 18px;
 `;

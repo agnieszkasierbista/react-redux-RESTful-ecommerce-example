@@ -17,11 +17,15 @@ export const StyledQuantityBadge = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  right: -10px;
+  right: -12px;
   top: -5px;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
+  font-family: 'Roboto', 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
   font-size: 14px;
+  line-height: 16px;
   border-radius: 60px;
   background-color: #1D1F22;
   color: #FFFFFF;

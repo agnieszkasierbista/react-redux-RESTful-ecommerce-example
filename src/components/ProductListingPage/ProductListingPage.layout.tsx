@@ -2,11 +2,12 @@ import React, {PropsWithChildren, PureComponent} from 'react';
 import {ProductListingPageProps} from './ProductListingPage.types';
 import {
   StyledAddToCartShorthand,
-  StyledAddToCartShorthandIcon,
+  StyledAddToCartShorthandIcon, StyledBrandAndName,
+  StyledOutOfStock,
   StyledPLPitem,
-  StyledPLPoutOfStockItem,
+  StyledPLPoutOfStockItem, StyledPrice,
   StyledProductListingPage,
-  StyledProductListingPageImg,
+  StyledProductListingPageImg, StyledProductListingPageItemDetails,
   StyledProductListingPageOutOfStockImg,
   StyledProductListingPageTitle
 } from './ProductListingPage.styled';
@@ -37,8 +38,10 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
               <StyledPLPitem key={product.id}>
                 <Link to={getProductDescriptionPageLink(product.category, product.id)}>
                   <StyledProductListingPageImg imgSrc={product.gallery[0]}/>
-                  <p>{`${product.brand} ${product.name}`}</p>
-                  <p>{`${price?.currency.symbol} ${price?.amount}`}</p>
+                  <StyledProductListingPageItemDetails>
+                    <StyledBrandAndName>{`${product.brand} ${product.name}`}</StyledBrandAndName>
+                    <StyledPrice>{`${price?.currency.symbol} ${price?.amount}`}</StyledPrice>
+                  </StyledProductListingPageItemDetails>
                 </Link>
                 <StyledAddToCartShorthand onClick={() => this.props.dispatchAddToCartByProductId(product.id)}>
                   <StyledAddToCartShorthandIcon src="../pictures/Empty Cart.svg" alt="empty cart icon"/>
@@ -50,10 +53,12 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
               <StyledPLPoutOfStockItem key={product.id}>
                 <Link to={getProductDescriptionPageLink(product.category, product.id)}>
                   <StyledProductListingPageOutOfStockImg imgSrc={product.gallery[0]}>
-                    OUT OF STOCK
+                    <StyledOutOfStock>OUT OF STOCK</StyledOutOfStock>
                   </StyledProductListingPageOutOfStockImg>
-                  <p>{`${product.brand} ${product.name}`}</p>
-                  <p>{`${price?.currency.symbol} ${price?.amount}`}</p>
+                  <StyledProductListingPageItemDetails>
+                    <StyledBrandAndName>{`${product.brand} ${product.name}`}</StyledBrandAndName>
+                    <StyledPrice>{`${price?.currency.symbol} ${price?.amount}`}</StyledPrice>
+                  </StyledProductListingPageItemDetails>
                 </Link>
               </StyledPLPoutOfStockItem>
             );
