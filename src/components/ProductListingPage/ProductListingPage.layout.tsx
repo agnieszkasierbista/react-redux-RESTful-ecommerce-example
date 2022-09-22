@@ -44,7 +44,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                   </StyledProductListingPageItemDetails>
                 </Link>
                 <StyledAddToCartShorthand onClick={() => this.props.dispatchAddToCartByProductId(product.id)}>
-                  <StyledAddToCartShorthandIcon src="../pictures/Empty Cart.svg" alt="empty cart icon"/>
+                  <StyledAddToCartShorthandIcon src="/pictures/Empty Cart.svg" alt="empty cart icon"/>
                 </StyledAddToCartShorthand>
               </StyledPLPitem>
             );

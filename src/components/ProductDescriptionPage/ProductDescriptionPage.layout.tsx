@@ -1,12 +1,16 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {ProductDescriptionPageProps} from './ProductDescriptionPage.types';
 import {
+  StyledAddToCartButton,
   StyledAttribute,
   StyledAttributeName,
   StyledAttributeValue,
   StyledAttributeValues,
   StyledProductDescriptionPage,
-  StyledProductDetails
+  StyledProductDetails,
+  StyledProductDetailsBrand,
+  StyledProductDetailsName,
+  StyledProductPrice
 } from './ProductDescriptionPage.styled';
 import Gallery from './Gallery/Gallery';
 import {createDefaultAttrObj, findPrice, getIsSelected} from '../helpers';
@@ -52,9 +56,8 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
 
         <StyledProductDetails>
 
-          <h1>DETAILS</h1>
-          <section>{this.props.productDetails.brand}</section>
-          <section>{this.props.productDetails.name}</section>
+          <StyledProductDetailsBrand>{this.props.productDetails.brand}</StyledProductDetailsBrand>
+          <StyledProductDetailsName>{this.props.productDetails.name}</StyledProductDetailsName>
 
           {this.props.productDetails.attributes.map(attribute => {
 
@@ -62,7 +65,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
               return (
                 <StyledAttribute key={attribute.id}>
                   <StyledAttributeName>
-                    <p>{`${attribute.name}:`}</p>
+                    <span>{`${attribute.name}:`}</span>
                   </StyledAttributeName>
                   <StyledAttributeValues>
                     {attribute.items.map(item => {
@@ -126,16 +129,16 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
             }
           })}
 
-          <section>
-            <p>Price:</p>
-            <p>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</p>
-          </section>
-          <button disabled={!this.props.productDetails.inStock} onClick={() => this.props.dispatchAddToCart(productInCart)}>
+          <StyledAttribute>
+            <StyledAttributeName>Price:</StyledAttributeName>
+            <StyledProductPrice>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</StyledProductPrice>
+          </StyledAttribute>
+          <StyledAddToCartButton disabled={!this.props.productDetails.inStock} onClick={() => this.props.dispatchAddToCart(productInCart)}>
             ADD TO CART
-          </button>
-          <section>
+          </StyledAddToCartButton>
+          <StyledAttribute>
             <div dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/>
-          </section>
+          </StyledAttribute>
 
         </StyledProductDetails>
       </StyledProductDescriptionPage>

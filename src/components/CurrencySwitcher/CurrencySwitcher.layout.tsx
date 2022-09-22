@@ -17,7 +17,7 @@ export class CurrencySwitcher extends PureComponent<PropsWithChildren<CurrencySw
       <StyledCurrencySwitcher onClick={() => this.props.dispatchToggleIsExtended()}>
         <StyledCurrencySwitcherHeader>
           <StyledCurrencySymbol>{`${this.props.currentCurrency.symbol}`}</StyledCurrencySymbol>
-          <StyledChevron src="../pictures/Vector.svg" alt="chevron" isExtended={this.props.isExtended}/>
+          <StyledChevron src="/pictures/Vector.svg" alt="chevron" isExtended={this.props.isExtended}/>
         </StyledCurrencySwitcherHeader>
         <StyledCurrencySwitcherOverlay isExtended={this.props.isExtended}/>
         <StyledCurrencyDropdownContainer>

@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 export const StyledGallery = styled.section`
   display: flex;
+  padding:  0 60px;
   flex-grow: 2;
+
 `;
 
 export const StyledThumbnails = styled.div`
@@ -20,8 +22,8 @@ export const StyledThumbnail = styled.div<{ src: string }>`
   margin-bottom:15px;
 `;
 
-export const StyledMainPic = styled.img`
-  flex-grow: 4;
-  max-width: 700px;
-
+export const StyledMainPic = styled.div<{ src: string }>`
+  background-image: url(${props => props.src});
+  background-size: cover;
+  flex-grow: 6;
 `;

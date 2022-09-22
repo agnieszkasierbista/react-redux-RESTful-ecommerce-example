@@ -12,7 +12,7 @@ export class MiniCartIcon extends PureComponent<PropsWithChildren<MiniCartIconPr
         }
       }}>
         {this.props.amount ? <StyledQuantityBadge>{this.props.amount !== 0 ? this.props.amount : null}</StyledQuantityBadge> : null}
-        <StyledMiniCartIcon src="../pictures/Empty Cart.svg" alt="empty cart icon"/>
+        <StyledMiniCartIcon src="/pictures/Empty Cart.svg" alt="empty cart icon"/>
         <MiniCart/>
       </StyledMiniCartIconContainer>
     );
