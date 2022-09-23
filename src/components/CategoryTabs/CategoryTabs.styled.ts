@@ -12,6 +12,7 @@ export const StyledCategoryTabs = styled.ul`
 `;
 
 export const StyledCategoryTabLink = styled(Link)`
+  padding-bottom: 15px;
   width: 100%;
   height: 100%;
 `;

@@ -11,6 +11,7 @@ import {AppProps} from './App.types';
 import {getProductDescriptionPagePath} from '../helpers';
 import {Category} from '../CategoryTabs/CategoryTabs.types';
 import {StyledActions, StyledLogo} from './App.styled';
+import MiniCartOverlay from '../MiniCartOverlay/MiniCartOverlay';
 
 
 class App extends PureComponent<PropsWithChildren<AppProps>> {
@@ -74,6 +75,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           </Route>
 
         </Routes>
+        <MiniCartOverlay/>
       </>
     );
   }
