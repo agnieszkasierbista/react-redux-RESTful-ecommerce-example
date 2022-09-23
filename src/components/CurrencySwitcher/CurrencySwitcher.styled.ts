@@ -64,7 +64,7 @@ export const StyledCurrencySwitcherHeader = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0 10px;
-  gap: 12px;
+  gap: 10px;
   width: 32px;
   height: 29px;
   

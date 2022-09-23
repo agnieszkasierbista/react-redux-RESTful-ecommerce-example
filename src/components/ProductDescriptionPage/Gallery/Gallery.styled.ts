@@ -4,14 +4,15 @@ import styled from 'styled-components';
 export const StyledGallery = styled.section`
   display: flex;
   padding:  0 60px;
-  flex-grow: 2;
+  flex: 2 1;
 
 `;
 
 export const StyledThumbnails = styled.div`
-  flex-grow: 1;
+  flex: 1 1;
   display: flex;
   flex-direction: column;
+  padding-right: 10px;
 `;
 
 export const StyledThumbnail = styled.div<{ src: string }>`
@@ -25,5 +26,5 @@ export const StyledThumbnail = styled.div<{ src: string }>`
 export const StyledMainPic = styled.div<{ src: string }>`
   background-image: url(${props => props.src});
   background-size: cover;
-  flex-grow: 6;
+  flex: 6 1;
 `;

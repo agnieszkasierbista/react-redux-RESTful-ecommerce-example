@@ -5,7 +5,8 @@ import {
   StyledAttribute,
   StyledAttributeName,
   StyledAttributeValue,
-  StyledAttributeValues,
+  StyledAttributeValues, StyledAttributeValueText,
+  StyledDescription,
   StyledProductDescriptionPage,
   StyledProductDetails,
   StyledProductDetailsBrand,
@@ -97,7 +98,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
               return (
                 <StyledAttribute key={attribute.id}>
                   <StyledAttributeName>
-                    <p>{`${attribute.name}:`}</p>
+                    <span>{`${attribute.name}:`}</span>
                   </StyledAttributeName>
                   <StyledAttributeValues>
                     {attribute.items.map(item => {
@@ -118,7 +119,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                           onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
                           isSelected={getIsSelected(productInCart, item, attribute)}
                         >
-                          {item.displayValue}
+                          <StyledAttributeValueText>{item.value}</StyledAttributeValueText>
 
                         </StyledAttributeValue>
                       );
@@ -137,7 +138,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
             ADD TO CART
           </StyledAddToCartButton>
           <StyledAttribute>
-            <div dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/>
+            <StyledDescription dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/>
           </StyledAttribute>
 
         </StyledProductDetails>

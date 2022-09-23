@@ -99,7 +99,7 @@ export const StyledProductListingPageOutOfStockImg = styled.div<{ imgSrc: string
 export const StyledProductListingPageTitle = styled.header`
   display: inline-block;
   width: 100%;
-  padding-left: 0;
+  padding: 25px 0;
   grid-column: 1 / span 3;
   grid-row: 1 /span 1;
   
@@ -109,6 +109,7 @@ export const StyledProductListingPageTitle = styled.header`
     font-size: 42px;
     line-height: 160%;
     text-transform: capitalize;
+    padding: 25px 0;
   }
 `;
 

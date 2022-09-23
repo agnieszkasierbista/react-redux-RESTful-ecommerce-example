@@ -9,7 +9,5 @@ export const StyledNavBar = styled.div`
   display: flex;
   justify-content: space-between;
   height: 81px;
-  margin-left: 100px;
-  margin-right: 100px;
   z-index: 15;
 `;

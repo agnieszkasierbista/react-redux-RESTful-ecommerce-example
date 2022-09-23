@@ -22,7 +22,7 @@ export const StyledCartItem = styled.article`
 `;
 
 export const StyledCartItemDetails = styled.section`
-  flex-grow: 3;
+  flex: 3 1;
 `;
 
 export const StyledAdder = styled.section`
@@ -42,7 +42,7 @@ export const StyledAdderButton = styled.div`
 
 export const StyledMiniGallery = styled.section`
   position: relative;
-  flex-grow: 2;
+  flex: 2 1;
   max-width: 500px;
 `;
 

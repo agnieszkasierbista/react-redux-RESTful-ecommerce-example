@@ -10,7 +10,8 @@ export const StyledTab = styled.li<{shouldHighlight: boolean}>`
   font-style: normal;
   font-weight: ${props => props.shouldHighlight ? '600' : '400'};
   font-size: 16px;
-  line-height: 120%;
+  line-height: 300%;
+  align-self: flex-start;
   gap: ${props => props.shouldHighlight ? '0px' : '30px'};
   border-bottom: ${props => props.shouldHighlight ? '2px solid #5ECE7B' : '2px solid transparent'};
 `;

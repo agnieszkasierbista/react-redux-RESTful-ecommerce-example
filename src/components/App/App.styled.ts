@@ -16,4 +16,5 @@ export const StyledActions = styled.div`
   align-items: center;
   padding: 0;
   gap: 22px;
+  margin-right: 100px;
 `;

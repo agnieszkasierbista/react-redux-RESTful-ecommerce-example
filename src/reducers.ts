@@ -1,4 +1,5 @@
 import {AnyAction, combineReducers, Reducer} from '@reduxjs/toolkit';
+import { REHYDRATE } from 'redux-persist';
 import {
   ADD_TO_CART,
   CLEAR_SELECTED_ATTR,
@@ -11,7 +12,6 @@ import {
   TOGGLE_MINI_CART_VISIBILITY
 } from './actions';
 import {getNumberOfItemsInTheCart} from './components/helpers';
-import {REHYDRATE} from 'redux-persist/es/constants';
 import {ProductInCart, Selected} from './types';
 
 export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
