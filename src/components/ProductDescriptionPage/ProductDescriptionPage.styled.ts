@@ -97,10 +97,11 @@ export const StyledAddToCartButton = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
+  grid-column: 1 / span 2;
 `;
 
 export const StyledDescription = styled.p`
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

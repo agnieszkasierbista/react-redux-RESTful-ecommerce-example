@@ -58,7 +58,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           <StyledLogo src="/pictures/a-logo.svg"/>
           <StyledActions>
             <CurrencySwitcher/>
-            <MiniCartIcon/>
+            <MiniCartIcon />
           </StyledActions>
         </NavBar>
 

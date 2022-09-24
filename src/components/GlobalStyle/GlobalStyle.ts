@@ -24,6 +24,7 @@ export const GlobalStyle = createGlobalStyle`
   
   p {
     all: unset;
+    white-space: pre-wrap;
   }
   
   a {

@@ -66,7 +66,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
               return (
                 <StyledAttribute key={attribute.id}>
                   <StyledAttributeName>
-                    <span>{`${attribute.name}:`}</span>
+                    {`${attribute.name}:`}
                   </StyledAttributeName>
                   <StyledAttributeValues>
                     {attribute.items.map(item => {
@@ -98,7 +98,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
               return (
                 <StyledAttribute key={attribute.id}>
                   <StyledAttributeName>
-                    <span>{`${attribute.name}:`}</span>
+                    {`${attribute.name}:`}
                   </StyledAttributeName>
                   <StyledAttributeValues>
                     {attribute.items.map(item => {
