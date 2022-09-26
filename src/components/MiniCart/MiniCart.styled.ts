@@ -9,7 +9,6 @@ export const StyledMiniCart = styled.div`
   top: 20px;
   right: -50px;
   z-index: 10;
-  //TODO: change z index on scroll?
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,7 +16,6 @@ export const StyledMiniCart = styled.div`
   padding: 32px 16px;
   gap: 32px;
   border-top: 40px solid transparent;
-  //outline: 2px solid crimson;
 `;
 
 export const StyledMiniCartTitle = styled.section`
