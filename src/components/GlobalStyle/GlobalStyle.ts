@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
    position: relative;
    margin: 0 auto;
    background-position: center;
+   box-sizing: border-box;
  }  
  
   body, html {
@@ -14,7 +15,6 @@ export const GlobalStyle = createGlobalStyle`
     background: #FFFFFF;
     font-family: 'Raleway', 'sans-serif';
     color: #1D1F22;
-    box-sizing: border-box;
     //overflow: overlay;
   }
 

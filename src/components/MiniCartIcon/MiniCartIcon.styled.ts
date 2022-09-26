@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const StyledMiniCartIconContainer = styled.div`
   position: relative;
+  right: 5px;
  
 `;
 

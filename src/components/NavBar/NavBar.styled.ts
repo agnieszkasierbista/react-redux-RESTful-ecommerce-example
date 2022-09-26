@@ -10,4 +10,6 @@ export const StyledNavBar = styled.div`
   align-items: center;
   height: 80px;
   z-index: 15;
+  box-shadow: 50px 0 0 0 white;
+
 `;

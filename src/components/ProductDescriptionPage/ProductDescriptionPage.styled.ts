@@ -70,6 +70,7 @@ export const StyledAttributeValue = styled.div<{ color?: string, isSelected?: bo
   padding: 1px;
   align-items: center;
   flex: 1 1;
+  cursor: pointer;
 `;
 
 export const StyledAttributeValueText = styled.p`

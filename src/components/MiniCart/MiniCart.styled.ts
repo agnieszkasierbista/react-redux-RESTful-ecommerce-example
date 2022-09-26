@@ -7,7 +7,7 @@ export const StyledMiniCart = styled.div`
   background-clip: padding-box;
   position: absolute;
   top: 20px;
-  right: -50px;
+  right: 0;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,10 @@ export const StyledMiniCart = styled.div`
   padding: 32px 16px;
   gap: 32px;
   border-top: 40px solid transparent;
+  
+   @media(min-width:1440px) {
+     right: -50px;
+   }
 `;
 
 export const StyledMiniCartTitle = styled.section`

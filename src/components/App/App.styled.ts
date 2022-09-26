@@ -15,6 +15,5 @@ export const StyledActions = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 0;
-  box-shadow: 50px 0 0 0 white;
   gap: 22px;
 `;
