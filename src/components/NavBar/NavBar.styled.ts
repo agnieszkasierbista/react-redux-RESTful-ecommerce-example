@@ -11,5 +11,5 @@ export const StyledNavBar = styled.div`
   height: 80px;
   z-index: 15;
   box-shadow: 50px 0 0 0 white;
-
+  pointer-events: none;
 `;

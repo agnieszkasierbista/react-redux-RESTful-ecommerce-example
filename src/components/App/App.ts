@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {AppDispatchProps, AppStateProps} from './App.types';
-import { init } from '../../actions';
+import {init} from '../../actions';
 import App from './App.layout';
 import {State} from '../../types';
 
