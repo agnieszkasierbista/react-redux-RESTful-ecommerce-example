@@ -33,7 +33,7 @@ export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
     return {
       ...state,
       currencies: action.payload.currencies,
-      currentCurrency: state.currentCurrency || action.payload.currencies[0],
+      currentCurrency: state.currentCurrency.symbol ? state.currentCurrency : action.payload.currencies[0],
     };
   }
   case SET_CURRENT_CURRENCY: {

@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
    max-width: 1240px;
    position: relative;
    margin: 0 auto;
+   background-position: center;
  }  
  
   body, html {

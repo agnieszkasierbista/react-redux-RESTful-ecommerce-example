@@ -17,25 +17,25 @@ import {
   StyledHr,
   StyledMiniGallery,
   StyledPic,
+  StyledProductInCartAttribute,
+  StyledProductInCartAttributeName,
+  StyledProductInCartAttributeValue,
+  StyledProductInCartAttributeValues,
+  StyledProductInCartAttributeValueText,
   StyledProductInCartCounter,
+  StyledProductInCartDetailsBrand,
+  StyledProductInCartDetailsName,
+  StyledProductInCartPrice,
   StyledPurchaseDetails,
   StyledTitle,
   StyledTotal,
+  StyledTotalValue,
   StyledValue
 } from './Cart.styled';
-import {
-  StyledAddToCartButton,
-  StyledAttribute,
-  StyledAttributeName,
-  StyledAttributeValue,
-  StyledAttributeValues,
-  StyledAttributeValueText,
-  StyledProductDetailsBrand,
-  StyledProductDetailsName,
-  StyledProductPrice
-} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
+import {StyledAddToCartButton} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
 import {findPrice, getIsSelected} from '../helpers';
 import {CartLocalState, ProductInCart} from '../../types';
+import {StyledCheckOutButton} from '../MiniCart/MiniCart.styled';
 
 const tax = 0.21;
 
@@ -70,62 +70,72 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                 <StyledCartItem
                   key={uniqueKey}
                 >
-                  <StyledHr/>
+                  <StyledHr isBigCart={this.props.isBigCart}/>
                   <StyledCartItemWrapper>
                     <StyledCartItemDetails>
-                      <StyledProductDetailsBrand>{productInCart.brand}</StyledProductDetailsBrand>
-                      <StyledProductDetailsName>{productInCart.name}</StyledProductDetailsName>
+                      <StyledProductInCartDetailsBrand
+                        isBigCart={this.props.isBigCart}>{productInCart.brand}</StyledProductInCartDetailsBrand>
+                      <StyledProductInCartDetailsName
+                        isBigCart={this.props.isBigCart}>{productInCart.name}</StyledProductInCartDetailsName>
 
-                      <StyledAttribute>
-                        <StyledProductPrice>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</StyledProductPrice>
-                      </StyledAttribute>
+                      <StyledProductInCartAttribute>
+                        <StyledProductInCartPrice
+                          isBigCart={this.props.isBigCart}>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</StyledProductInCartPrice>
+                      </StyledProductInCartAttribute>
 
                       {productInCart.attributes.map(attribute => {
 
                         if (attribute.type === 'swatch') {
                           return (
-                            <StyledAttribute key={attribute.id}>
-                              <StyledAttributeName>
+                            <StyledProductInCartAttribute key={attribute.id}>
+                              <StyledProductInCartAttributeName
+                                isBigCart={this.props.isBigCart}>
                                 {`${attribute.name}:`}
-                              </StyledAttributeName>
-                              <StyledAttributeValues>
+                              </StyledProductInCartAttributeName>
+                              <StyledProductInCartAttributeValues
+                                isBigCart={this.props.isBigCart}>
                                 {attribute.items.map(item => {
 
                                   return (
-                                    <StyledAttributeValue
+                                    <StyledProductInCartAttributeValue
                                       color={item.value}
                                       key={item.id}
                                       isSelected={getIsSelected(productInCart, item, attribute)}
+                                      isBigCart={this.props.isBigCart}
                                     >
-                                    </StyledAttributeValue>
+                                    </StyledProductInCartAttributeValue>
                                   );
                                 })}
-                              </StyledAttributeValues>
-                            </StyledAttribute>
+                              </StyledProductInCartAttributeValues>
+                            </StyledProductInCartAttribute>
 
                           );
                         } else {
                           return (
-                            <StyledAttribute key={attribute.id}>
-                              <StyledAttributeName>
+                            <StyledProductInCartAttribute key={attribute.id}>
+                              <StyledProductInCartAttributeName
+                                isBigCart={this.props.isBigCart}>
                                 {`${attribute.name}:`}
-                              </StyledAttributeName>
-                              <StyledAttributeValues>
+                              </StyledProductInCartAttributeName>
+                              <StyledProductInCartAttributeValues
+                                isBigCart={this.props.isBigCart}>
                                 {attribute.items.map(item => {
 
                                   return (
-                                    <StyledAttributeValue
+                                    <StyledProductInCartAttributeValue
                                       key={item.id}
                                       isSelected={getIsSelected(productInCart, item, attribute)}
+                                      isBigCart={this.props.isBigCart}
                                     >
-                                      <StyledAttributeValueText>
+                                      <StyledProductInCartAttributeValueText
+                                        isBigCart={this.props.isBigCart}>
                                         {item.value}
-                                      </StyledAttributeValueText>
-                                    </StyledAttributeValue>
+                                      </StyledProductInCartAttributeValueText>
+                                    </StyledProductInCartAttributeValue>
                                   );
                                 })}
-                              </StyledAttributeValues>
-                            </StyledAttribute>
+                              </StyledProductInCartAttributeValues>
+                            </StyledProductInCartAttribute>
                           );
                         }
                       })}
@@ -133,67 +143,79 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                     <StyledCartItemRightSide>
                       <StyledAdder>
                         <StyledAdderButton
+                          isBigCart={this.props.isBigCart}
                           onClick={() => this.props.dispatchAddToCart(productInCartCountRemoved)}>
-                          <StyledAdderButtonText>
-                          +
+                          <StyledAdderButtonText
+                            isBigCart={this.props.isBigCart}
+                          >
+                                                    +
                           </StyledAdderButtonText>
                         </StyledAdderButton>
-                        <StyledProductInCartCounter>{productInCart?.count}</StyledProductInCartCounter>
+                        <StyledProductInCartCounter
+                          isBigCart={this.props.isBigCart}
+                        >
+                          {productInCart?.count}
+                        </StyledProductInCartCounter>
                         <StyledAdderButton
+                          isBigCart={this.props.isBigCart}
                           onClick={() => this.props.dispatchRemoveOneFromCart(productInCart)}>
-                          <StyledAdderButtonText>
-                         -
+                          <StyledAdderButtonText
+                            isBigCart={this.props.isBigCart}
+                          >
+                                                    -
                           </StyledAdderButtonText>
                         </StyledAdderButton>
                       </StyledAdder>
-                      <StyledMiniGallery>
-                        {(productInCart.gallery.length !== 1)
-                                        &&
-                                        <StyledArrows>
-                                          <StyledArrow
-                                            onClick={() => {
-                                              this.setState((prev: CartLocalState) => {
+                      <StyledMiniGallery
+                        isBigCart={this.props.isBigCart}
+                      >
+                        {(productInCart.gallery.length !== 1 && this.props.isBigCart)
+                                            &&
+                                            <StyledArrows>
+                                              <StyledArrow
+                                                onClick={() => {
+                                                  this.setState((prev: CartLocalState) => {
 
-                                                return {
-                                                  ...prev,
-                                                  currentPicIdx: {
-                                                    ...prev.currentPicIdx, [uniqueKey]: (
-                                                      prev.currentPicIdx[uniqueKey]
-                                                        ? (prev.currentPicIdx[uniqueKey] - 1)
-                                                        : productInCart.gallery.length - 1)
-                                                  }
-                                                };
-                                              });
-                                            }}
-                                          >
+                                                    return {
+                                                      ...prev,
+                                                      currentPicIdx: {
+                                                        ...prev.currentPicIdx, [uniqueKey]: (
+                                                          prev.currentPicIdx[uniqueKey]
+                                                            ? (prev.currentPicIdx[uniqueKey] - 1)
+                                                            : productInCart.gallery.length - 1)
+                                                      }
+                                                    };
+                                                  });
+                                                }}
+                                              >
 
-                                            <ChevronLeft src="/pictures/Vector.svg"/>
+                                                <ChevronLeft src="/pictures/Vector.svg"/>
 
-                                          </StyledArrow>
-                                          <StyledArrow
-                                            onClick={() => {
-                                              this.setState((prev: CartLocalState) => {
+                                              </StyledArrow>
+                                              <StyledArrow
+                                                onClick={() => {
+                                                  this.setState((prev: CartLocalState) => {
 
-                                                return {
-                                                  ...prev,
-                                                  currentPicIdx: {
-                                                    ...prev.currentPicIdx, [uniqueKey]: (
-                                                      prev.currentPicIdx[uniqueKey]
-                                                        ?
-                                                        prev.currentPicIdx[uniqueKey] === productInCart.gallery.length - 1
-                                                          ? 0
-                                                          : (prev.currentPicIdx[uniqueKey] + 1)
-                                                        : 1)
-                                                  }
-                                                };
-                                              });
-                                            }}
-                                          >
+                                                    return {
+                                                      ...prev,
+                                                      currentPicIdx: {
+                                                        ...prev.currentPicIdx, [uniqueKey]: (
+                                                          prev.currentPicIdx[uniqueKey]
+                                                            ?
+                                                            prev.currentPicIdx[uniqueKey] === productInCart.gallery.length - 1
+                                                              ? 0
+                                                              : (prev.currentPicIdx[uniqueKey] + 1)
+                                                            : 1)
+                                                      }
+                                                    };
+                                                  });
+                                                }}
+                                              >
 
-                                            <ChevronRight src="/pictures/Vector.svg"/>
+                                                <ChevronRight src="/pictures/Vector.svg"/>
 
-                                          </StyledArrow>
-                                        </StyledArrows>}
+                                              </StyledArrow>
+                                            </StyledArrows>}
                         <StyledPic
                           picIdx={this.state.currentPicIdx[uniqueKey] || 0}
                           pics={productInCart.gallery}/>
@@ -206,13 +228,22 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
               );
             })
           }
-          <StyledHr/>
+          <StyledHr isBigCart={this.props.isBigCart}/>
           <StyledPurchaseDetails>
-            {this.props.isBigCart && <><StyledTitle>Total tax 21%: </StyledTitle><StyledValue>{this.props.currentCurrency.symbol}{totalTax}</StyledValue></>}
-            {this.props.isBigCart && <><StyledTitle>Quantity: </StyledTitle><StyledValue>{this.props.amount}</StyledValue></>}
-            <StyledTotal>Total: </StyledTotal><StyledValue>{this.props.currentCurrency.symbol}{totalCost}</StyledValue>
+            {this.props.isBigCart && <><StyledTitle>Total tax
+                        21%: </StyledTitle><StyledValue>{this.props.currentCurrency.symbol}{totalTax}</StyledValue></>}
+            {this.props.isBigCart && <>
+              <StyledTitle>Quantity: </StyledTitle><StyledValue>{this.props.amount}</StyledValue></>}
+            <StyledTotal
+              isBigCart={this.props.isBigCart}
+            >Total: </StyledTotal>
+            <StyledTotalValue
+              isBigCart={this.props.isBigCart}
+            >{this.props.currentCurrency.symbol}{totalCost}</StyledTotalValue>
             {this.props.isBigCart &&
-            <StyledAddToCartButton onClick={() => console.log(this.props.products, 'Buy, buy, buy!')}>ORDER</StyledAddToCartButton>}
+                    <StyledCheckOutButton
+                      isBigCart={this.props.isBigCart}
+                      onClick={() => console.log(this.props.products, 'Buy, buy, buy!')}>ORDER</StyledCheckOutButton>}
           </StyledPurchaseDetails>
         </StyledCart>
       );
