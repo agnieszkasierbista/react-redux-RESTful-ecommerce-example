@@ -15,7 +15,6 @@ export const StyledMiniCart = styled.div`
   align-items: center;
   padding: 32px 16px;
   gap: 32px;
-  border-top: 40px solid transparent;
   
    @media(min-width:1440px) {
      right: -50px;
@@ -24,7 +23,7 @@ export const StyledMiniCart = styled.div`
 
 export const StyledMiniCartTitle = styled.section`
   width: 100%;
-  padding-top: 40px;
+  padding-top: 70px;
   font-size: 16px;
   line-height: 160%;
   text-align: left;

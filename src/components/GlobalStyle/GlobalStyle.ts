@@ -15,9 +15,12 @@ export const GlobalStyle = createGlobalStyle`
     background: #FFFFFF;
     font-family: 'Raleway', 'sans-serif';
     color: #1D1F22;
-    //overflow: overlay;
   }
 
+  body {
+    overflow-y: scroll;
+  }
+  
   button, a  {
     all: unset;
     cursor: pointer;

@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 export const StyledProductListingPage = styled.section`
   height: 100%;
-  //width: 90%;
-  //margin: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-around;
   grid-row-gap: 10px;
+  grid-column-gap: 10px;
 `;
 
 export const StyledAddToCartShorthand = styled.button`
