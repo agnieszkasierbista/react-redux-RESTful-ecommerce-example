@@ -15,6 +15,14 @@ export const CLEAR_SELECTED_ATTR = 'CLEAR_SELECTED_ATTR';
 export const TOGGLE_MINI_CART_VISIBILITY = 'TOGGLE_MINI_CART_VISIBILITY';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 export const SET_CURRENT_NAVIGATION = 'SET_CURRENT_NAVIGATION';
+export const SET_MINI_CART_STATE = 'SET_MINI_CART_STATE';
+
+export function setMiniCartState(isActive: boolean) {
+  return {
+    type: SET_MINI_CART_STATE,
+    payload: {isActive}
+  };
+}
 
 export function setCurrentNavigation(path: string) {
   return {

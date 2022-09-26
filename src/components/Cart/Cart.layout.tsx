@@ -1,6 +1,8 @@
 import React, {PropsWithChildren, PureComponent} from 'react';
 import {CartProps} from './Cart.types';
 import {
+  ChevronLeft,
+  ChevronRight,
   StyledAdder,
   StyledAdderButton,
   StyledAdderButtonText,
@@ -10,6 +12,7 @@ import {
   StyledCartHeader,
   StyledCartItem,
   StyledCartItemDetails,
+  StyledCartItemRightSide,
   StyledCartItemWrapper,
   StyledHr,
   StyledMiniGallery,
@@ -17,6 +20,7 @@ import {
   StyledProductInCartCounter,
   StyledPurchaseDetails,
   StyledTitle,
+  StyledTotal,
   StyledValue
 } from './Cart.styled';
 import {
@@ -126,23 +130,24 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                         }
                       })}
                     </StyledCartItemDetails>
-                    <StyledAdder>
-                      <StyledAdderButton
-                        onClick={() => this.props.dispatchAddToCart(productInCartCountRemoved)}>
-                        <StyledAdderButtonText>
+                    <StyledCartItemRightSide>
+                      <StyledAdder>
+                        <StyledAdderButton
+                          onClick={() => this.props.dispatchAddToCart(productInCartCountRemoved)}>
+                          <StyledAdderButtonText>
                           +
-                        </StyledAdderButtonText>
-                      </StyledAdderButton>
-                      <StyledProductInCartCounter>{productInCart?.count}</StyledProductInCartCounter>
-                      <StyledAdderButton
-                        onClick={() => this.props.dispatchRemoveOneFromCart(productInCart)}>
-                        <StyledAdderButtonText>
+                          </StyledAdderButtonText>
+                        </StyledAdderButton>
+                        <StyledProductInCartCounter>{productInCart?.count}</StyledProductInCartCounter>
+                        <StyledAdderButton
+                          onClick={() => this.props.dispatchRemoveOneFromCart(productInCart)}>
+                          <StyledAdderButtonText>
                          -
-                        </StyledAdderButtonText>
-                      </StyledAdderButton>
-                    </StyledAdder>
-                    <StyledMiniGallery>
-                      {(productInCart.gallery.length !== 1)
+                          </StyledAdderButtonText>
+                        </StyledAdderButton>
+                      </StyledAdder>
+                      <StyledMiniGallery>
+                        {(productInCart.gallery.length !== 1)
                                         &&
                                         <StyledArrows>
                                           <StyledArrow
@@ -162,7 +167,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                                             }}
                                           >
 
-                                            {'<'}
+                                            <ChevronLeft src="/pictures/Vector.svg"/>
 
                                           </StyledArrow>
                                           <StyledArrow
@@ -185,15 +190,15 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                                             }}
                                           >
 
-                                            {'>'}
+                                            <ChevronRight src="/pictures/Vector.svg"/>
 
                                           </StyledArrow>
                                         </StyledArrows>}
-                      <StyledPic
-                        picIdx={this.state.currentPicIdx[uniqueKey] || 0}
-                        pics={productInCart.gallery}/>
-                    </StyledMiniGallery>
-
+                        <StyledPic
+                          picIdx={this.state.currentPicIdx[uniqueKey] || 0}
+                          pics={productInCart.gallery}/>
+                      </StyledMiniGallery>
+                    </StyledCartItemRightSide>
                   </StyledCartItemWrapper>
 
 
@@ -205,7 +210,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
           <StyledPurchaseDetails>
             {this.props.isBigCart && <><StyledTitle>Total tax 21%: </StyledTitle><StyledValue>{this.props.currentCurrency.symbol}{totalTax}</StyledValue></>}
             {this.props.isBigCart && <><StyledTitle>Quantity: </StyledTitle><StyledValue>{this.props.amount}</StyledValue></>}
-            <StyledTitle>Total: </StyledTitle><StyledValue>{this.props.currentCurrency.symbol}{totalCost}</StyledValue>
+            <StyledTotal>Total: </StyledTotal><StyledValue>{this.props.currentCurrency.symbol}{totalCost}</StyledValue>
             {this.props.isBigCart &&
             <StyledAddToCartButton onClick={() => console.log(this.props.products, 'Buy, buy, buy!')}>ORDER</StyledAddToCartButton>}
           </StyledPurchaseDetails>

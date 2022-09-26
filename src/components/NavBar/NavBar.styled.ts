@@ -8,6 +8,6 @@ export const StyledNavBar = styled.div`
   background-color: #ffffff;
   display: flex;
   justify-content: space-between;
-  height: 81px;
+  height: 80px;
   z-index: 15;
 `;

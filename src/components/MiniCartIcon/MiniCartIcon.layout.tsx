@@ -7,13 +7,12 @@ export class MiniCartIcon extends PureComponent<PropsWithChildren<MiniCartIconPr
   render() {
     return (
       <StyledMiniCartIconContainer onMouseOver={() => {
-        if (this.props.pathName !== '/cart' && !this.props.isVisible) {
+        if (this.props.isMiniCartActive && !this.props.isVisible) {
           this.props.dispatchToggleMiniCartVisibility();
         }
       }}>
         {this.props.amount ? <StyledQuantityBadge>{this.props.amount !== 0 ? this.props.amount : null}</StyledQuantityBadge> : null}
         <StyledMiniCartIcon src="/pictures/Empty Cart.svg" alt="empty cart icon"/>
-        <MiniCart/>
       </StyledMiniCartIconContainer>
     );
   }

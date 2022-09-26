@@ -6,10 +6,10 @@ export interface MiniCartIconProps extends MiniCartIconOwnProps,
 }
 
 export interface MiniCartIconOwnProps {
-    pathName: string
 }
 
 export interface MiniCartIconStateProps {
+    isMiniCartActive: boolean,
     amount: number,
     products: ProductInCart[],
     isVisible: boolean

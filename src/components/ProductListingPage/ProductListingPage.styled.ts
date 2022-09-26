@@ -3,18 +3,18 @@ import styled from 'styled-components';
 
 export const StyledProductListingPage = styled.section`
   height: 100%;
-  width: 90%;
-  margin: auto;
+  //width: 90%;
+  //margin: auto;
   display: grid;
-  grid-template-columns: 30% 30% 30%;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-around;
-  grid-row-gap: 12px;
+  grid-row-gap: 10px;
 `;
 
 export const StyledAddToCartShorthand = styled.button`
   position: absolute;
   right: 35px;
-  bottom: 128px;
+  bottom: 135px;
   background-color :#5ECE7B;
   border-radius: 50%;
   width: 35px;
@@ -29,7 +29,7 @@ export const StyledAddToCartShorthand = styled.button`
 export const StyledPLPitem = styled.article`
   position: relative;
   display: inline-block;
-  min-height: 37vh;
+  min-height: 444px;
   width: 100%;
   
   &:hover {
@@ -48,7 +48,7 @@ export const StyledPLPitem = styled.article`
 export const StyledPLPoutOfStockItem = styled.article`
   position: relative;
   display: inline-block;
-  min-height: 37vh;
+  min-height: 444px;
   width: 100%;
   opacity: 0.5;
 `;

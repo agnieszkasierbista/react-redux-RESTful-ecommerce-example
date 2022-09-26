@@ -178,6 +178,13 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
     };
   }
 
+  case 'SET_MINI_CART_STATE': {
+    return {
+      ...state,
+      isMiniCartActive: action.payload.isActive
+    };
+  }
+
   case TOGGLE_MINI_CART_VISIBILITY: {
     return {
       ...state,

@@ -6,9 +6,7 @@ export class MiniCartOverlay extends PureComponent<PropsWithChildren<MiniCartOve
   render() {
 
     return (
-      this.props.isMiniCartVisible
-            &&
-            <StyledMiniCartOverlay />
+      this.props.isMiniCartVisible && <StyledMiniCartOverlay />
     );
   }
 }

@@ -40,11 +40,11 @@ const preloadedState: State = {
     selected: []
   },
   gallery: {mainPicture: ''},
-  cart: {products: [], isVisible: false, amount: 0},
+  cart: {products: [], isVisible: false, amount: 0, isMiniCartActive: true},
   tab: {currentNavigation: '/'}
 };
 
-const epicMiddleware = createEpicMiddleware({dependencies: {abc: window.location}});
+const epicMiddleware = createEpicMiddleware();
 
 const store = configureStore({
   reducer: persistedReducer,

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 export const StyledCart = styled.section<{isBigCart: boolean}>`
-  margin: ${props => props.isBigCart ? '0 100px': '1px 1px'};
+  // margin: ${props => props.isBigCart ? '0 100px': '1px 1px'};
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -18,8 +18,9 @@ export const StyledCartHeader = styled.p`
 `;
 
 export const StyledCartItemWrapper = styled.section`
-display: flex;
+  display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
 `;
 
@@ -34,6 +35,12 @@ export const StyledCartItemDetails = styled.section`
   flex: 3 1;
 `;
 
+export const StyledCartItemRightSide = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex: 1 1;
+`;
+
 export const StyledAdder = styled.section`
   flex-basis: 75px;
   display: flex;
@@ -45,8 +52,8 @@ export const StyledAdder = styled.section`
 export const StyledAdderButton = styled.button`
   border: 1px solid #1D1F22;
   background-color: #ffffff;
-  width: 45px;
-  height: 45px;
+  width: 43px;
+  height: 43px;
   font-size: 35px;
   font-weight: 300;
   text-align: center;
@@ -74,7 +81,8 @@ export const StyledAdderButtonText = styled.p`
 export const StyledMiniGallery = styled.section`
   position: relative;
   flex: 2 1;
-  max-width: 500px;
+  max-width: 300px;
+  min-width: 200px;
 `;
 
 export const StyledPic = styled.div<{ picIdx: number, pics: string[]}>`
@@ -89,27 +97,37 @@ export const StyledArrows = styled.div`
   display: flex;
   position: absolute;
   align-items: center;
-  justify-content: center;
-  bottom: 35px;
-  right: 35px;
-  width: 80px;
-  height: 40px;
+  bottom: 16px;
+  right: 16px;
+  width: 50px;
+  height: 24px;
+  justify-content: space-between;
 `;
 
 export const StyledArrow = styled.button`
-  border: 2px solid white;
+  display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  bacground-origin: content-box;
-  width: 100%;
+  background: rgba(0, 0, 0, 0.73);
+  color: white;
+  width: 24px;
   height: 100%;
+`;
+
+export const ChevronLeft = styled.img`
+  transform: rotate(0.25turn) scale(1.7);
+  filter: brightness(0) invert(1);
+`;
+
+export const ChevronRight = styled.img`
+  transform: rotate(-0.25turn) scale(1.7);
+  filter: brightness(0) invert(1);
 `;
 
 export const StyledPurchaseDetails = styled.section`
   display: grid;
   grid-template-rows: auto auto auto auto;
-  grid-template-columns: 20% 20% auto;
+  grid-template-columns: 20% 20% auto auto;
   flex-basis: 50%;
 `;
 
@@ -123,6 +141,14 @@ export const StyledValue = styled.p`
 export const StyledTitle = styled.p`
   font-style: normal;
   font-weight: 400;
+  font-size: 24px;
+  line-height:160%;
+  grid-column: 1;
+`;
+
+export const StyledTotal = styled.p`
+  font-style: normal;
+  font-weight: 500;
   font-size: 24px;
   line-height:160%;
   grid-column: 1;

@@ -5,7 +5,7 @@ export const StyledProductDescriptionPage = styled.article`
   box-sizing: border-box;
   width: 100%;
   height: calc(100vh - 81px);
-  padding: 80px;
+  padding: 10px 80px 10px 0;
   display: flex;
   justify-content: space-around;
 `;

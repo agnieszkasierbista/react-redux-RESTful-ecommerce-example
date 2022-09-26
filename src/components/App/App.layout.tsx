@@ -12,7 +12,8 @@ import {getProductDescriptionPagePath} from '../helpers';
 import {Category} from '../CategoryTabs/CategoryTabs.types';
 import {StyledActions, StyledLogo} from './App.styled';
 import MiniCartOverlay from '../MiniCartOverlay/MiniCartOverlay';
-
+import WithoutMiniCart from '../WithoutMiniCart/WithoutMiniCart';
+import MiniCart from '../MiniCart/MiniCart';
 
 class App extends PureComponent<PropsWithChildren<AppProps>> {
   componentWillMount() {
@@ -48,8 +49,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
         </Route>
       );
     }
-    )
-        ;
+    );
 
     return (
       <>
@@ -58,7 +58,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           <StyledLogo src="/pictures/a-logo.svg"/>
           <StyledActions>
             <CurrencySwitcher/>
-            <MiniCartIcon />
+            <MiniCartIcon/>
           </StyledActions>
         </NavBar>
 
@@ -71,11 +71,16 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
 
           {productsRoutes}
 
-          <Route path="/cart" element={<Cart isBigCart={true}/>}>
+          <Route path="/cart" element={
+            <WithoutMiniCart>
+              <Cart isBigCart={true}/>
+            </WithoutMiniCart>
+          }>
           </Route>
 
         </Routes>
         <MiniCartOverlay/>
+        <MiniCart/>
       </>
     );
   }

@@ -8,7 +8,6 @@ export const StyledCategoryTabs = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 100px;
 `;
 
 export const StyledCategoryTabLink = styled(Link)`

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const StyledGallery = styled.section`
   display: flex;
-  padding:  0 60px;
+  padding:  0 10px;
   flex: 2 1;
 
 `;
@@ -26,5 +26,9 @@ export const StyledThumbnail = styled.div<{ src: string }>`
 export const StyledMainPic = styled.div<{ src: string }>`
   background-image: url(${props => props.src});
   background-size: cover;
+  background-position: center 0;
+  background-repeat: no-repeat;
+  max-width: 90%;
+  max-height: 90%;
   flex: 6 1;
 `;

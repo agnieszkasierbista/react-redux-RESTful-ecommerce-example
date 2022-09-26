@@ -76,6 +76,7 @@ export interface GalleryState {
 }
 
 export interface CartState {
+    isMiniCartActive: boolean,
     products: ProductInCart[],
     isVisible: boolean,
     amount: number
