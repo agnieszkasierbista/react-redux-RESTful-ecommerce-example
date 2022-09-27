@@ -32,7 +32,6 @@ import {
   StyledTotalValue,
   StyledValue
 } from './Cart.styled';
-import {StyledAddToCartButton} from '../ProductDescriptionPage/ProductDescriptionPage.styled';
 import {findPrice, getIsSelected} from '../helpers';
 import {CartLocalState, ProductInCart} from '../../types';
 import {StyledCheckOutButton} from '../MiniCart/MiniCart.styled';
