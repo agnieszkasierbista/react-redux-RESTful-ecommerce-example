@@ -20,7 +20,7 @@ export const StyledCurrencySwitcherOverlay = styled.div<{isExtended: boolean}>`
 
 export const StyledCurrencyDropdownContainer = styled.div`
   position: absolute;
-  color: black;
+  color: ${props => props.theme.colors.black};
   width: 100%;
   left: 0;
   right: 0;
@@ -32,7 +32,7 @@ export const StyledCurrencyDropdownList = styled.ul`
   margin: 0;
   padding: 0;
   width: 114px;
-  background-color: #FFFFFF;
+  background-color: ${props => props.theme.colors.white};
   filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.2));
 
 `;

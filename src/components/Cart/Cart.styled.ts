@@ -25,6 +25,7 @@ export const StyledCartItemWrapper = styled.section`
 export const StyledCartItem = styled.article`
   display: flex;
   flex-direction: column;
+  padding-bottom: 15px;
 `;
 
 export const StyledCartItemDetails = styled.section`
@@ -49,8 +50,8 @@ export const StyledAdder = styled.section`
 `;
 
 export const StyledAdderButton = styled.button<{isBigCart?: boolean}>`
-  border: 1px solid #1D1F22;
-  background-color: #FFFFFF;
+  border: 1px solid ${props => props.theme.colors.black};
+  background-color: ${props => props.theme.colors.white};
   width: ${props => props.isBigCart ? '43px': '24px'};
   height: ${props => props.isBigCart ? '43px': '24px'};
   font-weight: 300;
@@ -107,7 +108,7 @@ export const StyledArrow = styled.button`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.73);
-  color: #FFFFFF;
+  color: ${props => props.theme.colors.white};
   width: 24px;
   height: 100%;
 `;
@@ -166,6 +167,7 @@ export const StyledHr = styled.hr<{isBigCart: boolean}>`
   border: none;
   border-top: ${props => props.isBigCart ? '1px solid #E5E5E5' : '1px solid transparent'};
   width: 100%;
+  padding-bottom: 15px;
 `;
 
 export const StyledProductInCartDetailsBrand = styled.p<{isBigCart?: boolean}>`
@@ -206,14 +208,14 @@ export const StyledProductInCartPrice = styled.p<{isBigCart?: boolean}>`
   font-size:${props => props.isBigCart ? '24px' : '16px'};
   padding-top:${props => props.isBigCart ? '0' : '6px'};
   line-height: 160%;
-  color: #1D1F22;
+  color: ${props => props.theme.colors.black};
 `;
 
 export const StyledProductInCartAttributeValue = styled.div<{ color?: string, isSelected?: boolean, isBigCart?: boolean }>`
-  background-color: ${props => props.color ? props.color.toLowerCase() : props.isSelected ? '#1D1F22' : '#FFFFFF'};
-  border: ${props => props.color ? 'none' : '1px solid #1D1F22'};
-  outline: ${props => props.color ? props.isSelected ? '1px solid #5ECE7B' : 'none' : 'none'};
-  color: ${props => props.isSelected ? '#FFFFFF' : '#1D1F22'};
+  background-color: ${props => props.color ? props.color.toLowerCase() : props.isSelected ? props.theme.colors.black : props.theme.colors.white};
+  border: ${props => props.color ? 'none' : `1px solid ${props.theme.colors.black}`};
+  outline: ${props => props.color ? props.isSelected ? `1px solid ${props.theme.colors.green}` : 'none' : 'none'};
+  color: ${props => props.isSelected ? props.theme.colors.white : props.theme.colors.black};
   min-height: ${props => props.isBigCart ? '32px' : '16px'};
   min-width: ${props => props.isBigCart ? '32px' : '16px'};
   max-width: ${props => props.isBigCart ? props.color ? '32px' : '60px' :  props.color ? '16px' : '45px'};

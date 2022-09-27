@@ -28,6 +28,6 @@ export const StyledQuantityBadge = styled.div`
   font-size: 14px;
   line-height: 16px;
   border-radius: 60px;
-  background-color: #1D1F22;
-  color: #FFFFFF;
+  background-color: ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.white};
 `;

@@ -14,7 +14,7 @@ export const StyledAddToCartShorthand = styled.button`
   position: absolute;
   right: 35px;
   bottom: 135px;
-  background-color :#5ECE7B;
+  background-color: ${props => props.theme.colors.green};
   border-radius: 50%;
   width: 35px;
   height: 35px;
@@ -54,10 +54,10 @@ export const StyledPLPoutOfStockItem = styled.article`
 
 export const StyledProductListingPageImg = styled.div<{ imgSrc: string }>`
   background-image: url(${(props) => props.imgSrc});
-  background-color: #C4C4C4;
+  background-color: ${props => props.theme.colors.gray};
   background-repeat: no-repeat;
   background-size: cover;
-  border: 20px solid #FFFFFF;
+  border: 20px solid ${props => props.theme.colors.white};
   width: 100%;
   height: 70%;
   box-sizing: border-box;
@@ -67,7 +67,7 @@ export const StyledProductListingPageItemDetails = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 20px solid #FFFFFF;
+  border: 20px solid ${props => props.theme.colors.white};
 `;
 
 export const StyledBrandAndName = styled.p`
@@ -75,7 +75,7 @@ export const StyledBrandAndName = styled.p`
   font-weight: 300;
   font-size: 18px;
   line-height: 160%;
-  color: #1D1F22;
+  color: ${props => props.theme.colors.black};
 `;
 
 export const StyledPrice = styled.p`
@@ -83,15 +83,15 @@ export const StyledPrice = styled.p`
   font-weight: 500;
   font-size: 18px;
   line-height: 160%;
-  color: #1D1F22;
+  color: ${props => props.theme.colors.black};
 `;
 
 export const StyledProductListingPageOutOfStockImg = styled.div<{ imgSrc: string }>`
   background-image: url(${(props) => props.imgSrc});
-  background-color: #C4C4C4;
+  background-color: ${props => props.theme.colors.gray};
   background-repeat: no-repeat;
   background-size: cover;
-  border: 20px solid #FFFFFF;
+  border: 20px solid ${props => props.theme.colors.white};
   width: 100%;
   height: 70%;
   box-sizing: border-box;

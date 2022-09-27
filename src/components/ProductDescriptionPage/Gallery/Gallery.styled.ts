@@ -16,7 +16,7 @@ export const StyledThumbnails = styled.div`
 
 export const StyledThumbnail = styled.div<{ src: string }>`
   background-image: url(${props => props.src});
-  background-color: #C4C4C4;
+  background-color: ${props => props.theme.colors.gray};
   width: 100px;
   height: 100px;
   background-size: cover;
@@ -25,7 +25,7 @@ export const StyledThumbnail = styled.div<{ src: string }>`
 
 export const StyledMainPic = styled.div<{ src: string }>`
   background-image: url(${props => props.src});
-  background-color: #C4C4C4;
+  background-color: ${props => props.theme.colors.gray};
   background-size: cover;
   background-position: center 0;
   background-repeat: no-repeat;

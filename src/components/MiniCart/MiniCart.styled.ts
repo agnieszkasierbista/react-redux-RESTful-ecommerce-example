@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 export const StyledMiniCart = styled.div`
-  background-color: #FFFFFF;
+  background-color: ${props => props.theme.colors.white};
   background-clip: padding-box;
   position: absolute;
   top: 20px;
@@ -14,7 +14,7 @@ export const StyledMiniCart = styled.div`
   justify-content: center;
   align-items: center;
   padding: 32px 16px;
-  gap: 32px;
+  gap: 22px;
   
    @media(min-width:1440px) {
      right: -50px;
@@ -23,7 +23,7 @@ export const StyledMiniCart = styled.div`
 
 export const StyledMiniCartTitle = styled.section`
   width: 100%;
-  padding-top: 70px;
+  padding-top: 60px;
   font-size: 16px;
   line-height: 160%;
   text-align: left;
@@ -49,8 +49,8 @@ export const StyledGoToCart = styled(Link)`
   align-items: center;
   padding: 12px 32px;
   margin-right: 6px;
-  background: #FFFFFF;
-  border: 1px solid #1D1F22;
+  background-color: ${props => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.black};
 
   font-style: normal;
   font-weight: 600;
@@ -69,12 +69,12 @@ export const StyledButtonsInMiniCart = styled.section`
 export const StyledCheckOutButton = styled.button<{isBigCart?: boolean}>`
   padding: 13px 32px;
   margin: ${props => props.isBigCart ? '16px' : 0} 6px 0 0;
-  background: #5ECE7B;
+  background: ${props => props.theme.colors.green};
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 120%;
-  color: #FFFFFF;
+  color: ${props => props.theme.colors.white};
   display: flex;
   flex-direction: column;
   align-items: center;
