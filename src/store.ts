@@ -21,7 +21,7 @@ const preloadedState: State = {
     productDetails: {
       productId: '',
       name: '',
-      description: 'string',
+      description: '',
       gallery: [],
       brand: '',
       prices: [],

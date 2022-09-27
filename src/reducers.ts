@@ -7,7 +7,7 @@ import {
   INIT_SUCCESS, REMOVE_ONE_FROM_CART,
   SELECT_ATTR,
   SET_CURRENT_CURRENCY, SET_CURRENT_NAVIGATION,
-  SET_MAIN_PIC,
+  SET_MAIN_PIC, SET_MINI_CART_STATE,
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY,
   TOGGLE_MINI_CART_VISIBILITY
 } from './actions';
@@ -178,7 +178,7 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
     };
   }
 
-  case 'SET_MINI_CART_STATE': {
+  case SET_MINI_CART_STATE: {
     return {
       ...state,
       isMiniCartActive: action.payload.isActive

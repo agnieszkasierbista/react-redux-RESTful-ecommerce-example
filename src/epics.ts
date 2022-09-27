@@ -11,7 +11,7 @@ import {
   initSuccess
 } from './actions';
 import {createDefaultAttrObj} from './components/helpers';
-import {InitialData, ProductInCart, Selected} from './types';
+import {InitialData, ProductDetails, ProductInCart, Selected} from './types';
 import {AnyAction} from '@reduxjs/toolkit';
 
 function getQueryDetails(action: AnyAction) {
@@ -90,7 +90,7 @@ export const onGetProductDetails: Epic = action$ => action$.pipe(
       request('http://localhost:4000', getQueryDetails(action).query, getQueryDetails(action).variables)
     );
   }),
-  switchMap((productDetails) => {
+  switchMap((productDetails: {product: ProductDetails}) => {
     return of(getProductDetailsSuccess(productDetails));
   })
 );

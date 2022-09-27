@@ -40,7 +40,7 @@ export function addToCartByProductId(productId: string) {
 
 export function removeOneFromCart(product: ProductInCart) {
   return {
-    type: 'REMOVE_ONE_FROM_CART',
+    type: REMOVE_ONE_FROM_CART,
     payload: product
   };
 
@@ -54,13 +54,13 @@ export function toggleMiniCartVisibility() {
 
 export function clearSelectedAttributes() {
   return {
-    type: 'CLEAR_SELECTED_ATTR'
+    type: CLEAR_SELECTED_ATTR
   };
 }
 
 export function selectAttr(selectedAttr: Selected) {
   return {
-    type: 'SELECT_ATTR',
+    type: SELECT_ATTR,
     payload: selectedAttr
   };
 }
@@ -86,7 +86,7 @@ export function getProductDetails(id: string) {
   };
 }
 
-export function getProductDetailsSuccess(productDetails: ProductDetails) {
+export function getProductDetailsSuccess(productDetails: { product: ProductDetails }) {
   return {
     type: GET_PRODUCT_DETAILS_SUCCESS,
     payload: productDetails
