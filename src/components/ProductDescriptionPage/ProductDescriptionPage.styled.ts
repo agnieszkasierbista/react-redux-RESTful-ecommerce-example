@@ -86,7 +86,7 @@ export const StyledAttributeValueText = styled.p`
   letter-spacing: 0.05em;
 `;
 
-export const StyledAddToCartButton = styled.button`
+export const StyledAddToCartButton = styled.button<{disabled: boolean}>`
   padding: 16px 32px;
   margin: 30px 0;
   background: #5ECE7B;
@@ -99,6 +99,8 @@ export const StyledAddToCartButton = styled.button`
   flex-direction: column;
   align-items: center;
   grid-column: 1 / span 2;
+  
+  ${props => props.disabled ? 'filter: grayscale(75%); cursor: not-allowed;' : ''};
 `;
 
 export const StyledDescription = styled.p`
