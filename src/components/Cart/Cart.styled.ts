@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const StyledCart = styled.section<{isBigCart: boolean}>`
   display: flex;
   flex-direction: column;
-  background-color: white;
   width: 100%;
 `;
 
@@ -51,7 +50,7 @@ export const StyledAdder = styled.section`
 
 export const StyledAdderButton = styled.button<{isBigCart?: boolean}>`
   border: 1px solid #1D1F22;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   width: ${props => props.isBigCart ? '43px': '24px'};
   height: ${props => props.isBigCart ? '43px': '24px'};
   font-weight: 300;
@@ -108,7 +107,7 @@ export const StyledArrow = styled.button`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.73);
-  color: white;
+  color: #FFFFFF;
   width: 24px;
   height: 100%;
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 export const StyledMiniCart = styled.div`
-  background-color: white;
+  background-color: #FFFFFF;
   background-clip: padding-box;
   position: absolute;
   top: 20px;
