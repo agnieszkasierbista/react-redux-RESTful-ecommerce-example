@@ -120,7 +120,6 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                           isSelected={getIsSelected(productInCart, item, attribute)}
                         >
                           <StyledAttributeValueText>{item.value}</StyledAttributeValueText>
-
                         </StyledAttributeValue>
                       );
                     })}
@@ -134,13 +133,17 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
             <StyledAttributeName>Price:</StyledAttributeName>
             <StyledProductPrice>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</StyledProductPrice>
           </StyledAttribute>
-          <StyledAddToCartButton disabled={!this.props.productDetails.inStock} onClick={() => this.props.dispatchAddToCart(productInCart)}>
+
+          <StyledAddToCartButton
+            disabled={!this.props.productDetails.inStock}
+            onClick={() => this.props.dispatchAddToCart(productInCart)}
+          >
             ADD TO CART
           </StyledAddToCartButton>
+
           <StyledAttribute>
             <StyledDescription dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/>
           </StyledAttribute>
-
         </StyledProductDetails>
       </StyledProductDescriptionPage>
     );

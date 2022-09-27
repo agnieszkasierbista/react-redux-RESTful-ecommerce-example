@@ -5,7 +5,6 @@ export const StyledGallery = styled.section`
   display: flex;
   padding: 0 10px;
   flex: 2 1;
-
 `;
 
 export const StyledThumbnails = styled.div`

@@ -29,7 +29,7 @@ export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
                   onClick={() => {
                     this.props.dispatchToggleMiniCartVisibility();
                   }}>
-                        GO TO CART
+                        VIEW BAG
                 </StyledGoToCart>
                 <StyledCheckOutButton onClick={() => console.log('Buy, buy, buy!')}>
                   <StyledButtonText>CHECK OUT</StyledButtonText>

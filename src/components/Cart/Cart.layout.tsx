@@ -58,7 +58,9 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
 
       return (
         <StyledCart isBigCart={this.props.isBigCart}>
+
           {this.props.isBigCart && <StyledCartHeader>CART</StyledCartHeader>}
+
           {
             this.props.products.map((productInCart: ProductInCart) => {
               const {count, ...productInCartCountRemoved} = productInCart;
@@ -73,13 +75,22 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                   <StyledCartItemWrapper>
                     <StyledCartItemDetails>
                       <StyledProductInCartDetailsBrand
-                        isBigCart={this.props.isBigCart}>{productInCart.brand}</StyledProductInCartDetailsBrand>
+                        isBigCart={this.props.isBigCart}
+                      >
+                        {productInCart.brand}
+                      </StyledProductInCartDetailsBrand>
                       <StyledProductInCartDetailsName
-                        isBigCart={this.props.isBigCart}>{productInCart.name}</StyledProductInCartDetailsName>
+                        isBigCart={this.props.isBigCart}
+                      >
+                        {productInCart.name}
+                      </StyledProductInCartDetailsName>
 
                       <StyledProductInCartAttribute>
                         <StyledProductInCartPrice
-                          isBigCart={this.props.isBigCart}>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</StyledProductInCartPrice>
+                          isBigCart={this.props.isBigCart}
+                        >
+                          {`${currentPrice.currency.symbol}${currentPrice.amount}`}
+                        </StyledProductInCartPrice>
                       </StyledProductInCartAttribute>
 
                       {productInCart.attributes.map(attribute => {
@@ -88,11 +99,13 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                           return (
                             <StyledProductInCartAttribute key={attribute.id}>
                               <StyledProductInCartAttributeName
-                                isBigCart={this.props.isBigCart}>
+                                isBigCart={this.props.isBigCart}
+                              >
                                 {`${attribute.name}:`}
                               </StyledProductInCartAttributeName>
                               <StyledProductInCartAttributeValues
-                                isBigCart={this.props.isBigCart}>
+                                isBigCart={this.props.isBigCart}
+                              >
                                 {attribute.items.map(item => {
 
                                   return (
@@ -113,11 +126,13 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                           return (
                             <StyledProductInCartAttribute key={attribute.id}>
                               <StyledProductInCartAttributeName
-                                isBigCart={this.props.isBigCart}>
+                                isBigCart={this.props.isBigCart}
+                              >
                                 {`${attribute.name}:`}
                               </StyledProductInCartAttributeName>
                               <StyledProductInCartAttributeValues
-                                isBigCart={this.props.isBigCart}>
+                                isBigCart={this.props.isBigCart}
+                              >
                                 {attribute.items.map(item => {
 
                                   return (
@@ -127,7 +142,8 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                                       isBigCart={this.props.isBigCart}
                                     >
                                       <StyledProductInCartAttributeValueText
-                                        isBigCart={this.props.isBigCart}>
+                                        isBigCart={this.props.isBigCart}
+                                      >
                                         {item.value}
                                       </StyledProductInCartAttributeValueText>
                                     </StyledProductInCartAttributeValue>
@@ -139,6 +155,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                         }
                       })}
                     </StyledCartItemDetails>
+
                     <StyledCartItemRightSide>
                       <StyledAdder>
                         <StyledAdderButton
@@ -188,7 +205,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                                                 }}
                                               >
 
-                                                <ChevronLeft src="/pictures/Vector.svg"/>
+                                                <ChevronLeft src="/pictures/Vector.svg" alt="left arrow"/>
 
                                               </StyledArrow>
                                               <StyledArrow
@@ -211,7 +228,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                                                 }}
                                               >
 
-                                                <ChevronRight src="/pictures/Vector.svg"/>
+                                                <ChevronRight src="/pictures/Vector.svg" alt="right arrow"/>
 
                                               </StyledArrow>
                                             </StyledArrows>}
@@ -221,28 +238,49 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
                       </StyledMiniGallery>
                     </StyledCartItemRightSide>
                   </StyledCartItemWrapper>
-
-
                 </StyledCartItem>
               );
             })
           }
           <StyledHr isBigCart={this.props.isBigCart}/>
           <StyledPurchaseDetails>
-            {this.props.isBigCart && <><StyledTitle>Total tax
-                        21%: </StyledTitle><StyledValue>{this.props.currentCurrency.symbol}{totalTax}</StyledValue></>}
-            {this.props.isBigCart && <>
-              <StyledTitle>Quantity: </StyledTitle><StyledValue>{this.props.amount}</StyledValue></>}
+            {this.props.isBigCart
+                    &&
+                    <>
+                      <StyledTitle>Total tax
+                            21%: </StyledTitle><StyledValue>{this.props.currentCurrency.symbol}{totalTax}</StyledValue>
+                    </>
+            }
+
+            {this.props.isBigCart
+                    &&
+                    <>
+                      <StyledTitle>
+                            Quantity:
+                      </StyledTitle><StyledValue>{this.props.amount}</StyledValue>
+                    </>
+            }
+
             <StyledTotal
               isBigCart={this.props.isBigCart}
-            >Total: </StyledTotal>
+            >
+                        Total:
+            </StyledTotal>
+
             <StyledTotalValue
               isBigCart={this.props.isBigCart}
-            >{this.props.currentCurrency.symbol}{totalCost}</StyledTotalValue>
-            {this.props.isBigCart &&
+            >
+              {this.props.currentCurrency.symbol}{totalCost}
+            </StyledTotalValue>
+
+            {this.props.isBigCart
+                    &&
                     <StyledCheckOutButton
                       isBigCart={this.props.isBigCart}
-                      onClick={() => console.log(this.props.products, 'Buy, buy, buy!')}>ORDER</StyledCheckOutButton>}
+                      onClick={() => console.log(this.props.products, 'Buy, buy, buy!')}>
+                        ORDER
+                    </StyledCheckOutButton>
+            }
           </StyledPurchaseDetails>
         </StyledCart>
       );

@@ -4,9 +4,6 @@ import styled from 'styled-components';
 export const StyledCurrencySwitcher = styled.div`
   position: relative;
   display: inline-block;
-  //background: lightcoral;
-  //width: 100px;
-
 `;
 
 export const StyledCurrencySwitcherOverlay = styled.div<{isExtended: boolean}>`
@@ -52,7 +49,6 @@ export const StyledCurrencyDropdownItemButton = styled.button`
   text-align: left;
   text-indent: 10px;
 
-
   &:hover{
     background-color: #EEEEEE;
   }
@@ -67,8 +63,7 @@ export const StyledCurrencySwitcherHeader = styled.button`
   gap: 10px;
   width: 32px;
   height: 29px;
-  
-`;
+  `;
 
 export const StyledCurrencySymbol = styled.div`
   font-weight: 500;
@@ -77,7 +72,6 @@ export const StyledCurrencySymbol = styled.div`
 `;
 
 export const StyledChevron = styled.img<{isExtended: boolean}>`
-  //border: 1px solid #000000;
   width: 6px;
   height: 3px;
   ${props => props.isExtended && 'transform: matrix(1, 0, 0, -1, 0, 0)'};

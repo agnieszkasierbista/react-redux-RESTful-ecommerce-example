@@ -1,5 +1,6 @@
 import {
-  cartReducer, categoryTabsReducer,
+  cartReducer,
+  categoryTabsReducer,
   currencySwitcherReducer,
   galleryReducer,
   productDescriptionPageReducer,
@@ -9,11 +10,12 @@ import {
 import {
   addToCart,
   clearSelectedAttributes,
-  getProductDetails, getProductDetailsSuccess,
+  getProductDetailsSuccess,
   initSuccess,
   removeOneFromCart,
   selectAttr,
-  setCurrentCurrency, setCurrentNavigation,
+  setCurrentCurrency,
+  setCurrentNavigation,
   setMainPic,
   setMiniCartState,
   toggleIsExtended,
