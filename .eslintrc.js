@@ -28,7 +28,7 @@ module.exports = {
       2
     ],
     'react/react-in-jsx-scope': 0,
-    'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
+    'linebreak-style': ['warn', process.platform === 'win32' ? 'windows' : 'unix'],
     'react/no-deprecated': 0,
     'quotes': [
       'error',
