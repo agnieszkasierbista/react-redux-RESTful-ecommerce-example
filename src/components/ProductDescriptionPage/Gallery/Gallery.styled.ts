@@ -16,18 +16,20 @@ export const StyledThumbnails = styled.div`
 
 export const StyledThumbnail = styled.div<{ src: string }>`
   background-image: url(${props => props.src});
-  background-color: ${props => props.theme.colors.gray};
+  background-color: ${props => props.theme.colors.white};
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100px;
   height: 100px;
-  background-size: cover;
   margin-bottom: 15px;
 `;
 
 export const StyledMainPic = styled.div<{ src: string }>`
   background-image: url(${props => props.src});
-  background-color: ${props => props.theme.colors.gray};
-  background-size: cover;
-  background-position: center 0;
+  background-color: ${props => props.theme.colors.white};
+  background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
   max-width: 90%;
   max-height: 90%;

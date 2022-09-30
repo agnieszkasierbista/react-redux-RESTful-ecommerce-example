@@ -54,9 +54,10 @@ export const StyledPLPoutOfStockItem = styled.article`
 
 export const StyledProductListingPageImg = styled.div<{ imgSrc: string }>`
   background-image: url(${(props) => props.imgSrc});
-  background-color: ${props => props.theme.colors.gray};
+  background-color: ${props => props.theme.colors.white};
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
   border: 20px solid ${props => props.theme.colors.white};
   width: 100%;
   height: 70%;
@@ -88,9 +89,10 @@ export const StyledPrice = styled.p`
 
 export const StyledProductListingPageOutOfStockImg = styled.div<{ imgSrc: string }>`
   background-image: url(${(props) => props.imgSrc});
-  background-color: ${props => props.theme.colors.gray};
+  background-color: ${props => props.theme.colors.white};
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
   border: 20px solid ${props => props.theme.colors.white};
   width: 100%;
   height: 70%;
