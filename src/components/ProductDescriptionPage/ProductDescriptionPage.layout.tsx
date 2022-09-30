@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, PureComponent} from 'react';
+import React, {PropsWithChildren, PureComponent, RefObject} from 'react';
 import {ProductDescriptionPageProps} from './ProductDescriptionPage.types';
 import {
   StyledAddToCartButton,
@@ -18,136 +18,156 @@ import {createDefaultAttrObj, findPrice, getIsSelected} from '../helpers';
 import {ProductInCart, Selected} from '../../types';
 
 export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
-  componentDidMount() {
-    this.props.dispatchGetProductDetails((this.props.pathName).split('/')[3]);
-  }
 
-  componentWillUnmount() {
-    this.props.dispatchClearSelectedAttributes();
-  }
+    ref: RefObject<HTMLDivElement> = React.createRef();
 
-  render() {
+    domParser = new DOMParser();
 
-    const currentPrice = findPrice(this.props.productDetails, this.props.currentCurrency);
-    const defaultAttributes: Selected[] = this.props.productDetails.attributes.map(createDefaultAttrObj);
+    componentDidMount() {
+      this.props.dispatchGetProductDetails((this.props.pathName).split('/')[3]);
+    }
 
-    const productInCart: ProductInCart = this.props.selected.length
-      ?
-      {
-        ...this.props.productDetails,
-        selected: defaultAttributes.map((defaultAttribute) => {
+    componentDidUpdate(prevProps: ProductDescriptionPageProps) {
+      if (prevProps.productDetails.description !== this.props.productDetails.description) {
+        const descriptionAsElement = this.domParser.parseFromString(
+          `<span>${this.props.productDetails.description}</span>`,
+          'text/html'
+        );
 
-          return {
-            ...defaultAttribute,
-            ...(this.props.selected.find((selectedAttr) => selectedAttr.id === defaultAttribute.id))
-          };
-        }),
+        [...descriptionAsElement.body.children].forEach((child) => {
+          this.ref.current?.append?.(child);
+        });
       }
-      :
-      {
-        ...this.props.productDetails,
-        selected: defaultAttributes,
-      };
+    }
 
-    return (
+    componentWillUnmount() {
+      this.props.dispatchClearSelectedAttributes();
+    }
 
-      <StyledProductDescriptionPage>
 
-        <Gallery pictures={this.props.productDetails.gallery}/>
+    render() {
 
-        <StyledProductDetails>
+      const currentPrice = findPrice(this.props.productDetails, this.props.currentCurrency);
+      const defaultAttributes: Selected[] = this.props.productDetails.attributes.map(createDefaultAttrObj);
 
-          <StyledProductDetailsBrand>{this.props.productDetails.brand}</StyledProductDetailsBrand>
-          <StyledProductDetailsName>{this.props.productDetails.name}</StyledProductDetailsName>
+      const productInCart: ProductInCart = this.props.selected.length
+        ?
+        {
+          ...this.props.productDetails,
+          selected: defaultAttributes.map((defaultAttribute) => {
 
-          {this.props.productDetails.attributes.map(attribute => {
+            return {
+              ...defaultAttribute,
+              ...(this.props.selected.find((selectedAttr) => selectedAttr.id === defaultAttribute.id))
+            };
+          }),
+        }
+        :
+        {
+          ...this.props.productDetails,
+          selected: defaultAttributes,
+        };
 
-            if (attribute.type === 'swatch') {
-              return (
-                <StyledAttribute key={attribute.id}>
-                  <StyledAttributeName>
-                    {`${attribute.name}:`}
-                  </StyledAttributeName>
-                  <StyledAttributeValues>
-                    {attribute.items.map(item => {
+      return (
 
-                      const selectedAttr = {
-                        id: attribute.id,
-                        item: {
-                          displayValue: item.displayValue,
-                          value: item.value,
-                          id: item.id,
-                          selected: true
-                        }
-                      };
+        <StyledProductDescriptionPage>
 
-                      return (
-                        <StyledAttributeValue
-                          color={item.value}
-                          key={item.id}
-                          onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
-                          isSelected={getIsSelected(productInCart, item, attribute)}
-                        >
-                        </StyledAttributeValue>
-                      );
-                    })}
-                  </StyledAttributeValues>
-                </StyledAttribute>
-              );
-            } else {
-              return (
-                <StyledAttribute key={attribute.id}>
-                  <StyledAttributeName>
-                    {`${attribute.name}:`}
-                  </StyledAttributeName>
-                  <StyledAttributeValues>
-                    {attribute.items.map(item => {
+          <Gallery pictures={this.props.productDetails.gallery}/>
 
-                      const selectedAttr = {
-                        id: attribute.id,
-                        item: {
-                          displayValue: item.displayValue,
-                          value: item.value,
-                          id: item.id,
-                          selected: true
-                        }
-                      };
+          <StyledProductDetails>
 
-                      return (
-                        <StyledAttributeValue
-                          key={item.id}
-                          onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
-                          isSelected={getIsSelected(productInCart, item, attribute)}
-                        >
-                          <StyledAttributeValueText>{item.value}</StyledAttributeValueText>
-                        </StyledAttributeValue>
-                      );
-                    })}
-                  </StyledAttributeValues>
-                </StyledAttribute>
-              );
-            }
-          })}
+            <StyledProductDetailsBrand>{this.props.productDetails.brand}</StyledProductDetailsBrand>
+            <StyledProductDetailsName>{this.props.productDetails.name}</StyledProductDetailsName>
 
-          <StyledAttribute>
-            <StyledAttributeName>Price:</StyledAttributeName>
-            <StyledProductPrice>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</StyledProductPrice>
-          </StyledAttribute>
+            {this.props.productDetails.attributes.map(attribute => {
 
-          <StyledAddToCartButton
-            disabled={!this.props.productDetails.inStock}
-            onClick={() => this.props.dispatchAddToCart(productInCart)}
-          >
-            ADD TO CART
-          </StyledAddToCartButton>
+              if (attribute.type === 'swatch') {
+                return (
+                  <StyledAttribute key={attribute.id}>
+                    <StyledAttributeName>
+                      {`${attribute.name}:`}
+                    </StyledAttributeName>
+                    <StyledAttributeValues>
+                      {attribute.items.map(item => {
 
-          <StyledAttribute>
-            <StyledDescription dangerouslySetInnerHTML={{__html: this.props.productDetails.description}}/>
-          </StyledAttribute>
-        </StyledProductDetails>
-      </StyledProductDescriptionPage>
-    );
-  }
+                        const selectedAttr = {
+                          id: attribute.id,
+                          item: {
+                            displayValue: item.displayValue,
+                            value: item.value,
+                            id: item.id,
+                            selected: true
+                          }
+                        };
+
+                        return (
+                          <StyledAttributeValue
+                            color={item.value}
+                            key={item.id}
+                            onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
+                            isSelected={getIsSelected(productInCart, item, attribute)}
+                          >
+                          </StyledAttributeValue>
+                        );
+                      })}
+                    </StyledAttributeValues>
+                  </StyledAttribute>
+                );
+              } else {
+                return (
+                  <StyledAttribute key={attribute.id}>
+                    <StyledAttributeName>
+                      {`${attribute.name}:`}
+                    </StyledAttributeName>
+                    <StyledAttributeValues>
+                      {attribute.items.map(item => {
+
+                        const selectedAttr = {
+                          id: attribute.id,
+                          item: {
+                            displayValue: item.displayValue,
+                            value: item.value,
+                            id: item.id,
+                            selected: true
+                          }
+                        };
+
+                        return (
+                          <StyledAttributeValue
+                            key={item.id}
+                            onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
+                            isSelected={getIsSelected(productInCart, item, attribute)}
+                          >
+                            <StyledAttributeValueText>{item.value}</StyledAttributeValueText>
+                          </StyledAttributeValue>
+                        );
+                      })}
+                    </StyledAttributeValues>
+                  </StyledAttribute>
+                );
+              }
+            })}
+
+            <StyledAttribute>
+              <StyledAttributeName>Price:</StyledAttributeName>
+              <StyledProductPrice>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</StyledProductPrice>
+            </StyledAttribute>
+
+            <StyledAddToCartButton
+              disabled={!this.props.productDetails.inStock}
+              onClick={() => this.props.dispatchAddToCart(productInCart)}
+            >
+                        ADD TO CART
+            </StyledAddToCartButton>
+
+            <StyledAttribute>
+              <StyledDescription ref={this.ref}>
+              </StyledDescription>
+            </StyledAttribute>
+          </StyledProductDetails>
+        </StyledProductDescriptionPage>
+      );
+    }
 }
 
 export default ProductDescriptionPage;

@@ -103,7 +103,7 @@ export const StyledAddToCartButton = styled.button<{disabled: boolean}>`
   ${props => props.disabled ? 'filter: grayscale(75%); cursor: not-allowed;' : ''};
 `;
 
-export const StyledDescription = styled.p`
+export const StyledDescription = styled.div`
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;
