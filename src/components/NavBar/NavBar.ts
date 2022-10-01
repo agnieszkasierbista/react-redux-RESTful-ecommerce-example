@@ -5,7 +5,9 @@ import {NavBarDispatchProps, NavBarStateProps} from './NavBar.types';
 import {State} from '../../types';
 
 function mapStateToProps(state: State): NavBarStateProps {
-  return {};
+  return {
+    isMiniCartVisible: state.cart.isVisible,
+  };
 }
 
 function mapDispatchToProps(dispatch:Dispatch): NavBarDispatchProps {

@@ -8,7 +8,7 @@ export interface NavBarOwnProps {
 }
 
 export interface NavBarStateProps {
-
+    isMiniCartVisible: boolean
 }
 
 export interface NavBarDispatchProps {

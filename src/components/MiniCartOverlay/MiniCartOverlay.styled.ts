@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 export const StyledMiniCartOverlay = styled.div`
   position: fixed;
-  top: 81px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(57, 55, 72, 0.22);
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 81px, rgba(57, 55, 72, 0.22) 81px, rgba(57, 55, 72, 0.22));
+  z-index: 20;
 `;
 

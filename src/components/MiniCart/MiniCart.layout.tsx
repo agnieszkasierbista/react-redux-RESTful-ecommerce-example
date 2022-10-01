@@ -18,7 +18,7 @@ export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
     return (
       this.props.isVisible
             &&
-            <StyledMiniCart onMouseLeave={() => this.props.dispatchToggleMiniCartVisibility()}>
+            <StyledMiniCart>
               <StyledMiniCartTitle>
                 <StyledMyBagHeader>My bag, </StyledMyBagHeader><StyledMyBagHeaderAmount>{this.props.amount < 1 ? null : this.props.amount} {this.props.amount > 1 ? 'items' : this.props.amount < 1 ? 'no items' : 'item'}</StyledMyBagHeaderAmount>
               </StyledMiniCartTitle>

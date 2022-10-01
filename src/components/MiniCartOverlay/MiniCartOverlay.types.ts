@@ -12,4 +12,5 @@ export interface MiniCartOverlayStateProps {
 }
 
 export interface MiniCartOverlayDispatchProps {
+    dispatchToggleMiniCartVisibility: () => void
 }

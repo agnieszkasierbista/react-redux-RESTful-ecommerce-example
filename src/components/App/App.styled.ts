@@ -16,5 +16,4 @@ export const StyledActions = styled.div`
   align-items: center;
   padding: 0;
   gap: 22px;
-  pointer-events: all;
 `;

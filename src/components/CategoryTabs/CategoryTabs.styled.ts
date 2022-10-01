@@ -7,7 +7,6 @@ export const StyledCategoryTabs = styled.ul`
   margin: 0;
   display: flex;
   align-items: flex-end;
-  pointer-events: all;
 `;
 
 export const StyledCategoryTabLink = styled(Link)`
