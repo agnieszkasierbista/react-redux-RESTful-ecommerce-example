@@ -1,19 +1,21 @@
 import {AnyAction, combineReducers, Reducer} from '@reduxjs/toolkit';
-import { REHYDRATE } from 'redux-persist';
+import {REHYDRATE} from 'redux-persist';
 import {
   ADD_TO_CART,
   CLEAR_SELECTED_ATTR,
   GET_PRODUCT_DETAILS_SUCCESS,
-  INIT_SUCCESS, REMOVE_ONE_FROM_CART,
+  INIT_SUCCESS,
+  REMOVE_ONE_FROM_CART,
   SELECT_ATTR,
-  SET_CURRENT_CURRENCY, SET_CURRENT_NAVIGATION,
-  SET_MAIN_PIC, SET_MINI_CART_STATE,
+  SET_CURRENT_CURRENCY,
+  SET_CURRENT_NAVIGATION,
+  SET_MAIN_PIC,
+  SET_MINI_CART_STATE,
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY,
   TOGGLE_MINI_CART_VISIBILITY
 } from './actions';
 import {getNumberOfItemsInTheCart} from './components/helpers';
 import {ProductInCart, Selected} from './types';
-import {isVisible} from '@testing-library/user-event/dist/utils';
 
 export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
   switch (action.type) {
@@ -143,12 +145,20 @@ export const productDescriptionPageReducer: Reducer = (state, action: AnyAction)
     };
   }
 
+  case ADD_TO_CART: {
+    return {
+      ...state,
+      selected: action.payload.selected
+    };
+  }
+
   case CLEAR_SELECTED_ATTR: {
     return {
       ...state,
       selected: []
     };
   }
+
   default:
     return {...state};
   }
@@ -201,17 +211,22 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
       return JSON.stringify(rest) === JSON.stringify(action.payload);
     });
 
-    const productsInCartWithCounter = (!ProductInCartDuplicate ? [...state.products, action.payload] : state.products).map((productInCart: ProductInCart) => {
-      const {count, ...rest} = productInCart;
+    const productsInCartWithCounter = (
+      !ProductInCartDuplicate
+        ?
+        [...state.products, action.payload]
+        : state.products)
+      .map((productInCart: ProductInCart) => {
+        const {count, ...rest} = productInCart;
 
-      const shouldAddToCount = JSON.stringify(rest) === JSON.stringify(action.payload);
-      const currentCount = (shouldAddToCount && productInCart.count) ? productInCart.count + 1 : productInCart.count;
+        const shouldAddToCount = JSON.stringify(rest) === JSON.stringify(action.payload);
+        const currentCount = (shouldAddToCount && productInCart.count) ? productInCart.count + 1 : productInCart.count;
 
-      return {
-        ...productInCart,
-        count: !productInCart.count ? 1 : currentCount,
-      };
-    });
+        return {
+          ...productInCart,
+          count: !productInCart.count ? 1 : currentCount,
+        };
+      });
 
     return {
       ...state,

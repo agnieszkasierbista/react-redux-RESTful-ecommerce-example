@@ -15,7 +15,7 @@ import {
 } from './ProductDescriptionPage.styled';
 import Gallery from './Gallery/Gallery';
 import {createDefaultAttrObj, findPrice, getIsSelected} from '../helpers';
-import {ProductInCart, Selected} from '../../types';
+import {ProductDetails, ProductInCart, Selected} from '../../types';
 
 export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
 
@@ -49,6 +49,8 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
 
       const currentPrice = findPrice(this.props.productDetails, this.props.currentCurrency);
       const defaultAttributes: Selected[] = this.props.productDetails.attributes.map(createDefaultAttrObj);
+
+      const productToCart: ProductInCart = {...this.props.productDetails, selected: this.props.selected};
 
       const productInCart: ProductInCart = this.props.selected.length
         ?
@@ -105,7 +107,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                             color={item.value}
                             key={item.id}
                             onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
-                            isSelected={getIsSelected(productInCart, item, attribute)}
+                            isSelected={getIsSelected(productToCart, item, attribute)}
                           >
                           </StyledAttributeValue>
                         );
@@ -136,7 +138,7 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
                           <StyledAttributeValue
                             key={item.id}
                             onClick={() => this.props.dispatchSelectAttr(selectedAttr)}
-                            isSelected={getIsSelected(productInCart, item, attribute)}
+                            isSelected={getIsSelected(productToCart, item, attribute)}
                           >
                             <StyledAttributeValueText>{item.value}</StyledAttributeValueText>
                           </StyledAttributeValue>
