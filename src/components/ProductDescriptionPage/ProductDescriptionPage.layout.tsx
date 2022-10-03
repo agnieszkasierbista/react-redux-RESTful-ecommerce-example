@@ -5,7 +5,8 @@ import {
   StyledAttribute,
   StyledAttributeName,
   StyledAttributeValue,
-  StyledAttributeValues, StyledAttributeValueText,
+  StyledAttributeValues,
+  StyledAttributeValueText,
   StyledDescription,
   StyledProductDescriptionPage,
   StyledProductDetails,
@@ -14,8 +15,8 @@ import {
   StyledProductPrice
 } from './ProductDescriptionPage.styled';
 import Gallery from './Gallery/Gallery';
-import {createDefaultAttrObj, findPrice, getIsSelected} from '../helpers';
-import {ProductDetails, ProductInCart, Selected} from '../../types';
+import {findPrice, getIsSelected} from '../helpers';
+import {ProductInCart} from '../../types';
 
 export class ProductDescriptionPage extends PureComponent<PropsWithChildren<ProductDescriptionPageProps>> {
 
@@ -48,27 +49,10 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
     render() {
 
       const currentPrice = findPrice(this.props.productDetails, this.props.currentCurrency);
-      const defaultAttributes: Selected[] = this.props.productDetails.attributes.map(createDefaultAttrObj);
 
       const productToCart: ProductInCart = {...this.props.productDetails, selected: this.props.selected};
 
-      const productInCart: ProductInCart = this.props.selected.length
-        ?
-        {
-          ...this.props.productDetails,
-          selected: defaultAttributes.map((defaultAttribute) => {
 
-            return {
-              ...defaultAttribute,
-              ...(this.props.selected.find((selectedAttr) => selectedAttr.id === defaultAttribute.id))
-            };
-          }),
-        }
-        :
-        {
-          ...this.props.productDetails,
-          selected: defaultAttributes,
-        };
 
       return (
 
@@ -155,9 +139,9 @@ export class ProductDescriptionPage extends PureComponent<PropsWithChildren<Prod
               <StyledProductPrice>{`${currentPrice.currency.symbol} ${currentPrice.amount}`}</StyledProductPrice>
             </StyledAttribute>
 
-            <StyledAddToCartButton
-              disabled={!this.props.productDetails.inStock}
-              onClick={() => this.props.dispatchAddToCart(productInCart)}
+            <StyledAddToCartButton title={this.props.selected.length < this.props.productDetails.attributes.length ? 'To add the product to your cart please select all available options' : ''}
+              disabled={!this.props.productDetails.inStock || this.props.selected.length < this.props.productDetails.attributes.length}
+              onClick={() => this.props.dispatchAddToCart(productToCart)}
             >
                         ADD TO CART
             </StyledAddToCartButton>
