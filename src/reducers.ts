@@ -3,6 +3,7 @@ import {REHYDRATE} from 'redux-persist';
 import {
   ADD_TO_CART,
   CLEAR_SELECTED_ATTR,
+  GET_PRODUCTS_LIST_SUCCESS,
   GET_PRODUCT_DETAILS_SUCCESS,
   INIT_SUCCESS,
   REMOVE_ONE_FROM_CART,
@@ -88,13 +89,13 @@ export const tabReducer: Reducer = (state, action: AnyAction) => {
     };
   }
 
-
   case SET_CURRENT_NAVIGATION: {
     return {
       ...state,
       currentNavigation: action.payload
     };
   }
+
   default:
     return {...state};
   }
@@ -110,10 +111,10 @@ export const productListingPageReducer: Reducer = (state, action: AnyAction) => 
     };
   }
 
-  case INIT_SUCCESS: {
+  case GET_PRODUCTS_LIST_SUCCESS: {
     return {
       ...state,
-      products: action.payload.products
+      products: action.payload.category.products
     };
   }
   default:

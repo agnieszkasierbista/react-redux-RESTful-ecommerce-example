@@ -1,5 +1,4 @@
-import {Currency, InitialData, ProductDetails, ProductInCart, Selected} from './types';
-import {Category} from './components/CategoryTabs/CategoryTabs.types';
+import {Currency, InitialData, Product, ProductDetails, ProductInCart, Selected} from './types';
 
 export const TOGGLE_CURRENCY_DROPDOWN_VISIBILITY = 'TOGGLE_CURRENCY_DROPDOWN_VISIBILITY';
 export const INIT = 'INIT';
@@ -16,6 +15,22 @@ export const TOGGLE_MINI_CART_VISIBILITY = 'TOGGLE_MINI_CART_VISIBILITY';
 export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
 export const SET_CURRENT_NAVIGATION = 'SET_CURRENT_NAVIGATION';
 export const SET_MINI_CART_STATE = 'SET_MINI_CART_STATE';
+export const GET_PRODUCTS_LIST = 'GET_PRODUCTS_LIST';
+export const GET_PRODUCTS_LIST_SUCCESS = 'GET_PRODUCTS_LIST_SUCCESS';
+
+export function getProductsListSuccess(productsListForCurrentCategory: { category: Product[] }) {
+  return {
+    type: GET_PRODUCTS_LIST_SUCCESS,
+    payload: productsListForCurrentCategory
+  };
+}
+
+export function getProductsList(categoryName: string) {
+  return {
+    type: GET_PRODUCTS_LIST,
+    payload: categoryName
+  };
+}
 
 export function setMiniCartState(isActive: boolean) {
   return {
@@ -112,7 +127,6 @@ export function initSuccess(initialData: InitialData, pathName: string) {
     payload: {
       categories: initialData[0].categories,
       currencies: initialData[0].currencies,
-      products: (initialData[0].categories?.find((category: Category) => category.name === 'all')?.products) || [],
       pathName
     }
   };

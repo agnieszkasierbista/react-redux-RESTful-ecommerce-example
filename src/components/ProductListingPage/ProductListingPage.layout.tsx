@@ -16,6 +16,15 @@ import {getProductDescriptionPageLink} from '../helpers';
 
 
 export class ProductListingPage extends PureComponent<PropsWithChildren<ProductListingPageProps>> {
+  componentDidMount() {
+    this.props.dispatchGetProductsList(this.props.categoryName);
+  }
+
+  componentDidUpdate(prevProps: ProductListingPageProps) {
+    if(prevProps.pathName !== this.props.pathName) {
+      this.props.dispatchGetProductsList(this.props.categoryName);
+    }
+  }
 
   render() {
 
@@ -24,7 +33,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
         <StyledProductListingPageTitle>
           <h2>{this.props.categoryName}</h2>
         </StyledProductListingPageTitle>
-        {this.props.products.filter((product) => {
+        {this.props.products?.filter((product) => {
           return this.props.shouldInclude(product);
         }).map(product => {
 

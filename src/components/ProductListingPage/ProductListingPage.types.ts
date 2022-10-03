@@ -11,12 +11,14 @@ export interface ProductListingPageOwnProps {
 }
 
 export interface ProductListingPageStateProps {
+    pathName: string,
     products: Product[],
     currentCurrency: Currency,
 }
 
 export interface ProductListingPageDispatchProps {
-   dispatchAddToCart: (product: ProductInCart) => void,
-   dispatchAddToCartByProductId: (productId: string) => void
+    dispatchGetProductsList: (pathName: string) => void,
+    dispatchAddToCart: (product: ProductInCart) => void,
+    dispatchAddToCartByProductId: (productId: string) => void
 }
 

@@ -2,11 +2,12 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import ProductListingPage from './ProductListingPage.layout';
 import {ProductListingPageDispatchProps, ProductListingPageStateProps} from './ProductListingPage.types';
-import {addToCart, addToCartByProductId} from '../../actions';
+import {addToCart, addToCartByProductId, getProductsList} from '../../actions';
 import {ProductInCart, State} from '../../types';
 
 function mapStateToProps(state: State): ProductListingPageStateProps {
   return {
+    pathName: state.tab.currentNavigation,
     products: state.productListingPage.products,
     currentCurrency: state.currencySwitcher.currentCurrency
   };
@@ -14,6 +15,7 @@ function mapStateToProps(state: State): ProductListingPageStateProps {
 
 function mapDispatchToProps(dispatch: Dispatch): ProductListingPageDispatchProps  {
   return {
+    dispatchGetProductsList: (pathName) =>dispatch(getProductsList(pathName)),
     dispatchAddToCart: (product: ProductInCart) => dispatch(addToCart(product)),
     dispatchAddToCartByProductId: (productId: string) => dispatch(addToCartByProductId(productId))
   };

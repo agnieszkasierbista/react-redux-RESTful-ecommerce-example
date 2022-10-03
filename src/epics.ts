@@ -5,7 +5,8 @@ import {request} from 'graphql-request';
 import {
   ADD_TO_CART_BY_PRODUCT_ID,
   addToCart,
-  GET_PRODUCT_DETAILS,
+  GET_PRODUCTS_LIST,
+  GET_PRODUCT_DETAILS, getProductsListSuccess,
   getProductDetailsSuccess,
   INIT,
   initSuccess
@@ -15,7 +16,7 @@ import {InitialData, ProductDetails, ProductInCart, Selected} from './types';
 import {AnyAction} from '@reduxjs/toolkit';
 
 function getQueryDetails(action: AnyAction) {
-  const queryDetails = gql.query([{
+  return gql.query([{
     operation: 'product',
     variables: {id: {value: action.payload, required: true}},
     fields: ['id', 'name', 'description', 'inStock', 'gallery',
@@ -34,9 +35,8 @@ function getQueryDetails(action: AnyAction) {
         ]
       },]
   }]);
-
-  return queryDetails;
 }
+
 
 const {query} = gql.query([
   {
@@ -70,6 +70,43 @@ const {query} = gql.query([
   }
 ]);
 
+function getProductListQueryDetails(action: AnyAction) {
+
+  return gql.query([
+    {
+      operation: 'category',
+      variables: {
+        input: { value : {
+          title: action.payload
+        },
+        type: 'CategoryInput'
+        }
+      },
+      fields: ['name',
+        {
+          products: [
+            'id',
+            'name',
+            'brand',
+            {
+              prices: [
+                {
+                  currency: [
+                    'symbol',
+                    'label'
+                  ]
+                },
+                'amount'
+              ]
+            },
+            'category',
+            'gallery',
+            'inStock'
+          ]
+        }]
+    },
+  ]);
+}
 
 export const onInit: Epic = action$ => action$.pipe(
   ofType(INIT),
@@ -83,14 +120,32 @@ export const onInit: Epic = action$ => action$.pipe(
   })
 );
 
+export const onGetProductsList: Epic = action$ => action$.pipe(
+  ofType(GET_PRODUCTS_LIST),
+  switchMap((action) => {
+    console.log(123, getProductListQueryDetails(action).query, getProductListQueryDetails(action));
+    return from(
+      request(
+        'http://localhost:4000',
+        getProductListQueryDetails(action).query,
+        getProductListQueryDetails(action).variables)
+    );
+  }),
+  switchMap((initialProductList: any) => {
+    console.log(initialProductList);
+    return of(getProductsListSuccess(initialProductList));
+  })
+);
+
 export const onGetProductDetails: Epic = action$ => action$.pipe(
   ofType(GET_PRODUCT_DETAILS),
   switchMap((action) => {
+    console.log(getQueryDetails(action).query, getQueryDetails(action).variables);
     return from(
       request('http://localhost:4000', getQueryDetails(action).query, getQueryDetails(action).variables)
     );
   }),
-  switchMap((productDetails: {product: ProductDetails}) => {
+  switchMap((productDetails: { product: ProductDetails }) => {
     return of(getProductDetailsSuccess(productDetails));
   })
 );
@@ -117,4 +172,8 @@ export const onAddToCartByProductId: Epic = action$ => action$.pipe(
 );
 
 
-export const rootEpic = combineEpics(onInit, onGetProductDetails, onAddToCartByProductId);
+export const rootEpic = combineEpics(
+  onInit,
+  onGetProductDetails,
+  onAddToCartByProductId,
+  onGetProductsList);
