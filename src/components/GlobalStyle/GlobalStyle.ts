@@ -2,7 +2,6 @@ import {createGlobalStyle} from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
  #root {
-   max-width: 1240px;
    position: relative;
    margin: 0 auto;
    background-position: center;

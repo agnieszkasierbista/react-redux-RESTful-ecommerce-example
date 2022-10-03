@@ -8,6 +8,5 @@ export const StyledMiniCartOverlay = styled.div`
   right: 0;
   bottom: 0;
   background-image: linear-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 81px, rgba(57, 55, 72, 0.22) 81px, rgba(57, 55, 72, 0.22));
-  z-index: 20;
 `;
 

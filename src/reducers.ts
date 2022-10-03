@@ -13,6 +13,7 @@ import {
 } from './actions';
 import {getNumberOfItemsInTheCart} from './components/helpers';
 import {ProductInCart, Selected} from './types';
+import {isVisible} from '@testing-library/user-event/dist/utils';
 
 export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
   switch (action.type) {
@@ -174,7 +175,7 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
     return {
 
       ...state,
-      ...(action.payload ? action.payload.cart : {}),
+      ...(action.payload ? {...action.payload.cart, isVisible: false} : {}),
     };
   }
 

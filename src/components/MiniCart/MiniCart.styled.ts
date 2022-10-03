@@ -8,7 +8,6 @@ export const StyledMiniCart = styled.div`
   position: absolute;
   top: 81px;
   right: 0;
-  z-index: 21;
   display: flex;
   flex-direction: column;
   justify-content: center;
