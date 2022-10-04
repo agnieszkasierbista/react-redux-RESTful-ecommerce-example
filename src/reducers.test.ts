@@ -11,6 +11,7 @@ import {
   addToCart,
   clearSelectedAttributes,
   getProductDetailsSuccess,
+  getProductsListSuccess,
   initSuccess,
   removeOneFromCart,
   selectAttr,
@@ -225,14 +226,9 @@ describe('reducers', () => {
 
   describe('productListingPage', () => {
     it('should set initial data for ProductListingPage', () => {
-      expect(productListingPageReducer(preloadedStateProductListingPage, initSuccess([
-        {
-          categories: [categoryC],
-          currencies: [currencyC],
-          pathName: 'a'
-        }
-      ], 'a'))).toEqual({
-        products: []
+      expect(productListingPageReducer(preloadedStateProductListingPage, getProductsListSuccess(
+        { category: {products: [productA]}}))).toEqual({
+        products: [productA]
       });
     });
   });
@@ -256,6 +252,13 @@ describe('reducers', () => {
       expect(productDescriptionPageReducer(preloadedStateProductDescriptionPage, clearSelectedAttributes())).toEqual({
         productDetails: productDetailsB,
         selected: []
+      });
+    });
+
+    it('should add product to cart', () => {
+      expect(productDescriptionPageReducer(preloadedStateProductDescriptionPage, addToCart(productToAddToCart))).toEqual({
+        ...preloadedStateProductDescriptionPage,
+        selected: productToAddToCart.selected
       });
     });
 

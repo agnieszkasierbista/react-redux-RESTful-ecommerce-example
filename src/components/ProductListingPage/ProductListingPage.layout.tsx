@@ -2,12 +2,15 @@ import React, {PropsWithChildren, PureComponent} from 'react';
 import {ProductListingPageProps} from './ProductListingPage.types';
 import {
   StyledAddToCartShorthand,
-  StyledAddToCartShorthandIcon, StyledBrandAndName,
+  StyledAddToCartShorthandIcon,
+  StyledBrandAndName,
   StyledOutOfStock,
   StyledPLPitem,
-  StyledPLPoutOfStockItem, StyledPrice,
+  StyledPLPoutOfStockItem,
+  StyledPrice,
   StyledProductListingPage,
-  StyledProductListingPageImg, StyledProductListingPageItemDetails,
+  StyledProductListingPageImg,
+  StyledProductListingPageItemDetails,
   StyledProductListingPageOutOfStockImg,
   StyledProductListingPageTitle
 } from './ProductListingPage.styled';
@@ -21,7 +24,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
   }
 
   componentDidUpdate(prevProps: ProductListingPageProps) {
-    if(prevProps.pathName !== this.props.pathName) {
+    if(prevProps.pathName !== this.props.pathName && prevProps.products.length) {
       this.props.dispatchGetProductsList(this.props.categoryName);
     }
   }
@@ -42,6 +45,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
               return price.currency.label === this.props.currentCurrency.label;
             }
           );
+
           if (product.inStock) {
             return (
               <StyledPLPitem key={product.id}>

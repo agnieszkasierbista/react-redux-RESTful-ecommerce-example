@@ -12,7 +12,7 @@ import {
   initSuccess
 } from './actions';
 import {createDefaultAttrObj} from './components/helpers';
-import {InitialData, ProductDetails, ProductInCart, Selected} from './types';
+import {InitialData, Product, ProductDetails, ProductInCart, Selected} from './types';
 import {AnyAction} from '@reduxjs/toolkit';
 
 function getQueryDetails(action: AnyAction) {
@@ -41,28 +41,7 @@ function getQueryDetails(action: AnyAction) {
 const {query} = gql.query([
   {
     operation: 'categories',
-    fields: ['name',
-      {
-        products: [
-          'id',
-          'name',
-          'brand',
-          {
-            prices: [
-              {
-                currency: [
-                  'symbol',
-                  'label'
-                ]
-              },
-              'amount'
-            ]
-          },
-          'category',
-          'gallery',
-          'inStock'
-        ]
-      }]
+    fields: ['name']
   },
   {
     operation: 'currencies',
@@ -123,7 +102,6 @@ export const onInit: Epic = action$ => action$.pipe(
 export const onGetProductsList: Epic = action$ => action$.pipe(
   ofType(GET_PRODUCTS_LIST),
   switchMap((action) => {
-    console.log(123, getProductListQueryDetails(action).query, getProductListQueryDetails(action));
     return from(
       request(
         'http://localhost:4000',
@@ -131,8 +109,7 @@ export const onGetProductsList: Epic = action$ => action$.pipe(
         getProductListQueryDetails(action).variables)
     );
   }),
-  switchMap((initialProductList: any) => {
-    console.log(initialProductList);
+  switchMap((initialProductList: {category: { products: Product[] }}) => {
     return of(getProductsListSuccess(initialProductList));
   })
 );

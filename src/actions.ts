@@ -1,3 +1,4 @@
+import { Category } from './components/CategoryTabs/CategoryTabs.types';
 import {Currency, InitialData, Product, ProductDetails, ProductInCart, Selected} from './types';
 
 export const TOGGLE_CURRENCY_DROPDOWN_VISIBILITY = 'TOGGLE_CURRENCY_DROPDOWN_VISIBILITY';
@@ -18,7 +19,7 @@ export const SET_MINI_CART_STATE = 'SET_MINI_CART_STATE';
 export const GET_PRODUCTS_LIST = 'GET_PRODUCTS_LIST';
 export const GET_PRODUCTS_LIST_SUCCESS = 'GET_PRODUCTS_LIST_SUCCESS';
 
-export function getProductsListSuccess(productsListForCurrentCategory: { category: Product[] }) {
+export function getProductsListSuccess(productsListForCurrentCategory: { category: {products:  Product[] } }) {
   return {
     type: GET_PRODUCTS_LIST_SUCCESS,
     payload: productsListForCurrentCategory

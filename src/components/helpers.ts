@@ -21,12 +21,12 @@ export function getProductDescriptionPageLink(category: string, id: string) {
 }
 
 export function getProductDescriptionPagePath(product: Product) {
-  return getProductDescriptionPageLink(product.category, product.id);
+  return `/categories/${product.category}/${product.id}`;
 }
 
 export function getNumberOfItemsInTheCart(productsInCartWithCounter: ProductInCart[]) {
   return (productsInCartWithCounter).map((product) => {
-    if(product.count) {
+    if (product.count) {
       return product.count;
     } else {
       return 0;
