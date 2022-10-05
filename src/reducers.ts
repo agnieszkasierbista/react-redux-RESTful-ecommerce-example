@@ -18,7 +18,7 @@ import {
 import {getNumberOfItemsInTheCart} from './components/helpers';
 import {ProductInCart, Selected} from './types';
 
-export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
+export const currencySwitcherReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
 
   case REHYDRATE: {
@@ -47,11 +47,11 @@ export const currencySwitcherReducer: Reducer = (state, action: AnyAction) => {
     };
   }
   default:
-    return {...state};
+    return state;
   }
 };
 
-export const categoryTabsReducer: Reducer = (state, action: AnyAction) => {
+export const categoryTabsReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
 
   case REHYDRATE: {
@@ -68,11 +68,11 @@ export const categoryTabsReducer: Reducer = (state, action: AnyAction) => {
     };
   }
   default:
-    return {...state};
+    return state;
   }
 };
 
-export const tabReducer: Reducer = (state, action: AnyAction) => {
+export const tabReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
 
   case REHYDRATE: {
@@ -97,11 +97,11 @@ export const tabReducer: Reducer = (state, action: AnyAction) => {
   }
 
   default:
-    return {...state};
+    return state;
   }
 };
 
-export const productListingPageReducer: Reducer = (state, action: AnyAction) => {
+export const productListingPageReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
 
   case REHYDRATE: {
@@ -118,11 +118,11 @@ export const productListingPageReducer: Reducer = (state, action: AnyAction) => 
     };
   }
   default:
-    return {...state};
+    return state;
   }
 };
 
-export const productDescriptionPageReducer: Reducer = (state, action: AnyAction) => {
+export const productDescriptionPageReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
   case GET_PRODUCT_DETAILS_SUCCESS: {
     return {
@@ -161,11 +161,11 @@ export const productDescriptionPageReducer: Reducer = (state, action: AnyAction)
   }
 
   default:
-    return {...state};
+    return state;
   }
 };
 
-export const galleryReducer: Reducer = (state, action: AnyAction) => {
+export const galleryReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
   case SET_MAIN_PIC: {
     return {
@@ -174,12 +174,12 @@ export const galleryReducer: Reducer = (state, action: AnyAction) => {
     };
   }
   default:
-    return {...state};
+    return state;
   }
 
 };
 
-export const cartReducer: Reducer = (state, action: AnyAction) => {
+export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
   switch (action.type) {
 
   case REHYDRATE: {
@@ -207,6 +207,7 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
   case ADD_TO_CART: {
 
     const ProductInCartDuplicate = state.products.find((productInCart: ProductInCart) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const {count, ...rest} = productInCart;
 
       return JSON.stringify(rest) === JSON.stringify(action.payload);
@@ -218,6 +219,7 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
         [...state.products, action.payload]
         : state.products)
       .map((productInCart: ProductInCart) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const {count, ...rest} = productInCart;
 
         const shouldAddToCount = JSON.stringify(rest) === JSON.stringify(action.payload);
@@ -259,7 +261,7 @@ export const cartReducer: Reducer = (state, action: AnyAction) => {
     };
   }
   default:
-    return {...state};
+    return state;
   }
 
 };

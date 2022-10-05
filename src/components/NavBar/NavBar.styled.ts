@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const StyledNavBar = styled.div<{isMiniCartVisible: boolean}>`
   position: sticky;
   top:0;
-  margin: 0 100px;
+  padding: 0 100px;
   background-color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: space-between;

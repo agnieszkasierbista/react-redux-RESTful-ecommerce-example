@@ -1,7 +1,6 @@
-import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import CategoryTabs from './CategoryTabs.layout';
-import {CategoryTabsDispatchProps, CategoryTabsStateProps} from './CategoryTabs.types';
+import {CategoryTabsStateProps} from './CategoryTabs.types';
 import {State} from '../../types';
 
 function mapStateToProps(state: State): CategoryTabsStateProps {
@@ -11,8 +10,4 @@ function mapStateToProps(state: State): CategoryTabsStateProps {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch): CategoryTabsDispatchProps {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryTabs);
+export default connect(mapStateToProps)(CategoryTabs);

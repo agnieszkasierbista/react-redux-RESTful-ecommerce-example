@@ -1,7 +1,6 @@
-import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import NavBar from './NavBar.layout';
-import {NavBarDispatchProps, NavBarStateProps} from './NavBar.types';
+import {NavBarStateProps} from './NavBar.types';
 import {State} from '../../types';
 
 function mapStateToProps(state: State): NavBarStateProps {
@@ -10,8 +9,4 @@ function mapStateToProps(state: State): NavBarStateProps {
   };
 }
 
-function mapDispatchToProps(dispatch:Dispatch): NavBarDispatchProps {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps)(NavBar);

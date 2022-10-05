@@ -14,7 +14,7 @@ import WithoutMiniCart from '../WithoutMiniCart/WithoutMiniCart';
 import MiniCart from '../MiniCart/MiniCart';
 
 class App extends PureComponent<PropsWithChildren<AppProps>> {
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatchInit();
   }
 

@@ -1,4 +1,3 @@
-import { Category } from './components/CategoryTabs/CategoryTabs.types';
 import {Currency, InitialData, Product, ProductDetails, ProductInCart, Selected} from './types';
 
 export const TOGGLE_CURRENCY_DROPDOWN_VISIBILITY = 'TOGGLE_CURRENCY_DROPDOWN_VISIBILITY';

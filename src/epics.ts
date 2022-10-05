@@ -117,7 +117,6 @@ export const onGetProductsList: Epic = action$ => action$.pipe(
 export const onGetProductDetails: Epic = action$ => action$.pipe(
   ofType(GET_PRODUCT_DETAILS),
   switchMap((action) => {
-    console.log(getQueryDetails(action).query, getQueryDetails(action).variables);
     return from(
       request('http://localhost:4000', getQueryDetails(action).query, getQueryDetails(action).variables)
     );

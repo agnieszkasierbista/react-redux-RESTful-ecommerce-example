@@ -1,13 +1,8 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import Tab from './Tab.layout';
-import {TabDispatchProps, TabStateProps} from './Tab.types';
-import {State} from '../../../types';
+import {TabDispatchProps} from './Tab.types';
 import {setCurrentNavigation} from '../../../actions';
-
-function mapStateToProps(state: State): TabStateProps {
-  return {};
-}
 
 function mapDispatchToProps(dispatch: Dispatch): TabDispatchProps {
   return {
@@ -15,4 +10,4 @@ function mapDispatchToProps(dispatch: Dispatch): TabDispatchProps {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tab);
+export default connect(null, mapDispatchToProps)(Tab);

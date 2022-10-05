@@ -24,7 +24,7 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
   }
 
   componentDidUpdate(prevProps: ProductListingPageProps) {
-    if(prevProps.pathName !== this.props.pathName && prevProps.products.length) {
+    if(prevProps.categoryName !== this.props.categoryName) {
       this.props.dispatchGetProductsList(this.props.categoryName);
     }
   }
