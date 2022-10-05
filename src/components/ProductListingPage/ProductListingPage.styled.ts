@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 export const StyledProductListingPage = styled.section`
   height: 100%;
+  margin: 80px 100px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-around;
-  grid-row-gap: 10px;
-  grid-column-gap: 10px;
+  grid-row-gap: 103px;
+  grid-column-gap: 40px;
 `;
 
 export const StyledAddToCartShorthand = styled.button`
@@ -29,7 +30,9 @@ export const StyledPLPitem = styled.article`
   position: relative;
   display: inline-block;
   min-height: 444px;
-  width: 100%;
+  min-width: 386px;
+  padding: 16px;
+  outline: 2px solid red;
   
   &:hover {
     box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
@@ -48,8 +51,11 @@ export const StyledPLPoutOfStockItem = styled.article`
   position: relative;
   display: inline-block;
   min-height: 444px;
-  width: 100%;
+  min-width: 386px;
   opacity: 0.5;
+  outline: 2px solid blue;
+  padding: 16px;
+
 `;
 
 export const StyledProductListingPageImg = styled.div<{ imgSrc: string }>`
@@ -58,7 +64,6 @@ export const StyledProductListingPageImg = styled.div<{ imgSrc: string }>`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  border: 20px solid ${props => props.theme.colors.white};
   width: 100%;
   height: 70%;
   box-sizing: border-box;
@@ -68,7 +73,7 @@ export const StyledProductListingPageItemDetails = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 20px solid ${props => props.theme.colors.white};
+  padding-top: 24px;
 `;
 
 export const StyledBrandAndName = styled.p`
@@ -102,9 +107,9 @@ export const StyledProductListingPageOutOfStockImg = styled.div<{ imgSrc: string
 export const StyledProductListingPageTitle = styled.header`
   display: inline-block;
   width: 100%;
-  padding: 25px 0;
   grid-column: 1 / span 3;
   grid-row: 1 /span 1;
+
   
   & h2 {
     font-style: normal;
@@ -112,7 +117,7 @@ export const StyledProductListingPageTitle = styled.header`
     font-size: 42px;
     line-height: 160%;
     text-transform: capitalize;
-    padding: 25px 0;
+    outline: 2px solid blue;
   }
 `;
 

@@ -3,15 +3,13 @@ import styled from 'styled-components';
 
 export const StyledGallery = styled.section`
   display: flex;
-  padding: 0 10px;
-  flex: 2 1;
+  column-gap: 40px;
 `;
 
 export const StyledThumbnails = styled.div`
-  flex: 1 1;
+  //flex: 1 1;
   display: flex;
   flex-direction: column;
-  padding-right: 10px;
 `;
 
 export const StyledThumbnail = styled.div<{ src: string }>`
@@ -20,9 +18,9 @@ export const StyledThumbnail = styled.div<{ src: string }>`
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  width: 100px;
-  height: 100px;
-  margin-bottom: 15px;
+  min-width: 79px;
+  min-height: 80px;
+  margin-bottom: 32px;
 `;
 
 export const StyledMainPic = styled.div<{ src: string }>`
@@ -31,7 +29,6 @@ export const StyledMainPic = styled.div<{ src: string }>`
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  max-width: 90%;
-  max-height: 90%;
-  flex: 6 1;
+  min-width: 610px;
+  min-height: 511px;
 `;

@@ -5,13 +5,14 @@ export const StyledProductDescriptionPage = styled.article`
   box-sizing: border-box;
   width: 100%;
   height: calc(100vh - 81px);
-  padding: 10px 80px 10px 0;
+  padding: 80px 219px 0 100px;
   display: flex;
-  justify-content: space-around;
+  column-gap: 100px;
 `;
 
 export const StyledProductDetails = styled.section`
   display: flex;
+  min-width: 292px;
   flex-direction: column;
   flex: 1 3;
 `;
@@ -86,7 +87,7 @@ export const StyledAttributeValueText = styled.p`
   letter-spacing: 0.05em;
 `;
 
-export const StyledAddToCartButton = styled.button<{disabled: boolean}>`
+export const StyledAddToCartButton = styled.button<{ disabled: boolean }>`
   padding: 16px 32px;
   margin: 30px 0;
   background: ${props => props.theme.colors.green};
@@ -99,7 +100,6 @@ export const StyledAddToCartButton = styled.button<{disabled: boolean}>`
   flex-direction: column;
   align-items: center;
   grid-column: 1 / span 2;
-  
   ${props => props.disabled ? 'filter: grayscale(75%); cursor: not-allowed;' : ''};
 `;
 

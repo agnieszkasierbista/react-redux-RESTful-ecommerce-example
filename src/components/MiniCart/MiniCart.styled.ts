@@ -6,23 +6,19 @@ export const StyledMiniCart = styled.div`
   background-color: ${props => props.theme.colors.white};
   background-clip: padding-box;
   position: absolute;
-  top: 81px;
-  right: 0;
+  top: 78px;
+  right: 72px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 32px 16px;
-  gap: 22px;
-  
-   @media(min-width:1440px) {
-     right: -50px;
-   }
+  width: 325px;
+  box-sizing: border-box;
 `;
 
 export const StyledMiniCartTitle = styled.section`
   width: 100%;
-  padding-top: 32px;
   font-size: 16px;
   line-height: 160%;
   text-align: left;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const StyledCart = styled.section<{isBigCart: boolean}>`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  margin: ${props => props.isBigCart ? '0 100px' : 0};
 `;
 
 export const StyledCartHeader = styled.p`
@@ -12,7 +12,7 @@ export const StyledCartHeader = styled.p`
   font-weight: 700;
   font-size: 32px;
   line-height: 160%;
-  padding: 25px 0;
+  padding: 80px 0 20px;
   text-transform: uppercase;
 `;
 
@@ -25,7 +25,6 @@ export const StyledCartItemWrapper = styled.section`
 export const StyledCartItem = styled.article`
   display: flex;
   flex-direction: column;
-  padding-bottom: 15px;
 `;
 
 export const StyledCartItemDetails = styled.section`
@@ -127,9 +126,9 @@ export const ChevronRight = styled.img`
 export const StyledPurchaseDetails = styled.section`
   display: grid;
   grid-template-rows: auto auto auto auto;
-  grid-template-columns: 20% 20% auto auto;
+  grid-template-columns: 11% 10% auto auto;
   flex-basis: 50%;
-  padding: 16px 0 10px 0;
+  padding: 8px 0 10px 0;
 `;
 
 export const StyledValue = styled.p`
@@ -166,23 +165,24 @@ export const StyledTotal = styled.p<{isBigCart?: boolean}>`
 
 export const StyledHr = styled.hr<{isBigCart: boolean}>`
   border: none;
-  border-top: ${props => props.isBigCart ? '1px solid #E5E5E5' : '1px solid transparent'};
-  width: 100%;
-  padding-bottom: 15px;
+  border-top: ${props => props.isBigCart ? '1px solid #E5E5E5' : 'none'};
+  width:  ${props => props.isBigCart ? '100%' : 0};
+  padding: ${props => props.isBigCart ? '0 0 24px 0' : 0};
+  margin: 24px 0 0 0;
 `;
 
 export const StyledProductInCartDetailsBrand = styled.p<{isBigCart?: boolean}>`
   font-style: normal;
   font-weight: ${props => props.isBigCart ? '600' : '300'};
   font-size: ${props => props.isBigCart ? '30px' : '16px'};
-  padding-bottom: ${props => props.isBigCart ? '12px' : '8px'};
+  padding-bottom: ${props => props.isBigCart ? '16px' : '8px'};
 `;
 
 export const StyledProductInCartDetailsName = styled.p<{isBigCart?: boolean}>`
   font-style: normal;
   font-weight: ${props => props.isBigCart ? '400' : '300'};
   font-size: ${props => props.isBigCart ? '30px' : '16px'};
-  padding-bottom: ${props => props.isBigCart ? '40px' : '4px'};
+  padding-bottom: ${props => props.isBigCart ? '20px' : '4px'};
 `;
 
 export const StyledProductInCartAttribute = styled.section`
@@ -195,19 +195,19 @@ export const StyledProductInCartAttributeName = styled.p<{isBigCart?: boolean}>`
   font-style: normal;
   font-weight: ${props => props.isBigCart ? '700' : '400'};
   font-size: ${props => props.isBigCart ? '18px' : '14px'};
-  padding: 10px 0;
+  padding-bottom: ${props => props.isBigCart ? '7px' : '14px'};
 `;
 
 export const StyledProductInCartAttributeValues = styled.div<{isBigCart?: boolean}>`
   display: flex;
-  flex: 1 1;
+  margin-bottom: 16px;
 `;
 
 export const StyledProductInCartPrice = styled.p<{isBigCart?: boolean}>`
   font-style: normal;
   font-weight: ${props => props.isBigCart ? '700' : '500'};
   font-size:${props => props.isBigCart ? '24px' : '16px'};
-  padding-top:${props => props.isBigCart ? '0' : '6px'};
+  padding-bottom:${props => props.isBigCart ? '20px' : '6px'};
   line-height: 160%;
   color: ${props => props.theme.colors.black};
 `;
@@ -221,7 +221,7 @@ export const StyledProductInCartAttributeValue = styled.div<{ color?: string, is
   min-width: ${props => props.isBigCart ? '32px' : '16px'};
   max-width: ${props => props.isBigCart ? props.color ? '32px' : '60px' :  props.color ? '16px' : '45px'};
   background-clip: ${props => props.color ? 'content-box' : 'padding-box'};
-  margin: 4px;
+  margin-right: 8px;
   padding: 1px;
   align-items: center;
   flex: 1 1;
