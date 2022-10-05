@@ -90,6 +90,7 @@ export const StyledAttributeValueText = styled.p`
 export const StyledAddToCartButton = styled.button<{ disabled: boolean }>`
   padding: 16px 32px;
   margin: 30px 0;
+  max-width: 292px;
   background: ${props => props.theme.colors.green};
   font-style: normal;
   font-weight: 600;
