@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const StyledCart = styled.section<{isBigCart: boolean}>`
   display: flex;
   flex-direction: column;
-  margin: ${props => props.isBigCart ? '0 100px' : 0};
+  margin: ${props => props.isBigCart ? '0 100px' : '12px 0'};
 `;
 
 export const StyledCartHeader = styled.p`
@@ -22,9 +22,10 @@ export const StyledCartItemWrapper = styled.section`
   justify-content: space-between;
 `;
 
-export const StyledCartItem = styled.article`
+export const StyledCartItem = styled.article<{isBigCart: boolean}>`
   display: flex;
   flex-direction: column;
+  margin: ${props => props.isBigCart ? 0 : '20px 0'};
 `;
 
 export const StyledCartItemDetails = styled.section`
@@ -123,12 +124,12 @@ export const ChevronRight = styled.img`
   filter: brightness(0) invert(1);
 `;
 
-export const StyledPurchaseDetails = styled.section`
+export const StyledPurchaseDetails = styled.section<{isBigCart: boolean}>`
   display: grid;
   grid-template-rows: auto auto auto auto;
   grid-template-columns: 11% 10% auto auto;
   flex-basis: 50%;
-  padding: 8px 0 10px 0;
+  padding: ${props => props.isBigCart ? '8px 0 10px 0' : '12px 0 20px'};
 `;
 
 export const StyledValue = styled.p`
@@ -168,7 +169,7 @@ export const StyledHr = styled.hr<{isBigCart: boolean}>`
   border-top: ${props => props.isBigCart ? '1px solid #E5E5E5' : 'none'};
   width:  ${props => props.isBigCart ? '100%' : 0};
   padding: ${props => props.isBigCart ? '0 0 24px 0' : 0};
-  margin: 24px 0 0 0;
+  margin: ${props => props.isBigCart ? '24px 0 0 0' : 0};
 `;
 
 export const StyledProductInCartDetailsBrand = styled.p<{isBigCart?: boolean}>`

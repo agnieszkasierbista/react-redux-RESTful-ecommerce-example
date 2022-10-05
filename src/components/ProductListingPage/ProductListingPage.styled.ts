@@ -32,7 +32,6 @@ export const StyledPLPitem = styled.article`
   min-height: 444px;
   min-width: 386px;
   padding: 16px;
-  outline: 2px solid red;
   
   &:hover {
     box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
@@ -53,7 +52,6 @@ export const StyledPLPoutOfStockItem = styled.article`
   min-height: 444px;
   min-width: 386px;
   opacity: 0.5;
-  outline: 2px solid blue;
   padding: 16px;
 
 `;
@@ -98,7 +96,6 @@ export const StyledProductListingPageOutOfStockImg = styled.div<{ imgSrc: string
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  border: 20px solid ${props => props.theme.colors.white};
   width: 100%;
   height: 70%;
   box-sizing: border-box;
@@ -117,7 +114,6 @@ export const StyledProductListingPageTitle = styled.header`
     font-size: 42px;
     line-height: 160%;
     text-transform: capitalize;
-    outline: 2px solid blue;
   }
 `;
 
@@ -125,8 +121,8 @@ export const StyledOutOfStock = styled.p`
   position:absolute;
   padding:0;
   margin: 0;
-  top: calc(50% - 49px);
-  left: calc(50% - 69px);
+  top: calc(50% - 85px);
+  left: calc(50% - 82px);
   font-style: normal;
   font-weight: 400;
   font-size: 24px;

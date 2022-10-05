@@ -70,6 +70,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
               return (
                 <StyledCartItem
                   key={uniqueKey}
+                  isBigCart={this.props.isBigCart}
                 >
                   <StyledHr isBigCart={this.props.isBigCart}/>
                   <StyledCartItemWrapper>
@@ -243,7 +244,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
             })
           }
           <StyledHr isBigCart={this.props.isBigCart}/>
-          <StyledPurchaseDetails>
+          <StyledPurchaseDetails isBigCart={this.props.isBigCart}>
             {this.props.isBigCart
                     &&
                     <>

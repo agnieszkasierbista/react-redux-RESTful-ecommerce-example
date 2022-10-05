@@ -43,7 +43,7 @@ export const StyledGoToCart = styled(Link)`
   justify-content: center;
   align-items: center;
   padding: 12px 32px;
-  margin-right: 6px;
+  margin-right: 12px;
   background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.black};
 
@@ -63,7 +63,7 @@ export const StyledButtonsInMiniCart = styled.section`
 
 export const StyledCheckOutButton = styled.button<{isBigCart?: boolean}>`
   padding: 13px 32px;
-  margin: ${props => props.isBigCart ? '16px' : 0} 6px 0 0;
+  margin: ${props => props.isBigCart ? '16px 0 0 0' : 0} ;
   background: ${props => props.theme.colors.green};
   font-style: normal;
   font-weight: 600;
