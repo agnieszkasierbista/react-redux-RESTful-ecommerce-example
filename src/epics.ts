@@ -1,7 +1,7 @@
 import {combineEpics, Epic, ofType} from 'redux-observable';
 import {of, switchMap} from 'rxjs';
 import axios from 'axios';
-import {getProductsListSuccess, GET_PRODUCTS_LIST, INIT, initSuccess} from './actions';
+import {GET_PRODUCTS_LIST, getProductsListSuccess, INIT, initSuccess} from './actions';
 import {InitialData, InitialDataDirty, Product} from './types';
 
 // function getQueryDetails(action: AnyAction) {
@@ -75,9 +75,7 @@ import {InitialData, InitialDataDirty, Product} from './types';
 //     },
 //   ]);
 // }
-const getOptions = {
-  method: 'get',
-};
+
 
 export const onInit: Epic = action$ => action$.pipe(
   ofType(INIT),
@@ -101,24 +99,30 @@ export const onInit: Epic = action$ => action$.pipe(
       )
       .map((number) => JSON.stringify(number))
       .map((nameValue) => {
-        return {name: nameValue, products:[]};
+        return {name: nameValue, products: []};
       });
     const currencies = [{symbol: 'PLN', label: 'PLN'}, {symbol: 'ABC', label: 'ABC'}, {
       symbol: 'XYZ',
       label: 'XYZ'
     }];
-    const initialDataClear: InitialData = [{categories, currencies}];
-    return of(initSuccess(initialDataClear, window.location.pathname));
+    const initialDataClean: InitialData = [{categories, currencies}];
+    return of(initSuccess(initialDataClean, window.location.pathname));
   })
 );
 
 export const onGetProductsList: Epic = action$ => action$.pipe(
   ofType(GET_PRODUCTS_LIST),
-  switchMap(() => {
-    return axios.get('https://jsonplaceholder.typicode.com/posts/1')
-      .then(function (response) {
-        return response.data;
-      })
+  switchMap((action) => {
+    // console.log(action.payload);
+    const reqOne = axios.get(`https://jsonplaceholder.typicode.com/posts/${action.payload}/comments`);
+    const reqTwo = axios.get('https://jsonplaceholder.typicode.com/photos');
+    const reqs = [reqOne, reqTwo];
+
+    return axios.all(reqs)
+      .then(axios.spread((...responses) => {
+        return [...responses];
+        // use/access the results
+      }))
       .catch(function (error) {
         console.log(error);
       })
@@ -126,7 +130,56 @@ export const onGetProductsList: Epic = action$ => action$.pipe(
         // always executed
       });
   }),
-  switchMap((initialProductList: { category: { products: Product[] } }) => {
+  switchMap((responses: any) => {
+    const receivedDataOne = responses[0].data;
+    const receivedDataTwo = responses[1].data;
+    console.log('here', receivedDataOne);
+    // console.log(responses[0].config.url.split('/'));
+    const actionPayload = responses[0].config.url.split('/')[4];
+    // {name: string, id: string, prices: Price[], category: string, gallery: string[], inStock: boolean, brand: string}
+    // [
+    //   {
+    //     'postId': 1,
+    //     'id': 1,
+    //     'name': 'id labore ex et quam laborum',
+    //     'email': 'Eliseo@gardner.biz',
+    //     'body': 'laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium'
+    //   },
+    // ];
+
+    function getMockedGallery(product: any) {
+      return (receivedDataTwo.map((item: any) => {
+        if (item.albumId == product.id) {
+          return item.url;
+        } else {
+          return null;
+        }
+      })).filter((x: any) => x);
+    }
+
+    const xyz = receivedDataOne.map((product: any) => {
+      return {
+        name: product.name,
+        id: JSON.stringify(product.id),
+        prices: [
+          {currency: {symbol: 'PLN', label: 'PLN'}, amount: 100},
+          {currency: {symbol: 'ABC', label: 'ABC'}, amount: 200},
+          {currency: {symbol: 'XYZ', label: 'XYZ'}, amount: 300}
+        ],
+        category: actionPayload,
+        gallery: getMockedGallery(product),
+        inStock: true,
+        brand: product.email
+      };
+
+    });
+
+    const initialProductList: { category: { products: Product[] } } = {
+      category:
+                {
+                  products: xyz
+                }
+    };
     return of(getProductsListSuccess(initialProductList));
   })
 );
@@ -169,5 +222,5 @@ export const rootEpic = combineEpics(
   onInit,
   // onGetProductDetails,
   // onAddToCartByProductId,
-  // onGetProductsList
+  onGetProductsList
 );
