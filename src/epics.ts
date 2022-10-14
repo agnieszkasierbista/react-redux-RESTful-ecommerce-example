@@ -1,8 +1,8 @@
 import {combineEpics, Epic, ofType} from 'redux-observable';
 import {of, switchMap} from 'rxjs';
 import axios from 'axios';
-import {INIT, initSuccess} from './actions';
-import {InitialData} from './types';
+import {getProductsListSuccess, GET_PRODUCTS_LIST, INIT, initSuccess} from './actions';
+import {InitialData, InitialDataDirty, Product} from './types';
 
 // function getQueryDetails(action: AnyAction) {
 //   return gql.query([{
@@ -75,7 +75,7 @@ import {InitialData} from './types';
 //     },
 //   ]);
 // }
-const getOptions =  {
+const getOptions = {
   method: 'get',
 };
 
@@ -93,26 +93,44 @@ export const onInit: Epic = action$ => action$.pipe(
         // always executed
       });
   }),
-  switchMap((initialData: InitialData) => {
-    return of(initSuccess(initialData, window.location.pathname));
+  switchMap((initialData: InitialDataDirty) => {
+    const categories = initialData?.map((item) => item.userId)
+      .reduce(
+        (unique: number[], item) => (unique.includes(item) ? unique : [...unique, item]),
+        [],
+      )
+      .map((number) => JSON.stringify(number))
+      .map((nameValue) => {
+        return {name: nameValue, products:[]};
+      });
+    const currencies = [{symbol: 'PLN', label: 'PLN'}, {symbol: 'ABC', label: 'ABC'}, {
+      symbol: 'XYZ',
+      label: 'XYZ'
+    }];
+    const initialDataClear: InitialData = [{categories, currencies}];
+    return of(initSuccess(initialDataClear, window.location.pathname));
   })
 );
 
-// export const onGetProductsList: Epic = action$ => action$.pipe(
-//   ofType(GET_PRODUCTS_LIST),
-//   switchMap((action) => {
-//     return from(
-//       request(
-//         'http://localhost:4000',
-//         getProductListQueryDetails(action).query,
-//         getProductListQueryDetails(action).variables)
-//     );
-//   }),
-//   switchMap((initialProductList: {category: { products: Product[] }}) => {
-//     return of(getProductsListSuccess(initialProductList));
-//   })
-// );
-//
+export const onGetProductsList: Epic = action$ => action$.pipe(
+  ofType(GET_PRODUCTS_LIST),
+  switchMap(() => {
+    return axios.get('https://jsonplaceholder.typicode.com/posts/1')
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }),
+  switchMap((initialProductList: { category: { products: Product[] } }) => {
+    return of(getProductsListSuccess(initialProductList));
+  })
+);
+
 // export const onGetProductDetails: Epic = action$ => action$.pipe(
 //   ofType(GET_PRODUCT_DETAILS),
 //   switchMap((action) => {

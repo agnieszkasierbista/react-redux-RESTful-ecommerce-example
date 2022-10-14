@@ -1,7 +1,7 @@
 import {AttributeSet, Currency, Price, Product, ProductAttributeItems, ProductDetails, ProductInCart} from '../types';
 
 export function getTabLink(name: string) {
-  if (name === 'all') {
+  if (name === '1') {
     return '/';
   } else {
     return `categories/${name}`;
@@ -9,7 +9,7 @@ export function getTabLink(name: string) {
 }
 
 export function getTabPath(name: string) {
-  if (name === 'all') {
+  if (name === '1') {
     return '/';
   } else {
     return `/categories/${name}`;
@@ -56,7 +56,7 @@ export function createDefaultAttrObj(attribute: AttributeSet) {
 
 export function findPrice(product: ProductDetails, currentCurrency: Currency): Price {
   return product.prices.find((price) => price.currency.label === currentCurrency.label) || {
-    currency: {symbol: '$', label: 'USD'},
+    currency: {symbol: 'PLN', label: 'PLN'},
     amount: 0
   };
 }

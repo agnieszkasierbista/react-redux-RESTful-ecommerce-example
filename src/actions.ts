@@ -18,7 +18,7 @@ export const SET_MINI_CART_STATE = 'SET_MINI_CART_STATE';
 export const GET_PRODUCTS_LIST = 'GET_PRODUCTS_LIST';
 export const GET_PRODUCTS_LIST_SUCCESS = 'GET_PRODUCTS_LIST_SUCCESS';
 
-export function getProductsListSuccess(productsListForCurrentCategory: { category: {products:  Product[] } }) {
+export function getProductsListSuccess(productsListForCurrentCategory: { category: { products: Product[] } }) {
   return {
     type: GET_PRODUCTS_LIST_SUCCESS,
     payload: productsListForCurrentCategory
@@ -125,12 +125,8 @@ export function initSuccess(initialData: InitialData, pathName: string) {
   return {
     type: INIT_SUCCESS,
     payload: {
-      categories: initialData?.map((item) => item.userId)
-        .reduce(
-          (unique: number[], item) => (unique.includes(item) ? unique : [...unique, item]),
-          [],
-        ),
-      currencies: [{symbol: 'PLN', label: 'PLN'}, {symbol: 'ABC', label: 'ABC'}, {symbol: 'XYZ', label: 'XYZ'}],
+      categories: initialData[0].categories,
+      currencies: initialData[0].currencies,
       pathName
     }
   };

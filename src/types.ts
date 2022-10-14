@@ -1,10 +1,10 @@
 import {Category} from './components/CategoryTabs/CategoryTabs.types';
 
-// export type InitialData = [
-//     {categories: Category[], currencies: Currency[], pathName: string},
-// ]
-
 export type InitialData = [
+    {categories: Category[], currencies: Currency[]},
+]
+
+export type InitialDataDirty = [
     {
         userId: number,
         id: number,
