@@ -1,4 +1,4 @@
-# Entry React developer TEST
+# React-Redux RESTfull E-Commerce
 
 ## Agnieszka Sierbista
 
@@ -12,5 +12,4 @@
   redux-persist
 - rxjs
 - styled-component
-- gql-query-builder
-- graphql-request
+- JSON placeholder (for mocking data)

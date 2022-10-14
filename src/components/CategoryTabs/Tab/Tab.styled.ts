@@ -10,5 +10,5 @@ export const StyledTab = styled.li<{shouldHighlight: boolean}>`
   font-size: 16px;
   line-height: 300%;
   gap: ${props => props.shouldHighlight ? '0px' : '30px'};
-  border-bottom: ${props => props.shouldHighlight ? `2px solid ${props.theme.colors.green}` : '2px solid transparent'};
+  border-bottom: ${props => props.shouldHighlight ? `2px solid ${props.theme.colors.orange}` : '2px solid transparent'};
 `;

@@ -61,7 +61,7 @@ export const StyledProductPrice = styled.p`
 export const StyledAttributeValue = styled.div<{ color?: string, isSelected?: boolean }>`
   background-color: ${props => props.color ? props.color.toLowerCase() : props.isSelected ? props.theme.colors.black : props.theme.colors.white};
   border: ${props => props.color ? 'none' : `1px solid ${props.theme.colors.black}`};
-  outline: ${props => props.color ? props.isSelected ? `1px solid ${props.theme.colors.green}` : 'none' : 'none'};
+  outline: ${props => props.color ? props.isSelected ? `1px solid ${props.theme.colors.orange}` : 'none' : 'none'};
   color: ${props => props.isSelected ? props.theme.colors.white : props.theme.colors.black};
   min-height: 32px;
   min-width: 32px;
@@ -91,7 +91,7 @@ export const StyledAddToCartButton = styled.button<{ disabled: boolean }>`
   padding: 16px 32px;
   margin: 30px 0;
   max-width: 292px;
-  background: ${props => props.theme.colors.green};
+  background: ${props => props.theme.colors.orange};
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

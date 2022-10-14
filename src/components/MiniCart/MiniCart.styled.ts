@@ -64,7 +64,7 @@ export const StyledButtonsInMiniCart = styled.section`
 export const StyledCheckOutButton = styled.button<{isBigCart?: boolean}>`
   padding: 13px 32px;
   margin: ${props => props.isBigCart ? '16px 0 0 0' : 0} ;
-  background: ${props => props.theme.colors.green};
+  background: ${props => props.theme.colors.orange};
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

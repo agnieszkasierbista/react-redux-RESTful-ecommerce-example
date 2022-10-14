@@ -15,7 +15,7 @@ export const StyledAddToCartShorthand = styled.button`
   position: absolute;
   right: 35px;
   bottom: 135px;
-  background-color: ${props => props.theme.colors.green};
+  background-color: ${props => props.theme.colors.orange};
   border-radius: 50%;
   width: 35px;
   height: 35px;
