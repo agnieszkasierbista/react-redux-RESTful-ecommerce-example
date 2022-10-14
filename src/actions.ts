@@ -125,8 +125,12 @@ export function initSuccess(initialData: InitialData, pathName: string) {
   return {
     type: INIT_SUCCESS,
     payload: {
-      categories: initialData[0].categories,
-      currencies: initialData[0].currencies,
+      categories: initialData?.map((item) => item.userId)
+        .reduce(
+          (unique: number[], item) => (unique.includes(item) ? unique : [...unique, item]),
+          [],
+        ),
+      currencies: [{symbol: 'PLN', label: 'PLN'}, {symbol: 'ABC', label: 'ABC'}, {symbol: 'XYZ', label: 'XYZ'}],
       pathName
     }
   };
