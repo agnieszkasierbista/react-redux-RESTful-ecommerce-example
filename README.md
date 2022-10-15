@@ -1,4 +1,4 @@
-# React-Redux RESTfull E-Commerce
+# React-Redux RESTfull E-Commerce example
 
 ## Agnieszka Sierbista
 
@@ -9,7 +9,8 @@
 - react-router-dom
 - redux
 - redux-observable
-  redux-persist
+- redux-persist
 - rxjs
+- axios
 - styled-component
-- JSON placeholder (for mocking data)
+- **JSON placeholder (for mocking data)**

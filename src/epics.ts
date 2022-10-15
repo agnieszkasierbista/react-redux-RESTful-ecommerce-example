@@ -1,8 +1,15 @@
 import {combineEpics, Epic, ofType} from 'redux-observable';
 import {of, switchMap} from 'rxjs';
 import axios from 'axios';
-import {GET_PRODUCTS_LIST, getProductsListSuccess, INIT, initSuccess} from './actions';
-import {InitialData, InitialDataDirty, Product} from './types';
+import {
+  GET_PRODUCT_DETAILS,
+  GET_PRODUCTS_LIST,
+  getProductDetailsSuccess,
+  getProductsListSuccess,
+  INIT,
+  initSuccess
+} from './actions';
+import {AttributeSet, InitialData, InitialDataDirty, Product, ProductAttributeItems, ProductDetails} from './types';
 
 // function getQueryDetails(action: AnyAction) {
 //   return gql.query([{
@@ -139,12 +146,12 @@ export const onGetProductsList: Epic = (action$, state$) => action$.pipe(
   }),
   switchMap((responses: any) => {
     const receivedDataOne = responses.length === 2 ? responses[0].data : responses.map((response: any, idx: number) => {
-      if(idx <= responses.length - 2) {
+      if (idx <= responses.length - 2) {
         return response.data;
       } else {
         return null;
       }
-    }).filter((x:any) => x).flat();
+    }).filter((x: any) => x).flat();
     const receivedDataTwo = responses[responses.length - 1].data;
     const actionPayload = responses.length === 2 ? responses[0].config.url.split('/')[4] : 'all';
     // {name: string, id: string, prices: Price[], category: string, gallery: string[], inStock: boolean, brand: string}
@@ -170,7 +177,7 @@ export const onGetProductsList: Epic = (action$, state$) => action$.pipe(
 
     const xyz = receivedDataOne.map((product: any) => {
       return {
-        name: product.name,
+        name: product.name.split(' ')[0],
         id: JSON.stringify(product.id),
         prices: [
           {currency: {symbol: 'PLN', label: 'PLN'}, amount: 100},
@@ -180,7 +187,7 @@ export const onGetProductsList: Epic = (action$, state$) => action$.pipe(
         category: actionPayload,
         gallery: getMockedGallery(product),
         inStock: true,
-        brand: product.email
+        brand: product.email.split('@')[0]
       };
 
     });
@@ -195,17 +202,106 @@ export const onGetProductsList: Epic = (action$, state$) => action$.pipe(
   })
 );
 
-// export const onGetProductDetails: Epic = action$ => action$.pipe(
-//   ofType(GET_PRODUCT_DETAILS),
-//   switchMap((action) => {
-//     return from(
-//       request('http://localhost:4000', getQueryDetails(action).query, getQueryDetails(action).variables)
-//     );
-//   }),
-//   switchMap((productDetails: { product: ProductDetails }) => {
-//     return of(getProductDetailsSuccess(productDetails));
-//   })
-// );
+export const onGetProductDetails: Epic = action$ => action$.pipe(
+  ofType(GET_PRODUCT_DETAILS),
+  switchMap((action) => {
+    console.log(action.payload);
+    const reqOne = axios.get(`https://jsonplaceholder.typicode.com/comments/${action.payload}`);
+    const reqTwo = axios.get('https://jsonplaceholder.typicode.com/photos');
+
+    return axios.all([reqOne, reqTwo])
+      .then(axios.spread((...responses) => {
+        return [...responses];
+        // use/access the results
+      }))
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }),
+  switchMap((responses: any) => {
+
+    const responseOne = responses[0];
+    const responseTwo = responses[1];
+    // export interface ProductDetails {
+    //   productId: string,
+    //   name: string,
+    //   description: string,
+    //   gallery: string[],
+    //   brand: string,
+    //   prices: Price[],
+    //   attributes: AttributeSet[],
+    //   inStock: boolean
+    //
+    // }
+
+    // {
+    //   "postId": 8,
+    //     "id": 36,
+    //     "name": "sit et quis",
+    //     "email": "Raheem_Heaney@gretchen.biz",
+    //     "body": "aut vero est\ndolor non aut excepturi dignissimos illo nisi aut quas\naut magni quia nostrum provident magnam quas modi maxime\nvoluptatem et molestiae"
+    // }
+
+    //
+    // export interface AttributeSet {
+    //   id: string,
+    //   name: string,
+    //   type: string
+    //   items: ProductAttributeItems[]
+    // }
+    const mockedAttributes: AttributeSet[] = responseOne.data.body.split(' ').map((word: string) => {
+      return {
+        id: word,
+        name: word,
+        type: word,
+        items: [{displayValue: word + 1,
+          value: word + 1,
+          id: word + 1}, {displayValue: word + 2,
+          value: word + 2,
+          id: word + 2}, {displayValue: word + 3,
+          value: word + 3,
+          id: word + 3}]
+      };
+    }).splice(0, 4);
+
+
+    function getMockedGallery(productId: any) {
+      return (responseTwo.data.map((item: any) => {
+        if (item.albumId == productId) {
+          return item.url;
+        } else {
+          return null;
+        }
+      })).filter((x: any) => x).filter((x: any, idx: number) => idx <= 5);
+    }
+
+    const actionPayload = responseOne.config.url.split('/')[responseOne.config.url.split('/').length - 1];
+    console.log(actionPayload);
+    const data = responseOne.data;
+    console.log('data', data);
+    const productDetails: { product: ProductDetails } = {
+      product: {
+        name: data.name.split(' ')[0],
+        productId: JSON.stringify(data.id),
+        prices: [
+          {currency: {symbol: 'PLN', label: 'PLN'}, amount: 100},
+          {currency: {symbol: 'ABC', label: 'ABC'}, amount: 200},
+          {currency: {symbol: 'XYZ', label: 'XYZ'}, amount: 300}
+        ],
+        gallery: getMockedGallery(actionPayload),
+        inStock: true,
+        brand: data.email.split('@')[0],
+        description: data.body,
+        attributes: mockedAttributes
+      }
+    };
+
+    return of(getProductDetailsSuccess(productDetails));
+  })
+);
 //
 // export const onAddToCartByProductId: Epic = action$ => action$.pipe(
 //   ofType(ADD_TO_CART_BY_PRODUCT_ID),
@@ -231,7 +327,7 @@ export const onGetProductsList: Epic = (action$, state$) => action$.pipe(
 
 export const rootEpic = combineEpics(
   onInit,
-  // onGetProductDetails,
+  onGetProductDetails,
   // onAddToCartByProductId,
   onGetProductsList
 );
