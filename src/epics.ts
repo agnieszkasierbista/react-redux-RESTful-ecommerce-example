@@ -1,19 +1,18 @@
 import {combineEpics, Epic, ofType} from 'redux-observable';
-import {from, of, switchMap} from 'rxjs';
+import {of, switchMap} from 'rxjs';
 import axios from 'axios';
 import {
   ADD_TO_CART_BY_PRODUCT_ID,
+  addToCart,
   GET_PRODUCT_DETAILS,
   GET_PRODUCTS_LIST,
   getProductDetailsSuccess,
   getProductsListSuccess,
   INIT,
-  initSuccess,
-  addToCart
+  initSuccess
 } from './actions';
-import {AttributeSet, InitialData, InitialDataDirty, Product, ProductAttributeItems, ProductDetails,
-  ProductInCart, Selected} from './types';
-import { createDefaultAttrObj } from './components/helpers';
+import {AttributeSet, InitialData, InitialDataDirty, Product, ProductDetails, ProductInCart, Selected} from './types';
+import {createDefaultAttrObj} from './components/helpers';
 
 export const onInit: Epic = action$ => action$.pipe(
   ofType(INIT),
@@ -187,13 +186,19 @@ export const onGetProductDetails: Epic = action$ => action$.pipe(
         id: word,
         name: word,
         type: word,
-        items: [{displayValue: word + 1,
+        items: [{
+          displayValue: word + 1,
           value: word + 1,
-          id: word + 1}, {displayValue: word + 2,
+          id: word + 1
+        }, {
+          displayValue: word + 2,
           value: word + 2,
-          id: word + 2}, {displayValue: word + 3,
+          id: word + 2
+        }, {
+          displayValue: word + 3,
           value: word + 3,
-          id: word + 3}]
+          id: word + 3
+        }]
       };
     }).splice(0, 4);
 
@@ -260,13 +265,19 @@ export const onAddToCartByProductId: Epic = action$ => action$.pipe(
         id: word,
         name: word,
         type: word,
-        items: [{displayValue: word + 1,
+        items: [{
+          displayValue: word + 1,
           value: word + 1,
-          id: word + 1}, {displayValue: word + 2,
+          id: word + 1
+        }, {
+          displayValue: word + 2,
           value: word + 2,
-          id: word + 2}, {displayValue: word + 3,
+          id: word + 2
+        }, {
+          displayValue: word + 3,
           value: word + 3,
-          id: word + 3}]
+          id: word + 3
+        }]
       };
     }).splice(0, 4);
 
@@ -280,7 +291,7 @@ export const onAddToCartByProductId: Epic = action$ => action$.pipe(
       })).filter((x: any) => x).filter((x: any, idx: number) => idx <= 5);
     }
 
-    const productDetails: ProductDetails  = {
+    const productDetails: ProductDetails = {
 
       name: dataOne.name.split(' ')[0],
       productId: JSON.stringify(dataOne.id),
