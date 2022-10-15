@@ -1,88 +1,19 @@
 import {combineEpics, Epic, ofType} from 'redux-observable';
-import {of, switchMap} from 'rxjs';
+import {from, of, switchMap} from 'rxjs';
 import axios from 'axios';
 import {
+  ADD_TO_CART_BY_PRODUCT_ID,
   GET_PRODUCT_DETAILS,
   GET_PRODUCTS_LIST,
   getProductDetailsSuccess,
   getProductsListSuccess,
   INIT,
-  initSuccess
+  initSuccess,
+  addToCart
 } from './actions';
-import {AttributeSet, InitialData, InitialDataDirty, Product, ProductAttributeItems, ProductDetails} from './types';
-
-// function getQueryDetails(action: AnyAction) {
-//   return gql.query([{
-//     operation: 'product',
-//     variables: {id: {value: action.payload, required: true}},
-//     fields: ['id', 'name', 'description', 'inStock', 'gallery',
-//       {
-//         attributes: ['id', 'name', 'type', {items: ['displayValue', 'value', 'id']}],
-//       },
-//       'brand', {
-//         prices: [
-//           {
-//             currency: [
-//               'symbol',
-//               'label'
-//             ]
-//           },
-//           'amount'
-//         ]
-//       },]
-//   }]);
-// }
-//
-//
-// const {query} = gql.query([
-//   {
-//     operation: 'categories',
-//     fields: ['name']
-//   },
-//   {
-//     operation: 'currencies',
-//     fields: ['symbol', 'label']
-//   }
-// ]);
-//
-// function getProductListQueryDetails(action: AnyAction) {
-//
-//   return gql.query([
-//     {
-//       operation: 'category',
-//       variables: {
-//         input: { value : {
-//           title: action.payload
-//         },
-//         type: 'CategoryInput'
-//         }
-//       },
-//       fields: ['name',
-//         {
-//           products: [
-//             'id',
-//             'name',
-//             'brand',
-//             {
-//               prices: [
-//                 {
-//                   currency: [
-//                     'symbol',
-//                     'label'
-//                   ]
-//                 },
-//                 'amount'
-//               ]
-//             },
-//             'category',
-//             'gallery',
-//             'inStock'
-//           ]
-//         }]
-//     },
-//   ]);
-// }
-
+import {AttributeSet, InitialData, InitialDataDirty, Product, ProductAttributeItems, ProductDetails,
+  ProductInCart, Selected} from './types';
+import { createDefaultAttrObj } from './components/helpers';
 
 export const onInit: Epic = action$ => action$.pipe(
   ofType(INIT),
@@ -205,7 +136,6 @@ export const onGetProductsList: Epic = (action$, state$) => action$.pipe(
 export const onGetProductDetails: Epic = action$ => action$.pipe(
   ofType(GET_PRODUCT_DETAILS),
   switchMap((action) => {
-    console.log(action.payload);
     const reqOne = axios.get(`https://jsonplaceholder.typicode.com/comments/${action.payload}`);
     const reqTwo = axios.get('https://jsonplaceholder.typicode.com/photos');
 
@@ -302,32 +232,86 @@ export const onGetProductDetails: Epic = action$ => action$.pipe(
     return of(getProductDetailsSuccess(productDetails));
   })
 );
-//
-// export const onAddToCartByProductId: Epic = action$ => action$.pipe(
-//   ofType(ADD_TO_CART_BY_PRODUCT_ID),
-//   switchMap((action) => {
-//
-//     return from(
-//       request('http://localhost:4000', getQueryDetails(action).query, getQueryDetails(action).variables)
-//     );
-//   }),
-//   switchMap(({product}) => {
-//
-//     const defaultAttrs: Selected[] = product.attributes.map(createDefaultAttrObj);
-//
-//     const productToCart: ProductInCart = {
-//       ...product,
-//       selected: defaultAttrs
-//     };
-//
-//     return of(addToCart(productToCart));
-//   })
-// );
+
+export const onAddToCartByProductId: Epic = action$ => action$.pipe(
+  ofType(ADD_TO_CART_BY_PRODUCT_ID),
+  switchMap((action) => {
+    const reqOne = axios.get(`https://jsonplaceholder.typicode.com/comments/${action.payload}`);
+    const reqTwo = axios.get('https://jsonplaceholder.typicode.com/photos');
+
+    return axios.all([reqOne, reqTwo])
+      .then(axios.spread((...responses) => {
+        return [...responses];
+        // use/access the results
+      }))
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }),
+  switchMap((responses: any) => {
+    const dataOne = responses[0].data;
+    const dataTwo = responses[1].data;
+
+    const mockedAttributes: AttributeSet[] = dataOne.body.split(' ').map((word: string) => {
+      return {
+        id: word,
+        name: word,
+        type: word,
+        items: [{displayValue: word + 1,
+          value: word + 1,
+          id: word + 1}, {displayValue: word + 2,
+          value: word + 2,
+          id: word + 2}, {displayValue: word + 3,
+          value: word + 3,
+          id: word + 3}]
+      };
+    }).splice(0, 4);
+
+    function getMockedGallery(productId: any) {
+      return (dataTwo.map((item: any) => {
+        if (item.albumId == productId) {
+          return item.url;
+        } else {
+          return null;
+        }
+      })).filter((x: any) => x).filter((x: any, idx: number) => idx <= 5);
+    }
+
+    const productDetails: ProductDetails  = {
+
+      name: dataOne.name.split(' ')[0],
+      productId: JSON.stringify(dataOne.id),
+      prices: [
+        {currency: {symbol: 'PLN', label: 'PLN'}, amount: 100},
+        {currency: {symbol: 'ABC', label: 'ABC'}, amount: 200},
+        {currency: {symbol: 'XYZ', label: 'XYZ'}, amount: 300}
+      ],
+      gallery: getMockedGallery(dataOne.id),
+      inStock: true,
+      brand: dataOne.email.split('@')[0],
+      description: dataOne.body,
+      attributes: mockedAttributes
+
+    };
+
+    const defaultAttrs: Selected[] = productDetails.attributes.map(createDefaultAttrObj);
+
+    const productToCart: ProductInCart = {
+      ...productDetails,
+      selected: defaultAttrs
+    };
+
+    return of(addToCart(productToCart));
+  })
+);
 
 
 export const rootEpic = combineEpics(
   onInit,
   onGetProductDetails,
-  // onAddToCartByProductId,
+  onAddToCartByProductId,
   onGetProductsList
 );
