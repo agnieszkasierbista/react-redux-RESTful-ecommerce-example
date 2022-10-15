@@ -1,7 +1,7 @@
 import {AttributeSet, Currency, Price, Product, ProductAttributeItems, ProductDetails, ProductInCart} from '../types';
 
 export function getTabLink(name: string) {
-  if (name === '1') {
+  if (name === 'all') {
     return '/';
   } else {
     return `categories/${name}`;
@@ -9,7 +9,7 @@ export function getTabLink(name: string) {
 }
 
 export function getTabPath(name: string) {
-  if (name === '1') {
+  if (name === 'all') {
     return '/';
   } else {
     return `/categories/${name}`;

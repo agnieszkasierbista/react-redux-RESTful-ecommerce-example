@@ -21,9 +21,9 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
   render() {
 
     const tabsRoutes = this.props.categories.map((category) => {
-      if(category.name === '1') {
+      if(category.name === 'all') {
         return (
-          <Route path="/" key={category.name} element={<ProductListingPage shouldInclude={() => true} categoryName='1'/>}>
+          <Route path="/" key={category.name} element={<ProductListingPage shouldInclude={() => true} categoryName='all'/>}>
           </Route>
         );
       } else {

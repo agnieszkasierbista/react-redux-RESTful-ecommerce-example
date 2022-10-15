@@ -92,7 +92,7 @@ export const onInit: Epic = action$ => action$.pipe(
       });
   }),
   switchMap((initialData: InitialDataDirty) => {
-    const categories = initialData?.map((item) => item.userId)
+    const restOfCategories = initialData?.map((item) => item.userId)
       .reduce(
         (unique: number[], item) => (unique.includes(item) ? unique : [...unique, item]),
         [],
@@ -101,6 +101,7 @@ export const onInit: Epic = action$ => action$.pipe(
       .map((nameValue) => {
         return {name: nameValue, products: []};
       });
+    const categories = [{name: 'all', products: []}].concat(restOfCategories);
     const currencies = [{symbol: 'PLN', label: 'PLN'}, {symbol: 'ABC', label: 'ABC'}, {
       symbol: 'XYZ',
       label: 'XYZ'
@@ -110,13 +111,19 @@ export const onInit: Epic = action$ => action$.pipe(
   })
 );
 
-export const onGetProductsList: Epic = action$ => action$.pipe(
+export const onGetProductsList: Epic = (action$, state$) => action$.pipe(
   ofType(GET_PRODUCTS_LIST),
   switchMap((action) => {
-    // console.log(action.payload);
+    const namesOfCategories = state$.value.categoryTabs.categories.map(({name}: { name: string }) => name).filter((name: string) => name !== 'all');
+
     const reqOne = axios.get(`https://jsonplaceholder.typicode.com/posts/${action.payload}/comments`);
     const reqTwo = axios.get('https://jsonplaceholder.typicode.com/photos');
-    const reqs = [reqOne, reqTwo];
+
+    const reqs = (
+      (action.payload === 'all')
+        ? [namesOfCategories.map((x: string) => axios.get(`https://jsonplaceholder.typicode.com/posts/${x}/comments`)), reqTwo].flat()
+        : [reqOne, reqTwo]
+    );
 
     return axios.all(reqs)
       .then(axios.spread((...responses) => {
@@ -131,11 +138,15 @@ export const onGetProductsList: Epic = action$ => action$.pipe(
       });
   }),
   switchMap((responses: any) => {
-    const receivedDataOne = responses[0].data;
-    const receivedDataTwo = responses[1].data;
-    console.log('here', receivedDataOne);
-    // console.log(responses[0].config.url.split('/'));
-    const actionPayload = responses[0].config.url.split('/')[4];
+    const receivedDataOne = responses.length === 2 ? responses[0].data : responses.map((response: any, idx: number) => {
+      if(idx <= responses.length - 2) {
+        return response.data;
+      } else {
+        return null;
+      }
+    }).filter((x:any) => x).flat();
+    const receivedDataTwo = responses[responses.length - 1].data;
+    const actionPayload = responses.length === 2 ? responses[0].config.url.split('/')[4] : 'all';
     // {name: string, id: string, prices: Price[], category: string, gallery: string[], inStock: boolean, brand: string}
     // [
     //   {
