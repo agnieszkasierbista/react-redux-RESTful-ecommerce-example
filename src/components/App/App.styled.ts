@@ -16,6 +16,7 @@ export const StyledActions = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  margin-left: auto;
   padding: 0;
   gap: 22px;
 `;

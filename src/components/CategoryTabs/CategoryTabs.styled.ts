@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 export const StyledCategoryTabs = styled.ul`
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 50px;
   display: flex;
   align-items: flex-end;
 `;

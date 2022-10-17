@@ -2,8 +2,9 @@ import React, {PropsWithChildren, PureComponent} from 'react';
 import ProductListingPage from '../ProductListingPage/ProductListingPage';
 import ProductDescriptionPage from '../ProductDescriptionPage/ProductDescriptionPage';
 import Cart from '../Cart/Cart';
-import {Link, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
+import UserPanel from '../UserPanel/UserPanel';
 import NavBar from '../NavBar/NavBar';
 import MiniCartIcon from '../MiniCartIcon/MiniCartIcon';
 import CategoryTabs from '../CategoryTabs/CategoryTabs';
@@ -49,6 +50,7 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
           </StyledLink>
           <CategoryTabs/>
           <StyledActions>
+            <UserPanel />
             <CurrencySwitcher/>
             <MiniCartIcon/>
           </StyledActions>

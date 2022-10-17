@@ -97,6 +97,10 @@ export interface TabState {
 
 }
 
+export interface UserPanelState {
+    isUserPanelExtended: boolean
+}
+
 export interface State {
     currencySwitcher: CurrencySwitcherState,
     categoryTabs: CategoryTabsState,
@@ -105,6 +109,7 @@ export interface State {
     gallery: GalleryState,
     cart: CartState,
     tab: TabState,
+    userPanel: UserPanelState,
 }
 
 export interface CartLocalState {

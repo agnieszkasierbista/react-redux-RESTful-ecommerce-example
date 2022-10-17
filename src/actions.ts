@@ -1,6 +1,7 @@
 import {Currency, InitialData, Product, ProductDetails, ProductInCart, Selected} from './types';
 
 export const TOGGLE_CURRENCY_DROPDOWN_VISIBILITY = 'TOGGLE_CURRENCY_DROPDOWN_VISIBILITY';
+export const TOGGLE_USER_PANEL_DROPDOWN_VISIBILITY = 'TOGGLE_USER_PANEL_DROPDOWN_VISIBILITY';
 export const INIT = 'INIT';
 export const INIT_SUCCESS = 'INIT_SUCCESS';
 export const SET_CURRENT_CURRENCY = 'SET_CURRENT_CURRENCY';
@@ -135,5 +136,11 @@ export function initSuccess(initialData: InitialData, pathName: string) {
 export function toggleIsExtended() {
   return {
     type: TOGGLE_CURRENCY_DROPDOWN_VISIBILITY
+  };
+}
+
+export function toggleIsUserPanelExtended() {
+  return {
+    type: TOGGLE_USER_PANEL_DROPDOWN_VISIBILITY
   };
 }

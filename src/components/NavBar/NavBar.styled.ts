@@ -7,7 +7,6 @@ export const StyledNavBar = styled.div<{isMiniCartVisible: boolean}>`
   padding: 0 100px;
   background-color: ${props => props.theme.colors.white};
   display: flex;
-  justify-content: space-between;
   align-items: center;
   height: 80px;
   z-index: 15;

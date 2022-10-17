@@ -13,7 +13,7 @@ import {
   SET_MAIN_PIC,
   SET_MINI_CART_STATE,
   TOGGLE_CURRENCY_DROPDOWN_VISIBILITY,
-  TOGGLE_MINI_CART_VISIBILITY
+  TOGGLE_MINI_CART_VISIBILITY, TOGGLE_USER_PANEL_DROPDOWN_VISIBILITY
 } from './actions';
 import {getNumberOfItemsInTheCart} from './components/helpers';
 import {ProductInCart, Selected} from './types';
@@ -265,6 +265,28 @@ export const cartReducer: Reducer = (state = {}, action: AnyAction) => {
   }
 
 };
+
+export const userPanelReducer: Reducer = (state = {}, action: AnyAction) => {
+  switch (action.type) {
+
+  case REHYDRATE: {
+    return {
+      ...state,
+      ...(action.payload ? action.payload.userPanel : {}),
+    };
+  }
+  case TOGGLE_USER_PANEL_DROPDOWN_VISIBILITY: {
+    return {
+      ...state,
+      isUserPanelExtended: !state.isUserPanelExtended,
+    };
+  }
+  default:
+    return state;
+  }
+};
+
+
 const rootReducer = combineReducers({
   currencySwitcher: currencySwitcherReducer,
   categoryTabs: categoryTabsReducer,
@@ -273,6 +295,7 @@ const rootReducer = combineReducers({
   gallery: galleryReducer,
   cart: cartReducer,
   tab: tabReducer,
+  userPanel: userPanelReducer,
 });
 
 export default rootReducer;
