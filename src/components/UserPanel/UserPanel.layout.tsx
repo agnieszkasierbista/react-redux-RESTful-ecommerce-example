@@ -35,9 +35,9 @@ export class UserPanel extends PureComponent<PropsWithChildren<UserPanelProps>> 
     return (
       <StyledUserPanel onClick={() => this.props.dispatchToggleIsUserPanelExtended()}>
         <StyledUserPanelHeader>
-          {/*<StyledUserPanelSymbol>{`${this.props.currentUserPanel.symbol}`}</StyledUserPanelSymbol>*/}
           <StyledIcon src="/pictures/Person.svg" alt="person"
-            isUserPanelExtended={this.props.isUserPanelExtended}/>
+            isUserPanelExtended={this.props.isUserPanelExtended}
+          />
         </StyledUserPanelHeader>
         <StyledUserPanelOverlay isUserPanelExtended={this.props.isUserPanelExtended}/>
         <StyledUserPanelDropdownContainer>

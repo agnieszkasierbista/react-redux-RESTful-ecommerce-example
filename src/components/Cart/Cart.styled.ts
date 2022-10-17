@@ -192,7 +192,7 @@ export const StyledProductInCartAttribute = styled.section`
 `;
 
 export const StyledProductInCartAttributeName = styled.p<{isBigCart?: boolean}>`
-  font-family: ${props => props.isBigCart ? '"Roboto Condensed", sans-serif' : '"Raleway", sans-serif'};
+  font-family: ${props => props.isBigCart ? '"Barlow Condensed", sans-serif' : '"Dosis", sans-serif'};
   font-style: normal;
   font-weight: ${props => props.isBigCart ? '700' : '400'};
   font-size: ${props => props.isBigCart ? '18px' : '14px'};
@@ -229,7 +229,7 @@ export const StyledProductInCartAttributeValue = styled.div<{ color?: string, is
 `;
 
 export const StyledProductInCartAttributeValueText = styled.p<{isBigCart?: boolean}>`
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: ${props => props.isBigCart ? '16px' : '14px'};

@@ -214,9 +214,7 @@ export const onGetProductDetails: Epic = action$ => action$.pipe(
     }
 
     const actionPayload = responseOne.config.url.split('/')[responseOne.config.url.split('/').length - 1];
-    console.log(actionPayload);
     const data = responseOne.data;
-    console.log('data', data);
     const productDetails: { product: ProductDetails } = {
       product: {
         name: data.name.split(' ')[0],

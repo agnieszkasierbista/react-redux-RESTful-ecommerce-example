@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {toggleIsExtended, toggleIsUserPanelExtended} from '../../actions';
+import {toggleIsUserPanelExtended} from '../../actions';
 import {UserPanelDispatchProps, UserPanelStateProps} from './UserPanel.types';
 import {State} from '../../types';
 import UserPanel from './UserPanel.layout';

@@ -22,7 +22,7 @@ export const StyledQuantityBadge = styled.div`
   top: -5px;
   width: 20px;
   height: 20px;
-  font-family: 'Roboto', 'sans-serif';
+  font-family: 'Roboto Slab', 'sans-serif';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;

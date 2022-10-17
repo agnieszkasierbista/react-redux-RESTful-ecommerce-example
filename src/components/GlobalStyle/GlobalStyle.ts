@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background: #FFFFFF;
-    font-family: 'Raleway', 'sans-serif';
+    font-family: 'Montserrat', 'sans-serif';
     color: #1D1F22;
   }
 

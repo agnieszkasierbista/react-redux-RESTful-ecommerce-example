@@ -37,7 +37,7 @@ export const StyledAttribute = styled.section`
 `;
 
 export const StyledAttributeName = styled.p`
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Barlow Condensed', sans-serif;
   text-transform: uppercase;
   font-style: normal;
   font-weight: 700;
@@ -75,7 +75,7 @@ export const StyledAttributeValue = styled.div<{ color?: string, isSelected?: bo
 `;
 
 export const StyledAttributeValueText = styled.p`
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -105,7 +105,7 @@ export const StyledAddToCartButton = styled.button<{ disabled: boolean }>`
 `;
 
 export const StyledDescription = styled.div`
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Slab', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

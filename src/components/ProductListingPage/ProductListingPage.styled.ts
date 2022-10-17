@@ -3,19 +3,25 @@ import styled from 'styled-components';
 
 export const StyledProductListingPage = styled.section`
   height: 100%;
-  margin: 80px 100px;
+  margin: 40px 100px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-around;
-  grid-row-gap: 103px;
+  grid-row-gap: 53px;
   grid-column-gap: 40px;
 `;
+
+export const StyledAddToCartShorthandIcon = styled.img`
+  filter: invert(28%) sepia(81%) saturate(3643%) hue-rotate(337deg) brightness(90%) contrast(105%);
+`;
+
 
 export const StyledAddToCartShorthand = styled.button`
   position: absolute;
   right: 35px;
-  bottom: 135px;
-  background-color: ${props => props.theme.colors.orange};
+  bottom: 75px;
+  background-color: ${props => props.theme.colors.white};
+  border: 2px solid ${props => props.theme.colors.orange};
   border-radius: 50%;
   width: 35px;
   height: 35px;
@@ -24,6 +30,15 @@ export const StyledAddToCartShorthand = styled.button`
   font-size: x-large;
   cursor: pointer;
   filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.1));
+  
+  &:hover {
+    background-color: ${props => props.theme.colors.orange};
+  }
+  
+  &:hover ${StyledAddToCartShorthandIcon} {
+    filter: none;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(306deg) brightness(106%) contrast(101%);
+  }
 `;
 
 export const StyledPLPitem = styled.article`
@@ -34,7 +49,7 @@ export const StyledPLPitem = styled.article`
   padding: 16px;
   
   &:hover {
-    box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
+    box-shadow: 0 4px 35px rgba(168, 172, 176, 0.7);
   }
 
   ${StyledAddToCartShorthand} {
@@ -111,8 +126,7 @@ export const StyledProductListingPageTitle = styled.header`
   & h2 {
     font-style: normal;
     font-weight: 400;
-    font-size: 42px;
-    line-height: 160%;
+    font-size: 36px;
     text-transform: capitalize;
   }
 `;
@@ -128,8 +142,4 @@ export const StyledOutOfStock = styled.p`
   font-size: 24px;
   line-height: 160%;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
-`;
-
-export const StyledAddToCartShorthandIcon = styled.img`
-  filter: brightness(0) invert(1);
 `;

@@ -52,7 +52,8 @@ export class ProductListingPage extends PureComponent<PropsWithChildren<ProductL
                 <Link to={getProductDescriptionPageLink(product.category, product.id)}>
                   <StyledProductListingPageImg imgSrc={product.gallery[0]}/>
                   <StyledProductListingPageItemDetails>
-                    <StyledBrandAndName>{`${product.brand} ${product.name}`}</StyledBrandAndName>
+                    <StyledBrandAndName>{product.brand}</StyledBrandAndName>
+                    <StyledBrandAndName>{product.name}</StyledBrandAndName>
                     <StyledPrice>{`${price?.currency.symbol} ${price?.amount}`}</StyledPrice>
                   </StyledProductListingPageItemDetails>
                 </Link>

@@ -28,12 +28,12 @@ export const StyledMiniCartTitle = styled.section`
 `;
 
 export const StyledMyBagHeader = styled.p`
-  font-weight: 700;
+  font-weight: 500;
 `;
 
 export const StyledMyBagHeaderAmount = styled.p`
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
   line-height: 160%;
 `;

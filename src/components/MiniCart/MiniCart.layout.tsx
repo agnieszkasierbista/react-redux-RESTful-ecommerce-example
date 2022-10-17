@@ -20,7 +20,7 @@ export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
             &&
             <StyledMiniCart>
               <StyledMiniCartTitle>
-                <StyledMyBagHeader>My bag, </StyledMyBagHeader><StyledMyBagHeaderAmount>{this.props.amount < 1 ? null : this.props.amount} {this.props.amount > 1 ? 'items' : this.props.amount < 1 ? 'no items' : 'item'}</StyledMyBagHeaderAmount>
+                <StyledMyBagHeader>Your cart contains </StyledMyBagHeader><StyledMyBagHeaderAmount>{this.props.amount < 1 ? null : this.props.amount} {this.props.amount > 1 ? 'items' : this.props.amount < 1 ? 'no items' : 'item'}</StyledMyBagHeaderAmount>
               </StyledMiniCartTitle>
               <Cart isBigCart={false}/>
               <StyledButtonsInMiniCart>
@@ -29,7 +29,7 @@ export class MiniCart extends PureComponent<PropsWithChildren<MiniCartProps>> {
                   onClick={() => {
                     this.props.dispatchToggleMiniCartVisibility();
                   }}>
-                        VIEW BAG
+                        GO TO CART
                 </StyledGoToCart>
                 <StyledCheckOutButton onClick={() => console.log('Buy, buy, buy!')}>
                   <StyledButtonText>CHECK OUT</StyledButtonText>

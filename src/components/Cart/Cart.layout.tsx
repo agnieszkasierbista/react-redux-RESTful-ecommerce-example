@@ -249,8 +249,7 @@ export class Cart extends PureComponent<PropsWithChildren<CartProps>> {
           {this.props.isBigCart
                     &&
                     <>
-                      <StyledTitle>Total tax
-                            21%: </StyledTitle><StyledValue>{this.props.currentCurrency.symbol}{totalTax}</StyledValue>
+                      <StyledTitle>Total tax 21%: </StyledTitle><StyledValue>{this.props.currentCurrency.symbol}{totalTax}</StyledValue>
                     </>
           }
 
