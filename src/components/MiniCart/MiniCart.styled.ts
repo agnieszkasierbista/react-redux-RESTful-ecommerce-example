@@ -13,7 +13,7 @@ export const StyledMiniCart = styled.div`
   justify-content: center;
   align-items: center;
   padding: 32px 16px;
-  width: 325px;
+  min-width: 375px;
   box-sizing: border-box;
 `;
 

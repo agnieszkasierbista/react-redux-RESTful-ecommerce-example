@@ -2,13 +2,13 @@ import React, {PropsWithChildren, PureComponent} from 'react';
 import ProductListingPage from '../ProductListingPage/ProductListingPage';
 import ProductDescriptionPage from '../ProductDescriptionPage/ProductDescriptionPage';
 import Cart from '../Cart/Cart';
-import {Route, Routes} from 'react-router-dom';
+import {Link, Route, Routes} from 'react-router-dom';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
 import NavBar from '../NavBar/NavBar';
 import MiniCartIcon from '../MiniCartIcon/MiniCartIcon';
 import CategoryTabs from '../CategoryTabs/CategoryTabs';
 import {AppProps} from './App.types';
-import {StyledActions, StyledLogo} from './App.styled';
+import {StyledActions, StyledLink, StyledLogo} from './App.styled';
 import MiniCartOverlay from '../MiniCartOverlay/MiniCartOverlay';
 import WithoutMiniCart from '../WithoutMiniCart/WithoutMiniCart';
 import MiniCart from '../MiniCart/MiniCart';
@@ -44,8 +44,10 @@ class App extends PureComponent<PropsWithChildren<AppProps>> {
     return (
       <>
         <NavBar>
+          <StyledLink to="/" onClick={() => this.props.dispatchSetCurrentNavigation('/')}>
+            <StyledLogo src="/pictures/shapes.svg" alt="logo"/>
+          </StyledLink>
           <CategoryTabs/>
-          <StyledLogo src="/pictures/shapes.svg" alt="logo"/>
           <StyledActions>
             <CurrencySwitcher/>
             <MiniCartIcon/>

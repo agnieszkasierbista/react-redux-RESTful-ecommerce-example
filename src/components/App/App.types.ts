@@ -15,4 +15,5 @@ export interface AppStateProps {
 
 export interface AppDispatchProps {
     dispatchInit: () => void,
+    dispatchSetCurrentNavigation: (path: string) => void,
 }
